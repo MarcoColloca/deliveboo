@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\DishController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +38,7 @@ Route::middleware(['auth', 'verified'])
     Route::resource('companies', CompanyController::class);
     Route::resource('dishes', DishController::class);
     Route::resource('orders', OrderController::class);
+    Route::resource('type', TypeController::class);
 });
 
 
