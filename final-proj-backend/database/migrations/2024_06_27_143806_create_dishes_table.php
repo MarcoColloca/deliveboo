@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('dishes', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('slug')->unique();
+            $table->text('image')->nullable();
+            $table->text('description')->nullable();
+            $table->text('ingredients')->nullable();
+            $table->unsignedDecimal('price', 6,2);
+            $table->boolean('visible')->default(true);
             $table->timestamps();
         });
     }
