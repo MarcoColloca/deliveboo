@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +32,7 @@ Route::middleware(['auth', 'verified'])
 
     // Registrare tutte le altre rotte protette. Nel nostro caso aggiungeremo la CRUD sui POSTS
     
+    Route::resource('companies', CompanyController::class);
 });
 
 
