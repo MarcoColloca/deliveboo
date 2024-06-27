@@ -38,7 +38,7 @@ Route::middleware(['auth', 'verified'])
     Route::resource('companies', CompanyController::class);
     Route::resource('dishes', DishController::class);
     Route::resource('orders', OrderController::class);
-    Route::resource('type', TypeController::class);
+    Route::resource('types', TypeController::class);
 });
 
 
