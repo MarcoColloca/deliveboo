@@ -18,12 +18,16 @@ class DishSeeder extends Seeder
         for($i = 0; $i < 5; $i++)
         {
             $new_dish = new Dish();
+            $new_dish->name = $faker->sentence(1,5);
+            $new_dish->slug = Str::slug($new_dish->name);
+            $new_dish->image ="https://picsum.photos/300/200?random=".rand(1,300);
+            $new_dish->description = $faker->paragraph(3,15);
+            $new_dish->ingredients = $faker->paragraph(2,10);
+            $new_dish->price = $faker->randomFloat(2,1,200);
+            $new_dish->visible = $faker->boolean();
 
-
-
-
-            dump($new_dish);
-            //$new_dish->save();
+            // dump($new_dish);
+            $new_dish->save();
         }
     }
 }
