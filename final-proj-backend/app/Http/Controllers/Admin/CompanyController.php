@@ -10,6 +10,7 @@ use App\Models\Company;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class CompanyController extends Controller
 {
@@ -42,23 +43,15 @@ class CompanyController extends Controller
 
         $form_data = $request->validated();// per la validazione
 
-        $new_company = Company::create($form_data);
+        $form_data['slug'] = Company::getUniqueSlug($form_data['name']);
 
-        // $new_company->name = $form_data["name"];
-        // $new_company->slug = Str::slug($new_company->name);
-        // $new_company->image = $form_data["image"];
-        // $new_company->city = $form_data["city"];
-        // $new_company->address = $form_data["address"];
-        // $new_company->vat_number = $form_data["vat_number"];
-        // $new_company->description = $form_data["description"];
-        // $new_company->phone_number = $form_data["phone_number"];
-        // $new_company->email = $form_data["email"];
-
-        // $new_company->type_id = $form_data['type_id'];
         if($request->hasFile('image')) {
             $image_path = Storage::disk('public')->put('image', $request->image);
             $form_data['image'] = $image_path;
         }
+        
+        $new_company = Company::create($form_data);
+
         if($request->has('types'))
         {
            $new_company->types()->attach($form_data['types']);
@@ -85,9 +78,10 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
+        $company->load(['types']);
         $types = Type::orderBy("name","asc")->get();
 
-        return view("admin.companies.edit", compact("company"));
+        return view("admin.companies.edit", compact("company", 'types'));
     }
 
     /**

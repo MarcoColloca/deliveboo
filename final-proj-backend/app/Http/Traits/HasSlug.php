@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Traits;
-use Illumintae\Support\Str;
+use Illuminate\Support\Str;
 
 trait HasSlug {
     public static function getUniqueSlug($name) {
-        $base_clug = Str::slug($name);
+        $base_slug = Str::slug($name);
         $slug = $base_slug;
         $n = 0;
         do{

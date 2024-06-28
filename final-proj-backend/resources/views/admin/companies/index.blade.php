@@ -2,7 +2,10 @@
 
 @section('content')
 
-<section class="my-3 py-1">
+<section class="">
+    <div class="container mt-3 mb-3 p-3 d-flex justify-content-center bg-light">
+        <a class="btn btn-primary" href="{{ route('admin.companies.create')}}">Crea il tuo ristorante</a>
+    </div>
     <div class="container">
         <table class="table">
             <thead>
@@ -26,8 +29,23 @@
                     <td class="text-center">{{ $company->email}}</td>
                     <td class="text-center">
                         <a href="{{ route('admin.companies.show', $company)}}">Dettagli</a></td>
-                    <td class="text-center">Modifica</td>
-                    <td class="text-center">X</td>
+                    <td class="text-center"><a href="{{ route('admin.companies.edit', $company)}}">Modifica</a></td>
+                    <td class="text-center">
+                        <form class="item-delete-form" action="{{ route('admin.companies.destroy', $company) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger">Elimina</button>
+                            <div class="my-modal">
+                                <div class="my-modal__box">
+                                    <h4 class="text-center me-5">Vuoi eliminare questo ristorante?</h4>
+                                    <span class="link link-danger my-modal-yes mx-5">Si</span>
+                                    <span class="link link-success my-modal-no mx-5">No</span>
+
+                                </div>
+                            </div>
+
+                        </form>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>

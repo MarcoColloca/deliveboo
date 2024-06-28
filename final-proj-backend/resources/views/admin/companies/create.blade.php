@@ -3,12 +3,12 @@
 @section('content')
 <div class="container bg-light mt-5 mb-5 rounded-4 p-5">
     <h1>Crea il tuo ristorante</h1>
-    <form action="{{ route('admin.companies.store', $company)}}" method="POST"  enctype="multipart/form-data">
+    <form action="{{ route('admin.companies.store')}}" method="POST"  enctype="multipart/form-data">
         @csrf
 
         <div class="mb-3">
             <label for="name" class="form-label fb-bold">Nome</label>
-            <input type="text" class="form-control" id="name" placeholder="Inserisci il nome" value="{{ old('name') }}">
+            <input type="text" name="name" class="form-control" id="name" placeholder="Inserisci il nome" value="{{ old('name') }}">
         </div>
         <div class="mb-3">
          <label for="city" class="form-label fb-bold">Città</label>
@@ -36,14 +36,15 @@
         </div>
         <div class="form-group mb-3">
             <label for="type_id">Tipologia</label>
-            <select class="form-control" name="type_id" id="type_id">
-                <option value="">--Seleziona la tua tipologia--</option>
-                @foreach($types as $type)
-                    <option @selected($type->id == old('type_id')) value="{{$type->id}}">{{$type->name}}</option>
+            <div class="mb-3">
+                @foreach ($types as $type)
+                    <div class="form-check">
+                        <input @checked(in_array($type->id, old('types', []))) type="checkbox" id="type-{{ $type->id }}"
+                            value="{{ $type->id }}" name="types[]" class="form-check-input">
+                        <label class="form-check-label" for="type-{{ $type->id }}">{{ $type->name }}</label>
+                    </div>
                 @endforeach
-            </select>
-
-        </div>
+            </div>
         <div class="mb-3">
             <label for="image" class="form-label fb-bold">Carica un'immagine</label>
             <input class="form-control" type="file" name="image" id="image">

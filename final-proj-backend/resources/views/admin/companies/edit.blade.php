@@ -14,7 +14,7 @@
 
         <div class="mb-3">
             <label for="name" class="form-label fb-bold">Nome</label>
-            <input type="text" class="form-control" id="name" placeholder="Inserisci il nome" value="{{ old('name', $company->name) }}">
+            <input type="text" name="name" class="form-control" id="name" placeholder="Inserisci il nome" value="{{ old('name', $company->name) }}">
         </div>
         <div class="mb-3">
          <label for="city" class="form-label fb-bold">Città</label>
@@ -42,12 +42,15 @@
         </div>
         <div class="form-group mb-3">
             <label for="type_id">Tipologia</label>
-            <select class="form-control" name="type_id" id="type_id">
-                <option value="">--Seleziona la tua tipologia--</option>
-                @foreach($types as $type)
-                    <option @selected($type->id == old('type_id', $company->$type_id)) value="{{$type->id}}">{{$type->name}}</option>
+            <div class="mb-3">
+                @foreach ($types as $type)
+                    <div class="form-check">
+                        <input @checked(in_array($type->id, old('types', $company->types->pluck('id')->all()))) type="checkbox" id="type-{{ $type->id }}"
+                            value="{{ $type->id }}" name="types[]" class="form-check-input">
+                        <label class="form-check-label" for="type-{{ $type->id }}">{{ $type->name }}</label>
+                    </div>
                 @endforeach
-            </select>
+            </div>
             <div class="mb-3">
                 <label for="image" class="form-label fb-bold">Cambia la tua immagine</label>
                 <input class="form-control" type="file" name="image" id="image">

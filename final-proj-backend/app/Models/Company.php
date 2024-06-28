@@ -19,7 +19,8 @@ class Company extends Model
         'vat_number',
         'description',
         'phone_number',
-        'email'
+        'email',
+        'type_id'
     ]; 
     protected $appends = ['image_fullpath'];
 
