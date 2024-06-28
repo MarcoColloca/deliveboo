@@ -9,6 +9,8 @@ class Company extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'slug', 'image', 'city', 'address', 'vat_number', 'description', 'phone_number', 'email']; 
+
     public function user(){
         return $this->belongsTo(User::class);
     }

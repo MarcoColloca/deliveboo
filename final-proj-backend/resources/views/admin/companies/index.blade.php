@@ -25,7 +25,7 @@
                     <td class="text-center">{{ $company->phone_number}}</td>
                     <td class="text-center">{{ $company->email}}</td>
                     <td class="text-center">
-                        <a href="{{ route('admin.dishes.show', $company)}}">Dettagli</a></td>
+                        <a href="{{ route('admin.companies.show', $company)}}">Dettagli</a></td>
                     <td class="text-center">Modifica</td>
                     <td class="text-center">X</td>
                 </tr>
