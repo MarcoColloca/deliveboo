@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Company;
+use App\Models\User;
+use App\Models\Type;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
@@ -16,6 +18,9 @@ class CompanySeeder extends Seeder
      */
     public function run(Faker $faker): void
     {
+        $user_ids = User::all()->pluck('id')->all();
+
+        $type_ids = Type::all()->pluck('id')->all();
 
 
         for($i = 0; $i < 10; $i++)
@@ -31,8 +36,14 @@ class CompanySeeder extends Seeder
             $new_company->description = $faker->paragraph(3, 10);
             $new_company->phone_number = $faker->phoneNumber();
             $new_company->email = $faker->companyEmail();
+            $new_company->user_id = $faker->randomElement($user_ids);
 
             $new_company->save();
+
+            $random_type_ids = $faker->randomElements($type_ids, null);
+            $new_company->types()->attach($random_type_ids);
+
+
         }
     }
 }
