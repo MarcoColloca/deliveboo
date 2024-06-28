@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Company;
 use App\Models\Dish;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -15,6 +16,9 @@ class DishSeeder extends Seeder
      */
     public function run(Faker $faker): void
     {
+
+        $company_ids = Company::all()->pluck('id')->all();
+
         for($i = 0; $i < 5; $i++)
         {
             $new_dish = new Dish();
@@ -25,6 +29,7 @@ class DishSeeder extends Seeder
             $new_dish->ingredients = $faker->paragraph(2,10);
             $new_dish->price = $faker->randomFloat(2,1,200);
             $new_dish->visible = $faker->boolean();
+            $new_dish->company_id = $faker->randomElement($company_ids);
 
             // dump($new_dish);
             $new_dish->save();
