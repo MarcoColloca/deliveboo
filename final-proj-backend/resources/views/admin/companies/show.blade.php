@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container bg-light mt-5">
+<div class="container bg-light mt-5 mb-5 rounded-4 p-5">
     <h1>Il tuo ristorante</h1>
     <div class="row">
-        <div class="col-8">
+        <div class="col-6">
             <p><h3>Nome:</h3>{{$company->name}}</p>
             <p><h3>Città:</h3>{{$company->city}}</p>
             <p><h3>Indirizzo:</h3>{{$company->address}}</p>
@@ -19,7 +19,7 @@
             </p>
         
         </div>
-        <div class="col-4">
+        <div class="col-6 d-flex justify-content-center align-items-start">
 
             <img src={{ $company->image }} alt="">
         </div>
