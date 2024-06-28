@@ -13,7 +13,9 @@ class DishController extends Controller
      */
     public function index()
     {
-        //
+        $dishes = Dish::orderBy('name', 'asc')->get();
+
+        return view('admin.dishes.index', compact('dishes'));
     }
 
     /**
@@ -21,7 +23,7 @@ class DishController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -37,7 +39,7 @@ class DishController extends Controller
      */
     public function show(Dish $dish)
     {
-        //
+        return view('admin.dishes.show', compact('dish'));
     }
 
     /**
