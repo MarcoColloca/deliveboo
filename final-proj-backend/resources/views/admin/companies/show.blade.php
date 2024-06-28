@@ -19,8 +19,11 @@
         
         </div>
         <div class="col-6 d-flex flex-column justify-content-center">
-
+            @if($company->image)
             <img src={{ $company->image }} alt="">
+            @else
+            <p>Non ci sono immagini del ristorante</p>
+            @endif
             <p><h4>Telefono:</h4>{{$company->phone_number}}</p>
             <p><h4>Email:</h4>{{$company->email}}</p>
         </div>

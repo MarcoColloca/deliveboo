@@ -44,6 +44,10 @@
             </select>
 
         </div>
+        <div class="mb-3">
+            <label for="image" class="form-label fb-bold">Carica un'immagine</label>
+            <input class="form-control" type="file" name="image" id="image">
+        </div>
         <button class="btn btn-success">Crea</button>
 
     </form>

@@ -3,6 +3,11 @@
 @section('content')
 <div class="container bg-light mt-5 mb-5 rounded-4 p-5">
     <h1>Modifica le informazioni del tuo ristorante</h1>
+    @if($company->image)
+    <img src={{ $company->image }} alt="">
+    @else
+    <p>Non ci sono immagini del ristorante</p>
+    @endif
     <form action="{{ route('admin.companies.update', $company)}}" method="POST">
         @csrf
         @method('PUT')
@@ -43,10 +48,13 @@
                     <option @selected($type->id == old('type_id', $company->$type_id)) value="{{$type->id}}">{{$type->name}}</option>
                 @endforeach
             </select>
+            <div class="mb-3">
+                <label for="image" class="form-label fb-bold">Cambia la tua immagine</label>
+                <input class="form-control" type="file" name="image" id="image">
+            </div>
 
         </div>
         <button class="btn btn-success">Modifica</button>
-
     </form>
 </div>
 <div class="container mt-4">
