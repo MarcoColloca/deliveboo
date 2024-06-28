@@ -2,28 +2,37 @@
 
 @section('content')
 
-<div class="text-white">
-    <h1>INDEX</h1>
-
+<section class="my-3 py-1">
     <div class="container">
-        <div class="row">
-            <table>
-                <thead>
-                    <th>Name</th>
-                    <th>Indirizzo</th>
-                    <th>Numero di telefono</th>
-                    <th>Email</th>
-                </thead>
-                @foreach ($companies as $company)
-                    <tbody>
-                        <td>{{ $company->name }}</td>
-                        <td>{{ $company->address }}, {{ $company->city }}</td>
-                        <td>{{ $company->phone_number }}</td>
-                        <td>{{ $company->email }}</td>
-                    </tbody>
-                @endforeach
-            </table>
-        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="text-center" scope="col">Nome</th>
+                    <th class="text-center" scope="col">Indirizzo</th>
+                    <th class="text-center" scope="col">Numero di telefono </th>
+                    <th class="text-center" scope="col">Email</th>
+                    <th class="text-center" scope="col"></th>
+                    <th class="text-center" scope="col"></th>
+                    <th class="text-center" scope="col"></th>
+                </tr>
+            </thead>
 
+            <tbody>
+                @foreach ($companies as $company)
+                <tr>
+                    <td class="text-center">{{ $company->name }}</td>
+                    <td class="text-center">{{ $company->address}}, {{ $company->city }}</td>
+                    <td class="text-center">{{ $company->phone_number}}</td>
+                    <td class="text-center">{{ $company->email}}</td>
+                    <td class="text-center">
+                        <a href="{{ route('admin.dishes.show', $company)}}">Dettagli</a></td>
+                    <td class="text-center">Modifica</td>
+                    <td class="text-center">X</td>
+                </tr>
+                @endforeach
+            </tbody>
+
+        </table>
     </div>
+</section>
     @endsection
