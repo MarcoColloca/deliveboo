@@ -20,7 +20,7 @@
         </div>
         <div class="col-6 d-flex flex-column justify-content-center">
             @if($company->image)
-            <img src={{ $company->image }} alt="">
+            <img src="{{ asset('storage/'. $company->image) }}" alt="image{{$company->name}}">
             @else
             <p>Non ci sono immagini del ristorante</p>
             @endif

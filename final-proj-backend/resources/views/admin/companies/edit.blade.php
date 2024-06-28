@@ -4,11 +4,11 @@
 <div class="container bg-light mt-5 mb-5 rounded-4 p-5">
     <h1>Modifica le informazioni del tuo ristorante</h1>
     @if($company->image)
-    <img src={{ $company->image }} alt="">
+    <img src="{{ asset('storage/'. $company->image) }}" alt="image{{$company->name}}">
     @else
     <p>Non ci sono immagini del ristorante</p>
     @endif
-    <form action="{{ route('admin.companies.update', $company)}}" method="POST">
+    <form action="{{ route('admin.companies.update', $company)}}" method="POST"  enctype="multipart/form-data">
         @csrf
         @method('PUT')
 

@@ -1,15 +1,35 @@
 <?php
 
 namespace App\Models;
-
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Http\Traits\HasSlug;
 
 class Company extends Model
 {
-    use HasFactory;
+    use HasFactory, HasSlug;
 
-    protected $fillable = ['name', 'slug', 'image', 'city', 'address', 'vat_number', 'description', 'phone_number', 'email']; 
+    protected $fillable = [
+        'name',
+        'slug', 
+        'image', 
+        'city',
+        'address',
+        'vat_number',
+        'description',
+        'phone_number',
+        'email'
+    ]; 
+    protected $appends = ['image_fullpath'];
+
+    protected function imageFullpath(): Attribute
+    {
+        return new Attribute(
+            get: fn () =>
+            $this->image ? asset('http://127.0.0.1:8000/storage/' . $this->image) : null,
+        );
+    }
 
     public function user(){
         return $this->belongsTo(User::class);

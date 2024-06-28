@@ -3,7 +3,7 @@
 @section('content')
 <div class="container bg-light mt-5 mb-5 rounded-4 p-5">
     <h1>Crea il tuo ristorante</h1>
-    <form action="{{ route('admin.companies.store', $company)}}" method="POST">
+    <form action="{{ route('admin.companies.store', $company)}}" method="POST"  enctype="multipart/form-data">
         @csrf
 
         <div class="mb-3">

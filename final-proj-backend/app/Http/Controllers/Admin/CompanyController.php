@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCompanyRequest;
 use App\Http\Requests\UpdateCompanyRequest;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Company;
 use App\Models\Type;
 use Illuminate\Http\Request;
@@ -43,22 +44,31 @@ class CompanyController extends Controller
 
         $new_company = Company::create($form_data);
 
-        $new_company->name = $form_data["name"];
-        $new_company->slug = Str::slug($new_company->name);
-        $new_company->image = $form_data["image"];
-        $new_company->city = $form_data["city"];
-        $new_company->address = $form_data["address"];
-        $new_company->vat_number = $form_data["vat_number"];
-        $new_company->description = $form_data["description"];
-        $new_company->phone_number = $form_data["phone_number"];
-        $new_company->email = $form_data["email"];
+        // $new_company->name = $form_data["name"];
+        // $new_company->slug = Str::slug($new_company->name);
+        // $new_company->image = $form_data["image"];
+        // $new_company->city = $form_data["city"];
+        // $new_company->address = $form_data["address"];
+        // $new_company->vat_number = $form_data["vat_number"];
+        // $new_company->description = $form_data["description"];
+        // $new_company->phone_number = $form_data["phone_number"];
+        // $new_company->email = $form_data["email"];
 
-        $new_company->type_id = $form_data['type_id'];
+        // $new_company->type_id = $form_data['type_id'];
+        if($request->hasFile('image')) {
+            $image_path = Storage::disk('public')->put('image', $request->image);
+            $form_data['image'] = $image_path;
+        }
+        if($request->has('types'))
+        {
+           $new_company->types()->attach($form_data['types']);
+        }
 
-        $new_company->save();
+
+        // $new_company->save();
 
 
-        return to_route("admin.companies,show", $new_company);
+        return to_route("admin.companies.show", $new_company);
     }
 
     /**
