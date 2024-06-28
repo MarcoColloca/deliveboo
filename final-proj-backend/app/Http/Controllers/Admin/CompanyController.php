@@ -90,18 +90,20 @@ class CompanyController extends Controller
     public function update(UpdateCompanyRequest $request, Company $company)
     {
         $form_data = $request->validated();// per la validazione
+        if($request->hasFile('image')) {
+            $image_path = Storage::disk('public')->put('image', $request->image);
+            if($company->image) {
+                Storage::disk('public')->delete($company->image);
+            }
+            $form_data['image'] = $image_path;
+        }
+        $company->update($form_data);
+        if($request->has('types')){
 
-        $company->name = $form_data["name"];
-        $company->slug = Str::slug($company->name);
-        $company->image = $form_data["image"];
-        $company->city = $form_data["city"];
-        $company->address = $form_data["address"];
-        $company->vat_number = $form_data["vat_number"];
-        $company->description = $form_data["description"];
-        $company->phone_number = $form_data["phone_number"];
-        $company->email = $form_data["email"];
-
-        $company->save();
+            $company->types()->sync($request->types);
+        }else{
+            $company->types()->detach();
+        }
 
         return to_route("admin.companies.show", $company);
     }
