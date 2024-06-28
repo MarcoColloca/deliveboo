@@ -19,4 +19,6 @@ class Dish extends Model
     {
         return $this->belongsToMany(Order::class);
     }
+
+    protected $fillable = ['company_id'];
 }
