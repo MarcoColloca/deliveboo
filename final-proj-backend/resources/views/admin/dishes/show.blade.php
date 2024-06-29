@@ -37,7 +37,7 @@
                     </table>
                     
                     <div class="card-body d-flex justify-content-around">
-                        <a href="#" class="link link-primary">Modifica</a>
+                        <a href="{{route('admin.dishes.edit', $dish)}}" class="link link-primary">Modifica</a>
                         <form class="item-delete-form" action="{{ route('admin.dishes.destroy', $dish) }}"
                             method="POST">
                             @csrf
