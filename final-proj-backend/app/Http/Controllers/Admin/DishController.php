@@ -110,6 +110,13 @@ class DishController extends Controller
      */
     public function destroy(Dish $dish)
     {
+        $user_id = Auth::id();
+
+        if($dish->company->user_id !== $user_id)
+        {
+            abort(403, 'Eliminazione non autorizzata.');
+        }
+
         $dish->delete();
         return to_route("admin.dishes.index");
     }
