@@ -3,30 +3,35 @@
 @section('title', $dish->name)
 
 @section('content')
-<section class="my-3 py-1">
+<section class="my-5 py-1">
+    <h2 class="text-center text-light my-4 pb-4">Compagnia: {{$dish->company->name}}</h2>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-6">
                 <div class="card">
                     <img src="{{  asset('storage/'. $dish->image)}}" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">{{ $dish->name }}</h5>
-                        <p class="card-text">{{ $dish->description }}</p>
+                        <h4 class="card-title">{{ $dish->name }}</h4>
+                        <p class="card-text">{{ $dish->description ? $dish->description : 'Nessuna Descrizione.'  }}</p>
                     </div>
 
                     <table class="table">
+                        <thead>
+                            <th scope="col" class="col-3"></th>
+                            <th scope="col"></th>
+                        </thead>
                         <tbody>
                             <tr class="border-top">
-                                <td class="border-end"><strong>Ingredienti:</strong></td>
-                                <td>{{ $dish->ingredients }}</td>
-                            </tr>
-                            <tr>
-                                <td class="border-end"><strong>Prezzo:</strong></td>
+                                <td class="border-end" scope="col-2"><strong>Prezzo:</strong></td>
                                 <td>{{ $dish->price }} €</td>
                             </tr>
                             <tr>
-                                <td class="border-end"><strong>Disponibile:</strong></td>
+                                <td class="border-end" scope="col-2"><strong>Disponibile:</strong></td>
                                 <td>{{ $dish->visible === 1 ? 'Sì' : 'No' }}</td>
+                            </tr>
+                            <tr >
+                                <td class="border-end" scope="col-2"><strong>Ingredienti:</strong></td>
+                                <td>{{ $dish->ingredients }}</td>
                             </tr>
                         </tbody>
                     </table>
