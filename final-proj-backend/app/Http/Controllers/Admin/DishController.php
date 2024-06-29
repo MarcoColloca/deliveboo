@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreDishRequest;
 use App\Models\Company;
 use App\Models\Dish;
 use Illuminate\Http\Request;
@@ -40,15 +41,26 @@ class DishController extends Controller
      */
     public function create()
     {
-        
+        $user_id = Auth::id();
+
+        $companies = Company::where('user_id', $user_id)->get();
+
+        $visibility = [
+            'Sì' => 1,
+            'No'  => 0
+        ];
+
+        return view('admin.dishes.create', compact('companies', 'visibility'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreDishRequest $request)
     {
-        //
+
+        
+        return 'test';
     }
 
     /**
