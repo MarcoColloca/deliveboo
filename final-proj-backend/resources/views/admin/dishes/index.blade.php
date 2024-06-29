@@ -38,7 +38,7 @@
                                     <td class="text-center">
                                         <a href="{{ route('admin.dishes.show', $dish)}}" class="link link-success">Dettagli</a>
                                     </td>
-                                    <td class="text-center"><a href="" class="link link-primary">Modifica</a></td>
+                                    <td class="text-center"><a href="{{route('admin.dishes.edit', $dish)}}" class="link link-primary">Modifica</a></td>
                                     <td class="text-center">
                                         <form class="item-delete-form" action="{{ route('admin.dishes.destroy', $dish) }}"
                                             method="POST">
