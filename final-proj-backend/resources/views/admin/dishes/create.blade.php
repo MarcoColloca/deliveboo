@@ -24,9 +24,9 @@
         <!-- Visibilità Piatto -->
         <div class="mb-3">
             <label for="visible" class="form-label fb-bold">Visibilità nel Menù</label>
-            <select class="form-control" name="visible" id="visible">
+            <select class="form-control" name="visible" id="visible" required>
                 @foreach ($visibility as $visible => $boolean)                        
-                    <option @selected($boolean == old('visible')) value="{{$boolean}}">{{$visible}}</option>
+                    <option @selected($boolean == old('visible', '')) value="{{$boolean}}">{{$visible}}</option>
                 @endforeach
             </select>
         </div>
