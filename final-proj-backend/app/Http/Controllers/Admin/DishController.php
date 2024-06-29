@@ -8,6 +8,7 @@ use App\Models\Company;
 use App\Models\Dish;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class DishController extends Controller
 {
@@ -47,7 +48,8 @@ class DishController extends Controller
 
         $visibility = [
             'Sì' => 1,
-            'No'  => 0
+            'No'  => 0,
+            'Seleziona Disponibilità' => '',
         ];
 
         return view('admin.dishes.create', compact('companies', 'visibility'));
@@ -58,9 +60,18 @@ class DishController extends Controller
      */
     public function store(StoreDishRequest $request)
     {
+        $form_data = $request->validated();
 
-        
-        return 'test';
+        $form_data['slug'] = Dish::getUniqueSlug($form_data['name']);
+
+        if($request->hasFile('image')) {
+            $image_path = Storage::disk('public')->put('image', $request->image);
+            $form_data['image'] = $image_path;
+        }
+
+        $new_dish = Dish::create($form_data);
+
+        return to_route("admin.dishes.show", $new_dish);
     }
 
     /**
