@@ -6,7 +6,7 @@
 <section class="my-3 py-1">
     <div class="container">
         <div class="card">
-            <img src="{{ $dish->image}}" class="card-img-top" alt="...">
+            <img src="{{  asset('storage/'. $dish->image)}}" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">{{ $dish->name }}</h5>
                 <p class="card-text">{{ $dish->description }}</p>
