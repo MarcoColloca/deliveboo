@@ -6,10 +6,17 @@
 
 <section class="my-3 py-1">
     <div class="container">
+        <div class="d-flex justify-content-center mx-4">
+            <a class="btn btn-outline-light text-decoration-none" href="{{route('admin.dishes.create')}}">Aggiunti un piatto ad un Ristorante</a>
+        </div>
+    </div>
+    <div class="container">
         <div class="row">            
             <div class="col-12">
                 @foreach ($company_dishes as $company_name => $dishes)
-                    <h2 class="mt-5 mb-2 text-light">{{$company_name}}</h2>
+                    <div class="d-flex justify-content-between mt-5 mb-1">                        
+                        <h2 class=" text-light">{{$company_name}}</h2>                    
+                    </div>
                     <table class="table">
                         <thead>
                             <tr>
