@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container bg-light mt-5 mb-5 rounded-4 p-5">
-    <h1>Crea il tuo ristorante</h1>
+    <h1>Crea il tuo Piatto </h1>
     <form action="{{ route('admin.dishes.store')}}" method="POST"  enctype="multipart/form-data">
         @csrf
 
@@ -16,8 +16,8 @@
  
         <!-- Prezzo Piatto -->
         <div class="mb-3">
-         <label for="price" class="form-label fb-bold">Prezzo</label>
-         <input type="number" class="form-control" name="price" id="price" step=".01" placeholder="Inserisci il Prezzo" value="{{ old('price') }}" >
+         <label for="price" class="form-label fb-bold">Prezzo </label>
+         <input type="number" class="form-control" name="price" id="price" step=".01" placeholder="Inserisci il Prezzo (Es 10.00)" value="{{ old('price') }}" >
         </div>
 
 
@@ -25,9 +25,8 @@
         <div class="mb-3">
             <label for="visible" class="form-label fb-bold">Visibilità nel Menù</label>
             <select class="form-control" name="visible" id="visible">
-                <option value="">-- Seleziona Visibilità Piatto --</option>
-                @foreach ($visibility as $visible => $value)                        
-                    <option @selected($value == old('value')) value="{{$value}}">{{$visible}}</option>
+                @foreach ($visibility as $visible => $boolean)                        
+                    <option @selected($boolean == old('visible')) value="{{$boolean}}">{{$visible}}</option>
                 @endforeach
             </select>
         </div>
