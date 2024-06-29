@@ -22,35 +22,39 @@
 
             <tbody>
                 @foreach ($companies as $company)
-                <tr>
-                    <td class="text-center">{{ $company->name }}</td>
-                    <td class="text-center">{{ $company->address}}, {{ $company->city }}</td>
-                    <td class="text-center">{{ $company->phone_number}}</td>
-                    <td class="text-center">{{ $company->email}}</td>
-                    <td class="text-center">
-                        <a href="{{ route('admin.companies.show', $company)}}">Dettagli</a></td>
-                    <td class="text-center"><a href="{{ route('admin.companies.edit', $company)}}">Modifica</a></td>
-                    <td class="text-center">
-                        <form class="item-delete-form" action="{{ route('admin.companies.destroy', $company) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-danger">Elimina</button>
-                            <div class="my-modal">
-                                <div class="my-modal__box">
-                                    <h4 class="text-center me-5">Vuoi eliminare questo ristorante?</h4>
-                                    <span class="link link-danger my-modal-yes mx-5">Si</span>
-                                    <span class="link link-success my-modal-no mx-5">No</span>
+                    <tr class="position-relative">
+                        <td class="text-center">{{ $company->name }}</td>
+                        <td class="text-center">{{ $company->address}}, {{ $company->city }}</td>
+                        <td class="text-center">{{ $company->phone_number}}</td>
+                        <td class="text-center">{{ $company->email}}</td>
+                        <td class="text-center">
+                            <a href="{{ route('admin.companies.show', $company)}}" class="link link-success">Dettagli</a>
+                        </td>
+                        <td class="text-center"><a href="{{ route('admin.companies.edit', $company)}}"
+                                class="link link-primary">Modifica</a></td>
+                        <td class="text-center">
+                            <form class="item-delete-form" action="{{ route('admin.companies.destroy', $company) }}"
+                                method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-link p-0 m-0 no-style text-danger"><i
+                                        class="fas fa-trash-alt "></i></button>
+                                <div class="my-modal">
+                                    <div class="my-modal__box">
+                                        <h4 class="text-center me-5">Vuoi eliminare questo ristorante?</h4>
+                                        <span class="link link-danger my-modal-yes mx-5">Si</span>
+                                        <span class="link link-success my-modal-no mx-5">No</span>
 
+                                    </div>
                                 </div>
-                            </div>
 
-                        </form>
-                    </td>
-                </tr>
+                            </form>
+                        </td>
+                    </tr>
                 @endforeach
             </tbody>
 
         </table>
     </div>
 </section>
-    @endsection
+@endsection

@@ -5,20 +5,52 @@
 @section('content')
 <section class="my-3 py-1">
     <div class="container">
-        <div class="card">
-            <img src="{{  asset('storage/'. $dish->image)}}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">{{ $dish->name }}</h5>
-                <p class="card-text">{{ $dish->description }}</p>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">Ingridienti: {{ $dish->ingredients }}</li>
-                <li class="list-group-item">Prezzo: {{ $dish->price }} €</li>
-                <li class="list-group-item">Disponibile: {{ $dish->visible === 1 ? 'Sì' : 'No' }}</li>
-            </ul>
-            <div class="card-body">
-                <a href="#" class="card-link">Modifica</a>
-                <a href="#" class="card-link">X</a>
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <div class="card">
+                    <img src="{{  asset('storage/'. $dish->image)}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $dish->name }}</h5>
+                        <p class="card-text">{{ $dish->description }}</p>
+                    </div>
+
+                    <table class="table">
+                        <tbody>
+                            <tr class="border-top">
+                                <td class="border-end"><strong>Ingredienti:</strong></td>
+                                <td>{{ $dish->ingredients }}</td>
+                            </tr>
+                            <tr>
+                                <td class="border-end"><strong>Prezzo:</strong></td>
+                                <td>{{ $dish->price }} €</td>
+                            </tr>
+                            <tr>
+                                <td class="border-end"><strong>Disponibile:</strong></td>
+                                <td>{{ $dish->visible === 1 ? 'Sì' : 'No' }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="card-body d-flex justify-content-around">
+                        <a href="#" class="link link-primary">Modifica</a>
+                        <form class="item-delete-form" action="{{ route('admin.dishes.destroy', $dish) }}"
+                            method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-link p-0 m-0 no-style text-danger"><i
+                                    class="fas fa-trash-alt "></i></button>
+                            <div class="my-modal">
+                                <div class="my-modal__box">
+                                    <h4 class="text-center me-5">Vuoi eliminare questo piatto?</h4>
+                                    <span class="link link-danger my-modal-yes mx-5">Si</span>
+                                    <span class="link link-success my-modal-no mx-5">No</span>
+
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

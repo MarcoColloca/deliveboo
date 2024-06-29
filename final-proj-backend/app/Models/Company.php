@@ -20,7 +20,8 @@ class Company extends Model
         'description',
         'phone_number',
         'email',
-        'type_id'
+        'type_id',
+        'user_id',
     ]; 
     protected $appends = ['image_fullpath'];
 
