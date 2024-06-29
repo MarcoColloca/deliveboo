@@ -47,9 +47,9 @@ class DishController extends Controller
         $companies = Company::where('user_id', $user_id)->get();
 
         $visibility = [
+            'Seleziona Disponibilità' => '',
             'Sì' => 1,
             'No'  => 0,
-            'Seleziona Disponibilità' => '',
         ];
 
         return view('admin.dishes.create', compact('companies', 'visibility'));
