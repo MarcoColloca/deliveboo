@@ -116,6 +116,14 @@ class CompanyController extends Controller
         }
 
         $form_data = $request->validated();// per la validazione
+
+
+        if($company->name !== $request->name)
+        {
+            $form_data['slug'] = Company::getUniqueSlug($form_data['name']);
+        }
+
+
         if($request->hasFile('image')) {
             $image_path = Storage::disk('public')->put('image', $request->image);
             if($company->image) {
@@ -123,7 +131,9 @@ class CompanyController extends Controller
             }
             $form_data['image'] = $image_path;
         }
+
         $company->update($form_data);
+
         if($request->has('types')){
 
             $company->types()->sync($request->types);
