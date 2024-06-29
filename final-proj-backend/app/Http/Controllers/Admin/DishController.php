@@ -121,8 +121,11 @@ class DishController extends Controller
     {
         $form_data = $request->validated();
 
-        $dish->fill($form_data);
-        $dish->slug = Dish::getUniqueSlug($dish->name);
+        
+        if($dish->name !== $request->name)
+        {
+            $form_data['slug'] = Dish::getUniqueSlug($form_data['name']);
+        }
 
         if($request->hasFile('image'))
         {
@@ -136,7 +139,7 @@ class DishController extends Controller
             $dish->image = $image_path;
         }
 
-        $dish->save();
+        $dish->update($form_data);
 
         return to_route('admin.dishes.show', $dish);
     }
