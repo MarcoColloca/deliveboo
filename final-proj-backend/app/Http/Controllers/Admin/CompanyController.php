@@ -42,6 +42,8 @@ class CompanyController extends Controller
     {
 
         $form_data = $request->validated();// per la validazione
+        
+        $form_data['user_id'] = auth()->id();
 
         $form_data['slug'] = Company::getUniqueSlug($form_data['name']);
 
