@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreDishRequest;
+use App\Http\Requests\UpdateDishRequest;
 use App\Models\Company;
 use App\Models\Dish;
 use Illuminate\Http\Request;
@@ -94,15 +95,50 @@ class DishController extends Controller
      */
     public function edit(Dish $dish)
     {
-        //
+        $visibility = [
+            'Seleziona Disponibilità' => '',
+            'Sì' => 1,
+            'No'  => 0,
+        ];
+
+        $user_id = Auth::id();
+
+        $companies = Company::where('user_id', $user_id)->get();
+
+        if($dish->company->user_id !== $user_id)
+        {
+            abort(403, 'Accesso non autorizzato');
+        }
+
+
+        return view('admin.dishes.edit', compact('dish', 'companies', 'visibility'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Dish $dish)
+    public function update(UpdateDishRequest $request, Dish $dish)
     {
-        //
+        $form_data = $request->validated();
+
+        $dish->fill($form_data);
+        $dish->slug = Dish::getUniqueSlug($dish->name);
+
+        if($request->hasFile('image'))
+        {
+            $image_path = Storage::disk('public')->put('image', $request->image);
+
+            if($dish->image)
+            {
+                Storage::disk('public')->delete($dish->image);
+            }
+    
+            $dish->image = $image_path;
+        }
+
+        $dish->save();
+
+        return to_route('admin.dishes.show', $dish);
     }
 
     /**
