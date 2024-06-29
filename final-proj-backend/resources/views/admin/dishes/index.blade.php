@@ -6,7 +6,7 @@
 
 <section class="my-3 py-1">
     <div class="container">
-        <div class="row">            
+        <div class="row">
             <div class="col-12">
                 @foreach ($company_dishes as $company_name => $dishes)
                     <h2 class="mt-5 mb-2 text-light">{{$company_name}}</h2>
@@ -21,24 +21,41 @@
                                 <th class="text-center" scope="col"></th>
                             </tr>
                         </thead>
-            
+
                         <tbody>
                             @foreach ($dishes as $dish)
-                                <tr>                                    
+                                <tr class="position-relative">
                                     <td class="text-center">{{ $dish->name }}</td>
                                     <td class="text-center">{{ $dish->price}} €</td>
                                     <td class="text-center">{{ $dish->visible === 1 ? 'Sì' : 'No'}}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('admin.dishes.show', $dish)}}">Dettagli</a></td>
-                                    <td class="text-center">Modifica</td>
-                                    <td class="text-center">X</td>
+                                        <a href="{{ route('admin.dishes.show', $dish)}}" class="link link-success">Dettagli</a>
+                                    </td>
+                                    <td class="text-center"><a href="" class="link link-primary">Modifica</a></td>
+                                    <td class="text-center">
+                                        <form class="item-delete-form" action="{{ route('admin.dishes.destroy', $dish) }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-link p-0 m-0 no-style text-danger"><i class="fas fa-trash-alt "></i></button>
+                                            <div class="my-modal">
+                                                <div class="my-modal__box">
+                                                    <h4 class="text-center me-5">Vuoi eliminare questo piatto?</h4>
+                                                    <span class="link link-danger my-modal-yes mx-5">Si</span>
+                                                    <span class="link link-success my-modal-no mx-5">No</span>
+
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    </td>
                                 </tr>
                             @endforeach
-                        </tbody>            
+                        </tbody>
                     </table>
                 @endforeach
             </div>
-        </div>        
+        </div>
     </div>
 </section>
 

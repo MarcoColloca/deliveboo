@@ -1,42 +1,83 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container bg-light mt-5 mb-5 rounded-4 p-5">
-    <h1>Il tuo ristorante</h1>
-    <div class="row">
-        <div class="col-6">
-            <p><h4>Nome:</h4>{{$company->name}}</p>
-            <p><h4>Città:</h4>{{$company->city}}</p>
-            <p><h4>Indirizzo:</h4>{{$company->address}}</p>
-            <p><h4>P.iva:</h4>{{$company->vat_number}}</p>
-            <p><h4>Descrizione:</h4>{{$company->description}}</p>
-           
-            <p><h3>Tipo:</h3>
-                 @foreach($company->types as $type)
-                 {{$type->name}}
-                 @endforeach
-            </p>
+<section class="my-3 py-1">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <div class="card">
+                    @if($company->image)
+                        <img src="{{ asset('storage/' . $company->image) }}" alt="nessuna immagine" class="card-img-top">
+                    @else
+                        <p>Non ci sono immagini del ristorante</p>
+                    @endif
+                    <div class="card-body">
+                        <h5>{{$company->name}}</h5>
+                        <p>{{$company->description}}</p>
+                    </div>
+                    
+                    <table class="table">
+                        <tbody>
+                            <tr class="border-top">
+                                <td class="border-end"><strong>Città:</strong></td>
+                                <td>{{$company->city}}</td>
+                            </tr>
+                            <tr>
+                                <td class="border-end"><strong>Indirizzo:</strong></td>
+                                <td>{{$company->address}}</td>
+                            </tr>
+                            <tr>
+                                <td class="border-end"><strong>P.iva:</strong></td>
+                                <td>{{$company->vat_number}}</td>
+                            </tr>
+                            <tr>
+                                <td class="border-end"><strong>Tipo:</strong></td>
+                                <td>
+                                    @foreach($company->types as $type)
+                                        {{$type->name}}
+                                    @endforeach
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="border-end"><strong>Telefono:</strong></td>
+                                <td>{{$company->phone_number}}</td>
+                            </tr>
+                            <tr>
+                                <td class="border-end"><strong>Email:</strong></td>
+                                <td>{{$company->email}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="card-body d-flex justify-content-around">
+                        <a href="{{ route('admin.companies.edit', $company)}}" class="link link-primary">Modifica</a>
+                        <form class="item-delete-form" action="{{ route('admin.companies.destroy', $company) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-link p-0 m-0 no-style text-danger"><i class="fas fa-trash-alt "></i></button>
+                            <div class="my-modal">
+                                <div class="my-modal__box">
+                                    <h4 class="text-center me-5">Vuoi eliminare questo piatto?</h4>
+                                    <span class="link link-danger my-modal-yes mx-5">Si</span>
+                                    <span class="link link-success my-modal-no mx-5">No</span>
         
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-6 d-flex flex-column justify-content-center">
-            @if($company->image)
-            <img src="{{ asset('storage/'. $company->image) }}" alt="nessuna immagine">
-            @else
-            <p>Non ci sono immagini del ristorante</p>
-            @endif
-            <p><h4>Telefono:</h4>{{$company->phone_number}}</p>
-            <p><h4>Email:</h4>{{$company->email}}</p>
-        </div>
+
+
+
+
+
+
+
+
+
+
     </div>
-   
-
-
-
-
-
-
-
-
-
-</div>
+</section>
 @endsection
