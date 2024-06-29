@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\UserCompany;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateDishRequest extends FormRequest
@@ -11,7 +12,7 @@ class UpdateDishRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +23,14 @@ class UpdateDishRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name'=> 'required|max:255',
+            'price' => 'required|numeric|between:0,9999|decimal:2',
+            'image'=> 'nullable|image|max:2000',
+            'ingredients'=> 'required|max:2500',
+            'description'=> 'nullable|max:2500',
+            'visible'=> 'boolean|',            
+            'company_id'=> [new UserCompany],
+
         ];
     }
 }
