@@ -4,18 +4,23 @@
 
 @section('content')
 
+@php
+    $companies_dict = $companies->keyBy('name');
+@endphp
+
 <section class="my-3 py-1">
     <div class="container">
-        <div class="d-flex justify-content-center mx-4">
-            <a class="btn btn-outline-light text-decoration-none" href="{{route('admin.dishes.create')}}">Aggiunti un piatto ad un Ristorante</a>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">            
+        <div class="row">
             <div class="col-12">
                 @foreach ($company_dishes as $company_name => $dishes)
-                    <div class="d-flex justify-content-between mt-5 mb-1">                        
-                        <h2 class=" text-light">{{$company_name}}</h2>                    
+                    <div class="d-flex justify-content-between mt-5 mb-1">
+                        <h2 class="text-light">{{ $company_name }}</h2>
+                        @if(isset($companies_dict[$company_name]))
+                            <a class="btn btn-outline-light text-decoration-none d-flex align-items-center"
+                                href="{{ route('admin.dishes.create', ['company_id' => $companies_dict[$company_name]->id]) }}">
+                                <i class="fas fa-plus pe-1 ps-1"></i>
+                            </a>
+                        @endif
                     </div>
                     <table class="table">
                         <thead>
@@ -38,13 +43,15 @@
                                     <td class="text-center">
                                         <a href="{{ route('admin.dishes.show', $dish)}}" class="link link-success">Dettagli</a>
                                     </td>
-                                    <td class="text-center"><a href="{{route('admin.dishes.edit', $dish)}}" class="link link-primary">Modifica</a></td>
+                                    <td class="text-center"><a href="{{route('admin.dishes.edit', $dish)}}"
+                                            class="link link-primary">Modifica</a></td>
                                     <td class="text-center">
                                         <form class="item-delete-form" action="{{ route('admin.dishes.destroy', $dish) }}"
                                             method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-link p-0 m-0 no-style text-danger"><i class="fas fa-trash-alt "></i></button>
+                                            <button class="btn btn-link p-0 m-0 no-style text-danger"><i
+                                                    class="fas fa-trash-alt "></i></button>
                                             <div class="my-modal">
                                                 <div class="my-modal__box">
                                                     <h4 class="text-center me-5">Vuoi eliminare questo piatto?</h4>
