@@ -10,14 +10,16 @@
         <!-- Nome Piatto -->
         <div class="mb-3">
             <label for="name" class="form-label fb-bold">Nome</label>
-            <input type="text" name="name" class="form-control" id="name" placeholder="Inserisci il nome" value="{{ old('name') }}">
+            <input type="text" name="name" class="form-control" id="name" placeholder="Inserisci il nome"
+                value="{{ old('name') }}">
         </div>
 
- 
+
         <!-- Prezzo Piatto -->
         <div class="mb-3">
-         <label for="price" class="form-label fb-bold">Prezzo </label>
-         <input type="number" class="form-control" name="price" id="price" step=".01" placeholder="Inserisci il Prezzo (Es 10.00)" value="{{ old('price') }}" >
+            <label for="price" class="form-label fb-bold">Prezzo </label>
+            <input type="number" class="form-control" name="price" id="price" step=".01"
+                placeholder="Inserisci il Prezzo (Es 10.00)" value="{{ old('price') }}">
         </div>
 
 
@@ -35,26 +37,25 @@
         <!-- Ingredienti Piatto -->
         <div class="mb-3">
             <label for="ingredients" class="form-label">Ingredienti</label>
-           <textarea class="form-control" name="ingredients" id="ingredients" placeholder="Inserisci gli ingredienti">{{ old('ingredients') }}</textarea>
+            <textarea class="form-control" name="ingredients" id="ingredients"
+                placeholder="Inserisci gli ingredienti">{{ old('ingredients') }}</textarea>
         </div>
 
 
         <!-- Descrizione Piatto -->
         <div class="mb-3">
             <label for="description" class="form-label">Descrizione</label>
-           <textarea class="form-control" name="description" id="description" placeholder="Inserisci la descrizione">{{ old('description') }}</textarea>
+            <textarea class="form-control" name="description" id="description"
+                placeholder="Inserisci la descrizione">{{ old('description') }}</textarea>
         </div>
 
 
         <!-- Selezione Ristorante -->
-        <div class="form-group mb-3">
+        <div class="form-group mb-3 d-none" hidden>
             <label class="form-label fw-bold" for="company_id">Ristorante</label>
-            <select class="form-control" name="company_id" id="company_id">
-                <option value="">-- Seleziona Ristorante --</option>
-                @foreach ($companies as $company)                        
-                    <option @selected($company->id == old('company_id')) value="{{$company->id}}">{{$company->name}}</option>
-                @endforeach
-            </select>
+            <input type="hidden" class="form-control d-none" name="company_id" id="company_id" value="{{$selected_company}}"
+                required>
+            <input />
         </div>
 
 
@@ -72,13 +73,13 @@
 </div>
 <div class="container mt-4">
     @if($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach($errors->all() as $error)
-                <li>{{$error}}</li>
-            @endforeach
-        </ul>
-    </div>
+        <div class="alert alert-danger">
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{$error}}</li>
+                @endforeach
+            </ul>
+        </div>
     @endif
 </div>
 
