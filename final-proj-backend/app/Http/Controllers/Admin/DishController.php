@@ -33,7 +33,7 @@ class DishController extends Controller
 
         }
 
-        return view('admin.dishes.index', compact('company_dishes'));
+        return view('admin.dishes.index', compact('company_dishes', 'companies'));
     }
     
 
@@ -41,11 +41,15 @@ class DishController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
         $user_id = Auth::id();
 
         $companies = Company::where('user_id', $user_id)->get();
+        
+        $company_id = $request->query('company_id', null);
+
+        $selected_company = $company_id;
 
         $visibility = [
             'Seleziona Disponibilità' => '',
@@ -53,7 +57,7 @@ class DishController extends Controller
             'No'  => 0,
         ];
 
-        return view('admin.dishes.create', compact('companies', 'visibility'));
+        return view('admin.dishes.create', compact('companies', 'visibility', 'selected_company'));
     }
 
     /**
