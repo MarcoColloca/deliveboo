@@ -20,8 +20,8 @@
     <!-- Page Footer -->
     <footer>
         <div class="container">
-            <h1>
-                I'm a Wonderful Footer
+            <h1 class="text-center">
+                Sono un bellissimo Pieder
             </h1>
         </div>
     </footer>
