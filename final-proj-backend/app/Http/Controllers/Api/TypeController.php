@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class TypeController extends Controller
 {
     public function index(Request $request) {
-        $per_page = $request->per_page ?? 10;
+        $per_page = $request->perPage ?? 10;
 
         $results = Type::orderBy("created_at","desc")->paginate($per_page);
 
