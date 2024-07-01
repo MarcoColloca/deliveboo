@@ -140,7 +140,7 @@ class DishController extends Controller
                 Storage::disk('public')->delete($dish->image);
             }
     
-            $dish->image = $image_path;
+            $form_data['image'] = $image_path;
         }
 
         $dish->update($form_data);
