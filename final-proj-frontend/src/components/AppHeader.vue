@@ -14,11 +14,10 @@
 <template>
     <!-- Page Header -->
     <header>
-        <div class="container">
-            <h1>
-                App Header
-            </h1>
-        </div>
+        <nav class="d-flex gap-5 justify-content-center align-items-center">
+            <RouterLink :to="{name: 'home'}">Home</RouterLink>
+            <RouterLink :to="{name: 'search'}">Ricerca Avanzata</RouterLink>           
+        </nav>
     </header>
 </template>
 
