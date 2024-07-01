@@ -2,6 +2,7 @@
   import AppHeader from './components/AppHeader.vue';
   import AppFooter from './components/AppFooter.vue';
   import AppMain from './components/AppMain.vue';
+  import { RouterView } from 'vue-router';
 
   export default{
     components:{
@@ -24,7 +25,8 @@
 <template>
   <AppHeader></AppHeader>
 
-  <AppMain></AppMain>
+  <AppMain>
+  </AppMain>
 
   <AppFooter></AppFooter>
 </template>

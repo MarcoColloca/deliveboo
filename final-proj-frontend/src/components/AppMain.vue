@@ -1,4 +1,6 @@
 <script>
+import { RouterView } from 'vue-router';
+
 
     export default {
         data(){
@@ -18,7 +20,7 @@
     <main>
         <div class="container">
             <h1 class="text-center text-warning">
-                Main Page
+            <RouterView />
             </h1>
         </div>
     </main>
