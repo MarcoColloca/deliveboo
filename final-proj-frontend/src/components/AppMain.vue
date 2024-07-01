@@ -18,11 +18,7 @@ import { RouterView } from 'vue-router';
 <template>
     <!-- Page Main -->
     <main>
-        <div class="container">
-            <h1 class="text-center text-warning">
-                <RouterView />
-            </h1>
-        </div>
+        <RouterView />
     </main>
 </template>
 
