@@ -20,7 +20,7 @@ import { RouterView } from 'vue-router';
     <main>
         <div class="container">
             <h1 class="text-center text-warning">
-            <RouterView />
+                <RouterView />
             </h1>
         </div>
     </main>
@@ -29,7 +29,5 @@ import { RouterView } from 'vue-router';
 
 
 <style lang="scss" scoped>
-    main{
-        height: 500px;
-    }
+
 </style>
