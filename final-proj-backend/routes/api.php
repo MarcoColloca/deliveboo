@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\CompanyController;
 use App\Http\Controllers\Api\DishController;
+use App\Http\Controllers\Api\TypeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,3 +27,5 @@ Route::get('companies', [CompanyController::class, 'index']);
 Route::get('dishes', [DishController::class, 'index']);
 
 Route::get('dishes/{dish:slug}', [DishController::class, 'show']);
+
+Route::get('types', [TypeController::class,'index']);
