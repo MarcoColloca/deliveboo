@@ -40,7 +40,7 @@ class CompanySeeder extends Seeder
 
             $new_company->save();
 
-            $random_type_ids = $faker->randomElements($type_ids, null);
+            $random_type_ids = $faker->randomElements($type_ids, rand(1, 3));
             $new_company->types()->attach($random_type_ids);
 
 
