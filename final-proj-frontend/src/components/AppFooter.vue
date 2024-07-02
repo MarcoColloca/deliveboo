@@ -19,7 +19,7 @@
 <template>
     <!-- Page Footer -->
     <footer>
-        <div class="container">
+        <div class="h-100 container d-flex align-items-center justify-content-center">
             <h1 class="text-center">
                 Sono un bellissimo Pieder
             </h1>
