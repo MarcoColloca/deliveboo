@@ -12,7 +12,7 @@
                 <img src="{{Vite::asset('resources/img/logo-placeholder.png')}}" alt="">
             </div>
             <h1 class="display-5 fw-bold">
-                Benvenuto in Deliveboo! <i class="bi bi-cake"></i>
+                Benvenuto in Fooder! <i class="bi bi-cake"></i>
             </h1>
 
             <p class="col-md-8 fs-4">

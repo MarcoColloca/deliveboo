@@ -23,7 +23,7 @@
                     <RouterLink :to="{name: 'search'}">Ricerca Avanzata</RouterLink> 
                 </div>
                 <div class="d-flex gap-4">
-                    <a class="btn btn-outline-light" href="http://127.0.0.1:8000/register">Diventa Partner FoodLan!</a>
+                    <a class="btn btn-outline-light" href="http://127.0.0.1:8000/register">Diventa Partner Fooder!</a>
                     <a class="btn btn-outline-light" href="http://127.0.0.1:8000/login">Sei già Partner?</a>
                 </div>
             </nav>

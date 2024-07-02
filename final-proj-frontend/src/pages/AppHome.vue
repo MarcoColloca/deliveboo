@@ -42,9 +42,9 @@
 <template>
     <section>
         <div class="title-container">            
-            <h1>Benvenuto in FoodLan!</h1>
+            <h1>Benvenuto in Fooder!</h1>
     
-            <p>Piccola Descrizione di cos'è FoodLan.</p>
+            <p>Piccola Descrizione di cos'è Fooder.</p>
         </div>
         <div class="container">
             
