@@ -27,7 +27,7 @@
         created(){
             this.fetchTypes()
 
-            
+            this.fetchCompanies()
         },
 
         methods:{
