@@ -163,4 +163,20 @@ class DishController extends Controller
         $dish->delete();
         return to_route("admin.dishes.index");
     }
+
+
+
+    /**
+     * Metodi Aggiuntivi
+    */
+
+    public function showOne($company_id)
+    {       
+        
+        $dishes = Dish::with('company')->where('company_id', $company_id)->get();
+ 
+        $company = Company::find($company_id);
+       
+        return view('admin.dishes.showOne', compact('company', 'dishes'));
+    }
 }
