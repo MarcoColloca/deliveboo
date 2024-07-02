@@ -18,19 +18,19 @@
 
         <!-- Nome Piatto -->
         <div class="mb-3">
-            <label for="name" class="form-label fb-bold">Nome</label>
-            <input type="text" name="name" class="form-control" id="name" placeholder="Inserisci il nome" value="{{ old('name', $dish->name) }}">
+            <label for="name" class="form-label fb-bold">Nome *</label>
+            <input type="text" name="name" class="form-control" id="name" placeholder="Inserisci il nome" value="{{ old('name', $dish->name) }}" required>
         </div>
 
         <!-- Prezzo Piatto -->
         <div class="mb-3">
-            <label for="price" class="form-label fb-bold">Prezzo </label>
-            <input type="number" class="form-control" name="price" id="price" step=".01" placeholder="Inserisci il Prezzo (Es 10.00)" value="{{ old('price', $dish->price) }}" >
+            <label for="price" class="form-label fb-bold">Prezzo *</label>
+            <input type="number" class="form-control" name="price" id="price" step=".01" placeholder="Inserisci il Prezzo (Es 10.00)" value="{{ old('price', $dish->price) }}" required >
         </div>
 
         <!-- Visibilità Piatto -->
         <div class="mb-3">
-        <label for="visible" class="form-label fb-bold">Visibilità nel Menù</label>
+        <label for="visible" class="form-label fb-bold">Visibilità nel Menù *</label>
         <select class="form-control" name="visible" id="visible" required>
             @foreach ($visibility as $visible => $boolean)                        
                 <option @selected($boolean == old('visible', $dish->visible)) value="{{$boolean}}">{{$visible}}</option>
@@ -40,8 +40,8 @@
 
         <!-- Ingredienti Piatto -->
         <div class="mb-3">
-            <label for="ingredients" class="form-label">Ingredienti</label>
-           <textarea class="form-control" name="ingredients" id="ingredients" placeholder="Inserisci la descrizione">{{ old('ingredients', $dish->ingredients) }}</textarea>
+            <label for="ingredients" class="form-label">Ingredienti *</label>
+           <textarea class="form-control" name="ingredients" id="ingredients" placeholder="Inserisci la descrizione" required>{{ old('ingredients', $dish->ingredients) }}</textarea>
         </div>
 
 
