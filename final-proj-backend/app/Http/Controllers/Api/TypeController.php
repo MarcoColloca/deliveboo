@@ -20,4 +20,24 @@ class TypeController extends Controller
         ]);
        
     }
+
+
+
+    
+    public function select(Type $type)
+    {        
+
+        $type->load('companies', 'companies.types');
+
+
+
+        $results = $type;
+
+        
+        return response()->json([
+            'success' => true,
+            'results' => $results
+        ]);
+       
+    }
 }
