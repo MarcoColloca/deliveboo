@@ -8,7 +8,9 @@ use App\Models\Type;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
 
 
 class CompanySeeder extends Seeder
@@ -16,34 +18,34 @@ class CompanySeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(Faker $faker): void
+    public function run()
     {
-        $user_ids = User::all()->pluck('id')->all();
+        // Leggi il file JSON
+        $json = File::get("database/json/companies.json");
+        $data = json_decode($json);
 
-        $type_ids = Type::all()->pluck('id')->all();
+        foreach ($data->companies as $company) {
+            // Inserisci i dati nella tabella companies
+            $companyId = DB::table('companies')->insertGetId([
+                'name' => $company->name,
+                'slug' => $company->slug,
+                'image' => $company->image,
+                'address' => $company->address,
+                'city' => $company->city,
+                'vat_number' => $company->vat_number,
+                'phone_number' => $company->phone_number,
+                'description' => $company->description,
+                'email' => $company->email,
+                'user_id' => $company->user_id,
+            ]);
 
-
-        for($i = 0; $i < 10; $i++)
-        {
-            $new_company = new Company();
-
-            $new_company->name = $faker->sentence(2, 4);
-            $new_company->slug = Str::slug($new_company->name);
-            $new_company->image = "https://picsum.photos/400/300?random=".rand(1,300);
-            $new_company->city = $faker->city();
-            $new_company->address = $faker->streetAddress();
-            $new_company->vat_number = $faker->numerify('###########');
-            $new_company->description = $faker->paragraph(3, 10);
-            $new_company->phone_number = $faker->phoneNumber();
-            $new_company->email = $faker->companyEmail();
-            $new_company->user_id = $faker->randomElement($user_ids);
-
-            $new_company->save();
-
-            $random_type_ids = $faker->randomElements($type_ids, null);
-            $new_company->types()->attach($random_type_ids);
-
-
+            // Inserisci i dati nella tabella ponte company_type
+            foreach ($company->types as $typeId) {
+                DB::table('company_type')->insert([
+                    'company_id' => $companyId,
+                    'type_id' => $typeId,
+                ]);
+            }
         }
     }
 }
