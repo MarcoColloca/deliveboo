@@ -27,7 +27,7 @@
         created(){
             this.fetchTypes()
 
-            
+            this.fetchCompanies()
         },
 
         methods:{
@@ -87,7 +87,9 @@
                             <div class="card-body">
                                 <p>{{ company.name }}</p>
                                 <p>{{ company.address }}</p>
-                                <span class="me-1 text-danger" v-for="type in company.types">{{ type.name }}</span>
+                                <p>{{ company.phone_number }}</p>
+                                <p>{{ company.email }}</p>
+                                <span class="me-2 text-danger" v-for="type in company.types">{{ type.name }}</span>
                             </div>
                         </div>
                     </div>

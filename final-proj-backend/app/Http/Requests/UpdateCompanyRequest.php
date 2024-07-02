@@ -30,7 +30,7 @@ class UpdateCompanyRequest extends FormRequest
             "description"=> "nullable|max:2500",
             "phone_number"=> "required|max:50",
             "email"=> "required|max:255",
-            "types"=> "exists:types,id",
+            "types"=> "exists:types,id|required",
          
 
         ];
