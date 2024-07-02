@@ -7,23 +7,32 @@
             BentoBox
         },
 
+        props:{
+            slug: String
+        },
+
         data(){
             return {
 
                 types: [],                
                 currentPage: 1,
                 perPage: 99,
-                typeSlug: '',
+                typeSlug: this.slug,
+
+
+                companies: [],
             }
         },
 
         created(){
             this.fetchTypes()
+
+            
         },
 
         methods:{
-            changeType(slug){
-                this.typeSlug = slug;
+            changeType(mySlug){
+                this.typeSlug = mySlug;
                 console.log(this.typeSlug)
             },
 
@@ -40,10 +49,12 @@
                 })
             },
 
-            fetchType(){
+            fetchCompanies(){
                 axios.get(`http://127.0.0.1:8000/api/types/${this.typeSlug}`)
                 .then(res => {
+                    console.log(res.data.results.companies)
 
+                    this.companies = res.data.results.companies
                 })
             }
         }
@@ -56,13 +67,32 @@
         <div class="sidebar">
             <ul>
                 <li v-for="type in types">
-                    <p @click="changeType(type.slug)">{{ type.name }}</p>
+                    <p @click="changeType(type.slug), this.fetchCompanies()">{{ type.name }}</p>
                 </li>
             </ul>
         </div>
         <div class="content">
-
-            <h1>Ricerca Avanzata</h1>
+            <div class="container">
+                <h1>Ricerca Avanzata</h1>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-3" v-for="company in companies">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-top-img">
+                                    
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <p>{{ company.name }}</p>
+                                <p>{{ company.address }}</p>
+                                <span class="me-1 text-danger" v-for="type in company.types">{{ type.name }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
