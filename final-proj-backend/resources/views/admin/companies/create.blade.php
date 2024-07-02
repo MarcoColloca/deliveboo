@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Crea un nuovo ristorante')
 
 @section('content')
 <div class="container bg-light mt-5 mb-5 rounded-4 p-5">
