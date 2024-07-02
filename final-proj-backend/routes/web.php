@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CompanyController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DishController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\TypeController;
@@ -29,14 +30,14 @@ Route::middleware(['auth', 'verified'])
 ->prefix('admin') // il prefisso che viene aggiunto a tutti gli URL delle rotte nel gruppo
 ->group(function() {
 
-    Route::get('/', function () {
-        return view('admin.dashboard');
-    })->name('dashboard');
+
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
     // Registrare tutte le altre rotte protette. Nel nostro caso aggiungeremo la CRUD sui POSTS
     
     Route::resource('companies', CompanyController::class);
     Route::resource('dishes', DishController::class);
+    Route::get('dishes/showOne/{dish:company_id}', [DishController::class, 'showOne'])->name('dishes.showOne');
     Route::resource('orders', OrderController::class);
     Route::resource('types', TypeController::class);
 });
