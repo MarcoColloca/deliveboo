@@ -9,14 +9,14 @@ use Illuminate\Http\Request;
 class CompanyController extends Controller
 {
     public function index(Request $request)
-    {
+    {      
         $per_page = $request->perPage ?? 12;
 
         $results = Company::with('types')->paginate($per_page);
 
         return response()->json([
             'success' => true,
-            'resuts' => $results
+            'results' => $results
         ]);
     }
 }
