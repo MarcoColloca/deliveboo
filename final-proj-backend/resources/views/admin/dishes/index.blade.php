@@ -14,7 +14,12 @@
             <div class="col-12">
                 @foreach ($company_dishes as $company_name => $dishes)
                     <div class="d-flex justify-content-between mt-5 mb-1">
-                        <h2 class="text-light">{{ $company_name }}</h2>
+                        <h2 class="text-light">
+                            <a href="{{route('admin.dishes.showOne', $companies_dict[$company_name]->id)}}">
+                                {{ $company_name }}
+                            </a>
+                            {{$companies_dict[$company_name]->address}}
+                        </h2>
                         @if(isset($companies_dict[$company_name]))
                             <a class="btn btn-outline-light text-decoration-none d-flex align-items-center"
                                 href="{{ route('admin.dishes.create', ['company_id' => $companies_dict[$company_name]->id]) }}">

@@ -26,10 +26,10 @@ class StoreCompanyRequest extends FormRequest
             "image"=> "nullable|image|max:2000",
             "city"=> "required|max:255",
             "address"=> "required|max:255",
-            "vat_number"=> "required|digits:11",
+            "vat_number"=> "required|digits:11|unique:companies,vat_number",
             "description"=> "nullable|max:2500",
-            "phone_number"=> "required|max:50",
-            "email"=> "required|max:255",
+            "phone_number"=> "required|max:50|unique:companies,phone_number",
+            "email"=> "required|max:255|unique:companies,email",
             "types"=> "exists:types,id|required",
         ];
     }

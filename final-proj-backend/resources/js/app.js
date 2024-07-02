@@ -28,3 +28,16 @@ document.querySelectorAll('.item-delete-form').forEach(form => {
 
     })
 })
+
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('form');
+    const checkboxesDOMElement = document.querySelectorAll('.checkbox');
+
+    form.addEventListener('submit', function(ev) {
+
+        Array.from(checkboxesDOMElement).some(checkbox => checkbox.checked);
+
+
+    })
+})
+
