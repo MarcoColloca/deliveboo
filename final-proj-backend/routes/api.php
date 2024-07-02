@@ -29,3 +29,5 @@ Route::get('dishes', [DishController::class, 'index']);
 Route::get('dishes/{dish:slug}', [DishController::class, 'show']);
 
 Route::get('types', [TypeController::class,'index']);
+
+Route::get('types/{type:slug}', [TypeController::class,'select']);
