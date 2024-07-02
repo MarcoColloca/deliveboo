@@ -9,6 +9,7 @@ return [
 
     'attributes' => [
         'name' => '"nome"',
+        'email' => '"email"',
         'price' => '"prezzo"',
         'ingredients' => '"ingredienti"',
         'description' => '"descrizione"',
