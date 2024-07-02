@@ -81,7 +81,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="card-top-img">
-                                    
+                                    <img :src="company.image_fullpath" alt="">
                                 </div>
                             </div>
                             <div class="card-body">
