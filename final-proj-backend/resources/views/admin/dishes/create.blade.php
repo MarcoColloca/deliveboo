@@ -11,7 +11,7 @@
         <div class="mb-3">
             <label for="name" class="form-label fb-bold">Nome</label>
             <input type="text" name="name" class="form-control" id="name" placeholder="Inserisci il nome"
-                value="{{ old('name') }}">
+                value="{{ old('name') }}" required>
         </div>
 
 
@@ -19,7 +19,7 @@
         <div class="mb-3">
             <label for="price" class="form-label fb-bold">Prezzo </label>
             <input type="number" class="form-control" name="price" id="price" step=".01"
-                placeholder="Inserisci il Prezzo (Es 10.00)" value="{{ old('price') }}">
+                placeholder="Inserisci il Prezzo (Es 10.00)" value="{{ old('price') }}" required >
         </div>
 
 
@@ -38,7 +38,7 @@
         <div class="mb-3">
             <label for="ingredients" class="form-label">Ingredienti</label>
             <textarea class="form-control" name="ingredients" id="ingredients"
-                placeholder="Inserisci gli ingredienti">{{ old('ingredients') }}</textarea>
+                placeholder="Inserisci gli ingredienti" required>{{ old('ingredients') }}</textarea>
         </div>
 
 
