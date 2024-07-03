@@ -99,9 +99,10 @@
                 <div class="row row-gap-5">
                     <div class="col-3" v-for="company in companies" :key="company.id">
                         <div class="card">
-                            <div class="card-header">
-                                <div class="card-top-img">
-                                    <img :src="company.image_fullpath" alt="">
+                            <div class="card-header">                                
+                                <div class="card-top-img">                                    
+                                    <img v-if="company.image_fullpath" :src="company.image_fullpath" alt="">
+                                    <img v-else src="http://127.0.0.1:8000/storage/image/default-company.jpg" alt="">
                                 </div>
                             </div>
                             <div class="card-body">
@@ -143,7 +144,11 @@
                     }
                     p.selected {
                         font-weight: bold;
-                        color: blue;
+                        color: coral;
+                        background-color: white;
+                        border: 1px solid white;
+                        border-radius: 18px;
+                        padding: 0 3px;
                     }
                 }
             }
@@ -153,6 +158,9 @@
             flex-grow: 1;
             background-color: rgb(184, 196, 206);
             color: black;
+            img{
+                max-height: 181px;
+            }
         }
     }
 </style>
