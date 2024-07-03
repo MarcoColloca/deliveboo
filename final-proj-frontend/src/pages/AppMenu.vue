@@ -52,10 +52,17 @@ export default {
         fetchDishes(slug) {
             axios.get(`http://127.0.0.1:8000/api/companies/${slug}`)
                 .then(res => {
+
                     this.dishes = res.data.results.dishes;
                     this.company = res.data.results;
                     console.log(res);
                 })
+                .catch(error => {
+                    this.$router.replace({
+                        name: 'NotFound',
+                        params: {patchMatch: this.$route.path.substring(1).split('/')},
+                    });
+                });
         }
     },
 }
