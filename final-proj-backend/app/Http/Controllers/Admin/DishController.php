@@ -171,8 +171,22 @@ class DishController extends Controller
     */
 
     public function showOne($company_id)
-    {       
-        
+    {     
+        $user_id = Auth::id();
+
+        $company = Company::find($company_id);
+
+
+        if(!$company)
+        {
+            abort(404, 'Compagnia non trovata');
+        }
+
+        if($company->user_id !== $user_id)
+        {
+            abort(403, 'Accesso alla pagina non autorizzato');
+        }
+
         $dishes = Dish::with('company')->where('company_id', $company_id)->get();
  
         $company = Company::find($company_id);
