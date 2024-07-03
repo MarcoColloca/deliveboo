@@ -15,15 +15,10 @@ class UserSeeder extends Seeder
      */
     public function run(Faker $faker): void
     {
-        $users = ['Donato Riccio', 'Gianluca Lomarco', 'Gianni Saladino', 'Francesca Barletta', 'Marco Colloca', 'Moustafa Ibrahim', 'Paolo Calcagni', 'Samuel Panicucci'];
+        $users = ['Donato Riccio', 'Gianluca Lomarco', 'Gianni Saladino', 'Francesca Barletta', 'Marco Colloca', 'Samuel Panicucci'];
 
 
-        User::create([
-            'name' => 'User',
-            'email' => 'user@mail.com',
-            'password' => Hash::make('admin'),
-        ]);
-
+        
         foreach ($users as $user_name)
         {
             User::create([
@@ -32,6 +27,11 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('user'),
             ]);
         }
-
+        
+        User::create([
+            'name' => 'User',
+            'email' => 'user@mail.com',
+            'password' => Hash::make('admin'),
+        ]);
     }
 }
