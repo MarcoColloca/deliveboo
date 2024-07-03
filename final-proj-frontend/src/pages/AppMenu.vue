@@ -48,8 +48,10 @@
 <template>
     <div class="menu-page">
         <h1>{{ company.name }}</h1>
-        <p v-for="type in company.types">{{ type.name }}</p>
-        <div class="container">
+        <ul class="d-flex gap-5">
+            <li v-for="type in company.types">{{ type.name }}</li>
+        </ul>
+        <div class="container my-5">
             <div class="row row-gap-5">
                 <div class="col-3" v-for="dish in dishes" :key="dish.id">
                     <div class="card" v-if="dish.visible === 1">
@@ -79,8 +81,13 @@
 <style lang="scss" scoped>
 .menu-page {
     text-align: center;
-
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;   
+    margin: 30px 0; 
     .container {
+        margin-top: 15px;
         .row {
             .card {
                 margin-bottom: 20px;
