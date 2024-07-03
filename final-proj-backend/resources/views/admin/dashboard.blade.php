@@ -24,7 +24,11 @@
                                 <div class="col-3">
                                     <div class="card">
                                         <div class="card-header">
+                                            @if($company->image)
                                             <img src="{{ asset('storage/' . $company->image) }}" alt="nessuna immagine" class="card-img-top">
+                                            @else
+                                            <img src="{{  asset('storage/image/default-company.jpg') }} " class="card-img-top" alt="...">      
+                                            @endif
                                         </div>
                                         <div class="card-body">
                                             <h5 class="card-title">

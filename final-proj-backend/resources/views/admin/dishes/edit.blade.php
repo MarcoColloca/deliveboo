@@ -7,9 +7,9 @@
 
     <!-- Immagine Piatto -->
     @if($dish->image)
-        <img src="{{ asset('storage/'. $dish->image) }}" alt="image{{$dish->name}}">
+        <img src="{{ asset('storage/'. $dish->image) }}" alt="image{{$dish->name}}" class="card-img-top w-50">
     @else
-        <p>Non ci sono immagini del piatto.</p>
+    <img src="{{  asset('storage/image/default-image.jpg') }} " class="card-img-top w-50" alt="...">      
     @endif
 
     <form action="{{ route('admin.dishes.update', $dish)}}" method="POST"  enctype="multipart/form-data">
