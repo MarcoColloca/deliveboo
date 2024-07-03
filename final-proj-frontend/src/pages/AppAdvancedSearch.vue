@@ -3,71 +3,91 @@
     import BentoBox from '../components/single-components/general/BentoBox.vue';
 
     export default {
-        components:{
+        components: {
             BentoBox
         },
 
-        props:{
+        props: {
             slug: String
         },
 
-        data(){
+        data() {
             return {
-
-                types: [],                
+                types: [],
                 currentPage: 1,
                 perPage: 99,
-                typeSlug: this.slug,
-
-
+                selectedTypeSlugs: [], 
                 companies: [],
             }
         },
 
-        created(){
-            this.fetchTypes()
-
-            this.fetchCompanies()
+        created() {
+            this.fetchTypes();
+            if (this.slug) {
+                this.addSlugToSelectedTypes(this.slug);
+            }
         },
 
-        methods:{
-            changeType(mySlug){
-                this.typeSlug = mySlug;
-                console.log(this.typeSlug)
+        watch: {
+            selectedTypeSlugs() {
+                this.fetchCompanies();
+            }
+        },
+
+        methods: {
+            addSlugToSelectedTypes(slug) {
+                if (!this.selectedTypeSlugs.includes(slug)) {
+                    this.selectedTypeSlugs.push(slug);
+                    this.fetchCompanies(); 
+                }
             },
 
-            fetchTypes(){
-                axios.get('http://127.0.0.1:8000/api/types',
-                {
-                    params:{
+            toggleTypeSelection(slug) {
+                if (this.selectedTypeSlugs.includes(slug)) {
+                    this.selectedTypeSlugs = this.selectedTypeSlugs.filter(typeSlug => typeSlug !== slug);
+                } else {
+                    this.selectedTypeSlugs.push(slug);
+                }
+                this.fetchCompanies(); 
+            },
+
+            fetchTypes() {
+                axios.get('http://127.0.0.1:8000/api/types', {
+                    params: {
                         page: this.currentPage,
                         perPage: this.perPage,
                     }
                 })
                 .then(res => {
-                    this.types = res.data.results.data
-                })
+                    this.types = res.data.results.data;
+                });
             },
 
-            fetchCompanies(){
-                axios.get(`http://127.0.0.1:8000/api/types/${this.typeSlug}`)
-                .then(res => {
-                    console.log(res.data.results.companies)
-
-                    this.companies = res.data.results.companies
+            fetchCompanies() {
+                axios.post('http://127.0.0.1:8000/api/types/select', {
+                typeSlugs: this.selectedTypeSlugs
                 })
+                .then(res => {
+                    this.companies = res.data.results.companies;
+                })
+                .catch(error => {
+                    console.error(error);
+                });
             }
         }
     }
 </script>
 
 
+
 <template>
     <div class="search-container">
         <div class="sidebar">
             <ul>
-                <li v-for="type in types">
-                    <p @click="changeType(type.slug), this.fetchCompanies()">{{ type.name }}</p>
+                <li v-for="type in types" :key="type.slug">
+                    <p @click="toggleTypeSelection(type.slug)" :class="{ selected: selectedTypeSlugs.includes(type.slug) }">
+                        {{ type.name }}
+                    </p>
                 </li>
             </ul>
         </div>
@@ -77,7 +97,7 @@
             </div>
             <div class="container">
                 <div class="row row-gap-5">
-                    <div class="col-3" v-for="company in companies">
+                    <div class="col-3" v-for="company in companies" :key="company.id">
                         <div class="card">
                             <div class="card-header">
                                 <div class="card-top-img">
@@ -89,7 +109,7 @@
                                 <p>{{ company.address }}</p>
                                 <p>{{ company.phone_number }}</p>
                                 <p>{{ company.email }}</p>
-                                <span class="me-2 text-danger" v-for="type in company.types">{{ type.name }}</span>
+                                <span class="me-2 text-danger" v-for="type in company.types" :key="type.id">{{ type.name }}</span>
                             </div>
                         </div>
                     </div>
@@ -102,35 +122,37 @@
 
 
 <style lang="scss" scoped>
-
-    .search-container{
+    .search-container {
         height: 100%;
         display: flex;
-        .sidebar{
+        .sidebar {
             width: 300px;
             flex-shrink: 0;
             background-color: rgb(168, 194, 185);
             text-align: center;
             padding-top: 30px;
-            ul{
+            ul {
                 padding: 0;
-                li{
+                li {
                     display: flex;
                     width: 100%;
                     justify-content: center;
-                    p{
+                    p {
                         cursor: pointer;
                         width: max-content;
+                    }
+                    p.selected {
+                        font-weight: bold;
+                        color: blue;
                     }
                 }
             }
         }
-        .content{
+        .content {
             text-align: center;
             flex-grow: 1;
             background-color: rgb(184, 196, 206);
             color: black;
         }
     }
-
 </style>
