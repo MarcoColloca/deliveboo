@@ -9,7 +9,11 @@
         <div class="row justify-content-center">
             <div class="col-6">
                 <div class="card">
-                    <img src="{{  asset('storage/'. $dish->image)}}" class="card-img-top" alt="...">
+                    @if($dish->image)
+                    <img src="{{  asset('storage/'. $dish->image) }} " class="card-img-top" alt="...">
+                    @else
+                    <img src="{{  asset('storage/image/default-image.jpg') }} " class="card-img-top" alt="...">      
+                    @endif
                     <div class="card-body">
                         <h4 class="card-title">{{ $dish->name }}</h4>
                         <p class="card-text">{{ $dish->description ? $dish->description : 'Nessuna Descrizione.'  }}</p>
