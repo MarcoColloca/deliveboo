@@ -23,7 +23,33 @@ class TypeController extends Controller
 
 
 
+    public function select(Request $request)
+    {
+        $typeSlugs = $request->input('typeSlugs');
+        if (!is_array($typeSlugs)) {
+            return response()->json([
+                'success' => false,
+                'message' => 'typeSlugs should be an array'
+            ], 400);
+        }
     
+        $types = Type::whereIn('slug', $typeSlugs)->with('companies', 'companies.types')->get();
+    
+        $companies = collect();
+        foreach ($types as $type) {
+            $companies = $companies->merge($type->companies);
+        }
+        $companies = $companies->unique('id');
+    
+        return response()->json([
+            'success' => true,
+            'results' => ['companies' => $companies]
+        ]);
+    }
+    
+
+
+    /*
     public function select(Type $type)
     {        
 
@@ -40,4 +66,5 @@ class TypeController extends Controller
         ]);
        
     }
+    */
 }
