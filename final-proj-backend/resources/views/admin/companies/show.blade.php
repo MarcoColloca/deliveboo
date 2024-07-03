@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title', $company->name)
+
+
+
 @section('content')
 <section class="my-3 py-1">
     <div class="container">

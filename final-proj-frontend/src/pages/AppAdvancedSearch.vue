@@ -76,7 +76,7 @@
                 <h1>Ricerca Avanzata</h1>
             </div>
             <div class="container">
-                <div class="row">
+                <div class="row row-gap-5">
                     <div class="col-3" v-for="company in companies">
                         <div class="card">
                             <div class="card-header">

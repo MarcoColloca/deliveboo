@@ -1,8 +1,10 @@
 @extends('layouts.app')
 
+@section('title', 'Modifica Ristorante')
+
 @section('content')
 <div class="container bg-light mt-5 mb-5 rounded-4 p-5">
-    <h1>Modifica le informazioni del tuo ristorante</h1>
+    <h1 class="text-center mb-3">Modifica le informazioni della tua compagnia</h1>
     @if($company->image)
     <img src="{{ asset('storage/'. $company->image) }}" alt="image{{$company->name}}">
     @else
