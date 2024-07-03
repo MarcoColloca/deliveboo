@@ -11,18 +11,23 @@ use Faker\Generator as Faker;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
+
+
 class DishSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
-    public function run()
+    public function run(Faker $faker)
     {
         //leggi file json
         $json = File::get("database/json/dishes.json");
         $data = json_decode($json);
 
-        foreach($data->dishes as $dish) {
+        $order_ids = Order::all()->pluck('id')->all();
+
+
+        foreach ($data->dishes as $dish) {
             //inserisci i dati nella tab dishes
             $dishId = DB::table('dishes')->insertGetId([
                 'name' => $dish->name,
@@ -36,14 +41,21 @@ class DishSeeder extends Seeder
 
             ]);
 
-            //inserisci dati nella taella ponte dish_order
-            foreach($dish->order as $orderId) {
-                DB::table('dish_order')->insert([
-                    'dish_id' => $dishId,
-                    'order_id' =>$orderId,
-                ]);
-            }
-        }
+            $dish = Dish::find($dishId);
+
+
+            $random_order_ids = $faker->randomElements($order_ids, rand(1, 3));
+    
+            $random_qty = [];
+    
+            foreach ($random_order_ids as $order_id) {
+                $random_qty[$order_id] = ['qty' => rand(1, 5)];
+            };
+    
+            $dish->orders()->attach($random_qty);
+
+        };
+
 
     }
 }
