@@ -13,7 +13,7 @@
                     @if($company->image)
                         <img src="{{ asset('storage/' . $company->image) }}" alt="nessuna immagine" class="card-img-top">
                     @else
-                        <p>Non ci sono immagini del ristorante</p>
+                    <img src="{{  asset('storage/image/default-company.jpg') }} " class="card-img-top" alt="...">      
                     @endif
                     <div class="card-body">
                         <h5>{{$company->name}}</h5>
