@@ -3,7 +3,7 @@ import {createRouter, createWebHistory } from 'vue-router';
 /*importazione delle pagine/rotte */
 import AppHome from './pages/AppHome.vue';
 import AppAdvancedSearch from './pages/AppAdvancedSearch.vue';
-
+import AppMenu from './pages/AppMenu.vue';
 
 
 const routes = [
@@ -15,6 +15,9 @@ const routes = [
     },
     {
         path: '/search/:slug', name: 'type', component: AppAdvancedSearch, props: true
+    },
+    {
+        path: '/menu/:slug', name: 'menu', component: AppMenu, props: true
     }
 ]
 
