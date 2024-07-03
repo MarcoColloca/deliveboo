@@ -24,6 +24,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('companies', [CompanyController::class, 'index']);
 
+Route::get('companies/{company:slug}', [CompanyController::class, 'show']);
+
 Route::get('dishes', [DishController::class, 'index']);
 
 Route::get('dishes/{dish:slug}', [DishController::class, 'show']);
