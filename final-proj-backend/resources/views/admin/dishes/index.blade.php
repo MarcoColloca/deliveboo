@@ -13,17 +13,17 @@
         <div class="row">
             <div class="col-12">
                 @foreach ($company_dishes as $company_name => $dishes)
-                    <div class="d-flex justify-content-between mt-5 mb-1">
-                        <h2 class="text-light">
-                            <a href="{{route('admin.dishes.showOne', $companies_dict[$company_name]->id)}}">
-                                {{ $company_name }}
-                            </a>
-                            {{$companies_dict[$company_name]->address}}
-                        </h2>
+                    <div class="d-flex justify-content-between align-items-end mt-5 mb-1">
+                        <h3 class="text-light">
+                            <p>
+                                {{ $company_name }} <span class="fs-6 ms-3">{{$companies_dict[$company_name]->address}}</span>
+                            </p>
+                            
+                        </h3>
                         @if(isset($companies_dict[$company_name]))
-                            <a class="btn btn-outline-light text-decoration-none d-flex align-items-center"
+                            <a class="btn btn-outline-light text-decoration-none d-flex align-items-center h-75 px-2"
                                 href="{{ route('admin.dishes.create', ['company_id' => $companies_dict[$company_name]->id]) }}">
-                                <i class="fas fa-plus pe-1 ps-1"></i>
+                                <i class="fas fa-plus"></i>
                             </a>
                         @endif
                     </div>

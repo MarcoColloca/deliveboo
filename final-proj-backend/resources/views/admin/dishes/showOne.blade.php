@@ -8,13 +8,13 @@
 
 <section class="my-3 py-1">
     <div class="container my-5">
-        <div class="d-flex justify-content-center">
+        <div class="d-flex justify-content-center align-items-center mt-5">
             <h1 class="text-light text-center">
                 {{$company->name}}
             </h1>
-            <a class="btn btn-outline-light text-decoration-none d-flex align-items-center ms-5"
+            <a class="btn btn-outline-light text-decoration-none d-flex align-items-center h-75 px-2 ms-5"
                 href="{{ route('admin.dishes.create', ['company_id' => $company->id]) }}">
-                <i class="fas fa-plus pe-1 ps-1"></i>
+                <i class="fas fa-plus"></i> 
             </a>
         </div>
     </div>
