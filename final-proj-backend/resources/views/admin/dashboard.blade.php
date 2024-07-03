@@ -22,7 +22,7 @@
                         <div class="row gap-5 justify-content-center">
                             @foreach ($companies as $company)
                                 <div class="col-3">
-                                    <div class="card">
+                                    <div class="card h-100">
                                         <div class="card-header">
                                             @if($company->image)
                                             <img src="{{ asset('storage/' . $company->image) }}" alt="nessuna immagine" class="card-img-top">
