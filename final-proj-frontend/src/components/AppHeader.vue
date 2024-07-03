@@ -1,12 +1,14 @@
 <script>
 
-    export default {
-        components:{            
-        },
+export default {
+    components: {
+    },
 
-        data(){
+    data() {
+        return {
         }
     }
+}
 </script>
 
 
@@ -17,10 +19,10 @@
         <div class="container h-100">
             <nav class="h-100 d-flex gap-5 justify-content-between align-items-center">
                 <div>
-                    <RouterLink :to="{name: 'home'}">LOGO</RouterLink>
+                    <RouterLink :to="{ name: 'home' }">LOGO</RouterLink>
                 </div>
-                <div class="d-flex gap-4">             
-                    <RouterLink :to="{name: 'search'}">Ricerca Avanzata</RouterLink> 
+                <div class="d-flex gap-4">
+                    <RouterLink :to="{ name: 'search' }">Ricerca Avanzata</RouterLink>
                 </div>
                 <div class="d-flex gap-4">
                     <a class="btn btn-outline-light" href="http://127.0.0.1:8000/register">Diventa Partner Fooder!</a>
@@ -34,8 +36,8 @@
 
 
 <style lang="scss" scoped>
-    header{
-        height: 100px;
-        background-color: coral;
-    }
+header {
+    height: 100px;
+    background-color: coral;
+}
 </style>

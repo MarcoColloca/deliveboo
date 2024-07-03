@@ -2,15 +2,16 @@
 import { RouterView } from 'vue-router';
 
 
-    export default {
-        data(){
-
-        },
-
-        components:{
-
+export default {
+    data() {
+        return {
         }
+    },
+
+    components: {
+
     }
+}
 </script>
 
 
@@ -24,6 +25,4 @@ import { RouterView } from 'vue-router';
 
 
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
