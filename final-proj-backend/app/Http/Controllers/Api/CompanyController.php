@@ -19,4 +19,18 @@ class CompanyController extends Controller
             'results' => $results
         ]);
     }
+
+    public function show(Company $company)
+    {
+        $company->load(['dishes', 'types']);
+
+        $results = $company;
+
+
+        return response()->json([
+            'success' => true,
+            'results' => $results
+        ]);
+        
+    }
 }
