@@ -64,8 +64,7 @@
                         <div class="card-body">
                             <p><strong>Nome:</strong> {{ dish.name }}</p>
                             <p><strong>Ingredienti:</strong> {{ dish.ingredients }}</p>
-                            <p><strong>Descrizione:</strong> {{ dish.description }}</p>
-                            <p><strong>Prezzo:</strong> {{ dish.price }} €</p>
+                            <p><strong>Descrizione:</strong> {{ dish.description ? dish.description : 'Nessuna Descrizione per questo piatto.' }}</p>                            <p><strong>Prezzo:</strong> {{ dish.price }} €</p>
                         </div>
                     </div>
                 </div>
