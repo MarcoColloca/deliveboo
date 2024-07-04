@@ -156,6 +156,8 @@ export default {
     justify-content: center;
     align-items: center;
     margin: 30px 0;
+    background-image: url(/imgs/sfondo-down.png);
+    background-size: cover;
 
     .title {
         color: $app-brand-blue;
