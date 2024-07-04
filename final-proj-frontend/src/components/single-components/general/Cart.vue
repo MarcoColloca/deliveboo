@@ -61,7 +61,7 @@ export default {
                     <h5>{{ getPrice(dish.qty, dish.price) }} €</h5>
                 </div>
                 <div class="col-1">
-                    <span @click="$emit('remove', i)" ><font-awesome-icon :icon="['far', 'trash-can']" /></span>
+                    <span @click="$emit('remove', i)" ><font-awesome-icon class="cart-trash" :icon="['far', 'trash-can']" /></span>
                 </div>
                 
             </div>
@@ -70,7 +70,7 @@ export default {
             </div>
         </div>
         <div class="card-fooder d-flex justify-content-end pe-2 pb-2 gap-3">
-            <input type="submit " class="btn btn-outline-coral" value="Aggiungi nota all'ordine">
+            <span class="btn btn-outline-coral">Aggiungi nota all'ordine</span>
             <RouterLink class="btn btn-outline-coral" :to="{ name: 'payment' }">
                 Procedi al Pagamento
             </RouterLink>
@@ -80,5 +80,14 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-@use '../../../assets/style/partials/variables.scss' as *;
+    @use '../../../assets/style/partials/variables.scss' as *;
+
+    .cart-trash{
+        padding: 0 5px;
+
+        &:hover{
+            color: red;
+            cursor: pointer;
+        }
+    }
 </style>

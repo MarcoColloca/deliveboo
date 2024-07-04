@@ -36,5 +36,6 @@ footer{
     height: 100px;
     background-color: $app-brand-yellow;
     color: $app-brand-blue;
+    flex-shrink: 0;
 }
 </style>

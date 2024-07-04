@@ -143,7 +143,7 @@ export default {
     .sidebar {
         width: 200px;
         flex-shrink: 0;
-        background-color: $app-brand-red;
+        background-color: $app-brand-blue;
         text-align: center;
         padding-top: 30px;
 
@@ -162,11 +162,11 @@ export default {
 
                 p.selected {
                     font-weight: bold;
-                    color: coral;
-                    background-color: white;
+                    color: $app-brand-yellow;
+                    //background-color: white;
                     border: 1px solid white;
                     border-radius: 18px;
-                    padding: 0 3px;
+                    padding: 0 6px;
                 }
             }
         }
