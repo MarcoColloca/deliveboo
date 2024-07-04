@@ -99,21 +99,21 @@ export default {
 
 <template>
     <div class="menu-page">
-        <h1>{{ company.name }}</h1>
+        <h1 class="title">{{ company.name }}</h1>
         <ul class="d-flex gap-5">
-            <li v-for="type in company.types">{{ type.name }}</li>
+            <li class="sub-title" v-for="type in company.types">{{ type.name }}</li>
         </ul>
         <div class="container my-5">
             <div class="row row-gap-5">
                 <div class="col-3" v-for="dish in dishes" :key="dish.id">
-                    <div class="card" v-if="dish.visible === 1">
+                    <div class="card h-100" v-if="dish.visible === 1">
                         <div class="card-header">
                             <div class="card-top-img">
-                                <img v-if="dish.image_fullpath" :src="dish.image_fullpath" alt="">
-                                <img v-else src="http://127.0.0.1:8000/storage/image/default-image.jpg" alt="">
+                                <img v-if="dish.image_fullpath" :src="dish.image_fullpath" class="my-img-card" alt="">
+                                <img v-else src="http://127.0.0.1:8000/storage/image/default-image.jpg" class="my-img-card" alt="">
                             </div>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body d-flex flex-column justify-content-between">
                             <p><strong>Nome:</strong> {{ dish.name }}</p>
                             <p><strong>Ingredienti:</strong> {{ dish.ingredients }}</p>
                             <p><strong>Descrizione:</strong> {{ dish.description ? dish.description : 'Nessuna Descrizione per questo piatto.' }}</p>
@@ -146,8 +146,9 @@ export default {
 
 
 
-
 <style lang="scss" scoped>
+@use '../assets/style/partials/variables' as*; 
+
 .menu-page {
     text-align: center;
     display: flex;
@@ -155,6 +156,14 @@ export default {
     justify-content: center;
     align-items: center;
     margin: 30px 0;
+
+    .title {
+        color: $app-brand-blue;
+        margin-top: 50px;
+    }
+    .sub-title{
+        color: $app-brand-blue;
+    }
 
     .container {
         margin-top: 15px;
@@ -165,9 +174,9 @@ export default {
 
                 .card-header {
                     .card-top-img {
-                        img {
-                            max-width: 100%;
-                            height: 200px;
+                        .my-img-card {
+                            height: 180px;
+                            object-fit: cover;
                         }
                     }
                 }
