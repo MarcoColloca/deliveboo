@@ -33,17 +33,22 @@ export default {
             }
         },
         submitPayment() {
+            this.paymentLoad = true;
+
             this.dropinInstance.requestPaymentMethod((err, payload) => {
                 if (err) {
                     console.error(err);
+                    this.paymentLoad = false;
                     return;
                 }
                 axios.post('/checkout', {
                     paymentMethodNonce: payload.nonce
                 }).then(response => {
                     console.log('Transazione simulata:', response.data);
+                    this.paymentLoad = false;
                     this.successMessage = 'Pagamento completato con successo!';
                 }).catch(error => {
+                    this.paymentLoad = false;
                     console.error('Errore nella transazione:', error);
                 });
             });
@@ -62,8 +67,15 @@ export default {
             </h1>
         </div>
 
-        <div ref="dropinContainer" class="dropin-container" v-if="!successMessage"></div>
-        <button @click="submitPayment" class="payment-button" v-if="!successMessage">Paga</button>
+        <div v-if="paymentLoad" class="processing-message">
+            <h1>
+                Pagamento in Corso... <font-awesome-icon class="spinner" :icon="['fas', 'spinner']" />
+            </h1>
+        </div>
+
+
+        <div ref="dropinContainer" class="dropin-container" v-show="!paymentLoad && !successMessage"></div>
+        <button @click="submitPayment" class="payment-button" v-show="!paymentLoad && !successMessage">Paga</button>
     </div>
 </template>
 
@@ -117,4 +129,30 @@ export default {
     display: flex;
     align-items: center;
 }
+
+.processing-message {
+    color: #555;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.spinner {
+    display: inline-block;
+    animation: rotate 2s linear infinite; 
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg); 
+    }
+    to {
+        transform: rotate(360deg); 
+    }
+}
+
+
 </style>
