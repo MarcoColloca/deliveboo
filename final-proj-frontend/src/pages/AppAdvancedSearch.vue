@@ -16,7 +16,7 @@ export default {
             types: [],
             currentPage: 1,
             perPage: 99,
-            selectedTypeSlugs: [], 
+            selectedTypeSlugs: [],
             companies: [],
         }
     },
@@ -38,7 +38,7 @@ export default {
         addSlugToSelectedTypes(slug) {
             if (!this.selectedTypeSlugs.includes(slug)) {
                 this.selectedTypeSlugs.push(slug);
-                this.fetchCompanies(); 
+                this.fetchCompanies();
             }
         },
 
@@ -48,7 +48,7 @@ export default {
             } else {
                 this.selectedTypeSlugs.push(slug);
             }
-            this.fetchCompanies(); 
+            this.fetchCompanies();
         },
 
         fetchTypes() {
@@ -81,7 +81,7 @@ export default {
 
 
 <template>
-    <div class="search-container">
+    <div class="search-container mb-4">
         <div class="sidebar">
             <ul>
                 <li v-for="type in types" :key="type.slug">
@@ -94,16 +94,18 @@ export default {
         </div>
         <div class="content">
             <div class="container">
-                <h1>Ricerca Avanzata</h1>
+                <h1 v-if="companies.length !== 0" class="title mb-4">Scegli un ristorante</h1>
             </div>
             <div class="container">
-                <div class="row row-gap-5">
+                <div v-if="companies.length !== 0" class="row row-gap-5">
                     <div class="col-3" v-for="company in companies" :key="company.id">
-                        <div class="card">
+                        <div class="card h-100">
                             <div class="card-header">
                                 <div class="card-top-img">
-                                    <img v-if="company.image_fullpath" :src="company.image_fullpath" alt="">
-                                    <img v-else src="http://127.0.0.1:8000/storage/image/default-company.jpg" alt="">
+                                    <img v-if="company.image_fullpath" :src="company.image_fullpath" class="my-img-card"
+                                        alt="">
+                                    <img v-else src="http://127.0.0.1:8000/storage/image/default-company.jpg"
+                                        class="my-img-card" alt="">
                                 </div>
                             </div>
                             <div class="card-body">
@@ -120,6 +122,10 @@ export default {
                         </div>
                     </div>
                 </div>
+                <div v-else>
+                    <img src="/imgs/fooder.gif" class="my-gif" alt="">
+                    <h2 class="sub-title">Seleziona la categoria</h2>
+                </div>
             </div>
         </div>
     </div>
@@ -128,14 +134,16 @@ export default {
 
 
 <style lang="scss" scoped>
+@use '../assets/style/partials/variables' as*;
+
 .search-container {
     height: 100%;
     display: flex;
 
     .sidebar {
-        width: 300px;
+        width: 200px;
         flex-shrink: 0;
-        background-color: rgb(168, 194, 185);
+        background-color: $app-brand-red;
         text-align: center;
         padding-top: 30px;
 
@@ -164,14 +172,32 @@ export default {
         }
     }
 
+    .title {
+        color: $app-brand-blue;
+        margin-top: 50px;
+    }
+
+    .sub-title {
+        color: $app-brand-blue;
+        margin-top: -30px;
+    }
+
     .content {
         text-align: center;
         flex-grow: 1;
-        background-color: rgb(184, 196, 206);
+        background-color: white;
+        background-image: url(/imgs/sfondo-down.png);
+        background-size: cover;
         color: black;
 
-        img {
-            max-height: 181px;
+        .my-img-card {
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .my-gif {
+            width: 550px;
+            transform: scaleX(-1);
         }
     }
 }
