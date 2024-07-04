@@ -65,6 +65,10 @@ export default {
             <h1>
                 {{ successMessage }}
             </h1>
+            <p class="back-home">
+                <RouterLink :to="{ name: 'home' }">Torna alla Home</RouterLink>
+            </p>
+
         </div>
 
         <div v-if="paymentLoad" class="processing-message">
@@ -127,7 +131,16 @@ export default {
     margin-bottom: 20px;
     height: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    .back-home{
+        text-decoration: underline;
+        &:hover{
+            cursor: pointer;
+            color: $app-brand-yellow
+        }
+    }
 }
 
 .processing-message {
