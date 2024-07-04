@@ -4,6 +4,40 @@ export default {
         company: Object,
         cartDishes: Array,
     },
+
+    data(){
+        return{
+
+        }
+    },
+
+
+    methods:{
+        getPrice(qty, price){
+
+            const total = (qty * price).toFixed(2);
+
+            return total
+        },
+
+        getTotal(){
+
+            let sum = 0;
+
+            this.cartDishes.forEach(element => {
+
+
+
+                const dishPrice = element.price * element.qty
+
+
+                sum += dishPrice
+                
+            });
+
+            return sum
+        }
+    }
 }
 </script>
 
@@ -13,20 +47,24 @@ export default {
         <div class="card-body">
             <div class="row mb-2" v-for="(dish, i) in cartDishes">
                 <div class="col-2 d-flex gap-2">
-                    <span class="btn btn-outline-coral" @click="$emit('decrease', dish.id)">-</span>
+                    <span class="btn btn-outline-coral px-3" @click="$emit('decrease', dish.id)">-</span>
                     <input type="hidden" class="w-25 ps-2" :value="dish.qty">
-                    <span class="btn btn-outline-dark">{{ dish.qty }}</span>
-                    <span class="btn btn-outline-coral" @click="$emit('increase', dish.id)">+</span>
+                    <span class="btn btn-outline-dark px-3">{{ dish.qty }}</span>
+                    <span class="btn btn-outline-coral px-3" @click="$emit('increase', dish.id)">+</span>
                 </div>
                 <div class="col-6 text-start">
                     <h5>{{ dish.name }}</h5>                   
                 </div>
                 <div class="col-3">
-                    <h5>{{ dish.price }}</h5>
+                    <h5>{{ getPrice(dish.qty, dish.price) }} €</h5>
                 </div>
                 <div class="col-1">
                     <span @click="$emit('remove', i)" ><font-awesome-icon :icon="['far', 'trash-can']" /></span>
                 </div>
+                
+            </div>
+            <div class="row mb-2 text-center">
+                <h4>Totale Ordine: {{ getTotal() }} €</h4>
             </div>
         </div>
         <div class="card-fooder d-flex justify-content-end pe-2 pb-2 gap-3">
@@ -35,25 +73,6 @@ export default {
 
         </div>
     </div>
-
-    <!-- <div class="modal fade" id="noteModal" tabindex="-1" aria-labelledby="noteModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5 text-black" id="noteModalLabel">Aggiungi una nota al tuo piatto</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <label for="dish-note" class="col-form-label text-black">Aggiungi la tua nota</label>
-                    <textarea id="dish-note" cols="50" rows="5" class="frm-control" placeholder="Aggiungi nota..."
-                        value=""></textarea>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-coral" @click="addNote">Aggiungi nota</button>
-                </div>
-            </div>
-        </div>
-    </div> -->
 </template>
 
 <style lang="scss" scoped>

@@ -34,7 +34,6 @@ export default {
 
                     this.dishes = res.data.results.dishes;
                     this.company = res.data.results;
-                    console.log(res);
                 })
                 .catch(error => {
                     this.$router.replace({
@@ -69,9 +68,8 @@ export default {
         },
 
         increaseQty(id) {
-            console.log(id)
 
-            this.cartDishes.forEach(element => {
+            this.cartDishes.forEach(element => {    
                 if (element.id == id) {
                     element.qty++
                 }
@@ -80,7 +78,7 @@ export default {
 
         decreaseQty(id) {
             this.cartDishes.forEach(element => {
-                if (element.id == id && element.qty > 0) {
+                if (element.id == id && element.qty > 1) {
                     element.qty--
                 }
             });
@@ -110,10 +108,10 @@ export default {
                             </div>
                         </div>
                         <div class="card-body d-flex flex-column justify-content-between">
-                            <p><strong>Nome:</strong> {{ dish.name }}</p>
-                            <p><strong>Ingredienti:</strong> {{ dish.ingredients }}</p>
-                            <p><strong>Descrizione:</strong> {{ dish.description ? dish.description : 'Nessuna Descrizione per questo piatto.' }}</p>
-                            <p><strong>Prezzo:</strong> {{ dish.price }} €</p>
+                            <p><span class="fw-bold">Nome:</span> {{ dish.name }}</p>
+                            <p><span class="fw-bold">Ingredienti:</span> {{ dish.ingredients }}</p>
+                            <p><span class="fw-bold">Descrizione:</span> {{ dish.description ? dish.description : 'Nessuna Descrizione per questo piatto.' }}</p>
+                            <p><span class="fw-bold">Prezzo:</span> {{ dish.price }} €</p>
                             <h5 class="btn btn-outline-coral" v-if="isVisible(dish.id)" @click="increaseQty(dish.id)">
                                 aumenta quantità</h5>
                             <h5 class="btn btn-outline-coral" v-else @click="addDishToCart(dish)">Aggiungi al carrello
@@ -128,10 +126,10 @@ export default {
                             </div>
                         </div>
                         <div class="card-body d-flex flex-column justify-content-between">
-                            <p><strong>Nome:</strong> {{ dish.name }}</p>
-                            <p><strong>Ingredienti:</strong> {{ dish.ingredients }}</p>
-                            <p><strong>Descrizione:</strong> {{ dish.description ? dish.description : 'Nessuna Descrizione per questo piatto.' }}</p>
-                            <p><strong>Prezzo:</strong> {{ dish.price }} €</p>
+                            <p><span class="fw-bold">Nome:</span> {{ dish.name }}</p>
+                            <p><span class="fw-bold">Ingredienti:</span> {{ dish.ingredients }}</p>
+                            <p><span class="fw-bold">Descrizione:</span> {{ dish.description ? dish.description : 'Nessuna Descrizione per questo piatto.' }}</p>
+                            <p><span class="fw-bold">Prezzo:</span> {{ dish.price }} €</p>
                             <p class="btn btn-outline-danger not-available">Piatto non disponibile</p>
                         </div>
                     </div>
@@ -195,6 +193,9 @@ export default {
                 }
 
                 .card-body{
+                    p{
+                        font-weight: lighter;
+                    }
                     .not-available{
                         pointer-events: none;
                         cursor: default;
