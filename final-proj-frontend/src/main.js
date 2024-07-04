@@ -23,6 +23,7 @@ import {
     faCircle as faCircleSolid,
     faEye as faEyeSolid,
     faLocationDot as faLocationDotSolid,
+    faBurger as faBurgerSolid,
 } from '@fortawesome/free-solid-svg-icons'
 
 // Icone Solid Font Awesome
@@ -31,6 +32,7 @@ import {
     faUser as faUserRegular,
     faFileLines as faFileLinesRegular,
     faCalendar as faCalendarRegular,
+
 } from '@fortawesome/free-regular-svg-icons'
 
 // Icone Brands Font Awesome
@@ -41,7 +43,7 @@ import{
     faLinkedin,
 } from '@fortawesome/free-brands-svg-icons'
 
-library.add(faClockSolid, faClockRegular, faChevronDownSolid, faTwitter, faFacebookF, faInstagram, faLinkedin, faArrowUpLongSolid, faCircleSolid, faArrowRightLongSolid, faUserRegular, faFileLinesRegular, faEyeSolid, faCalendarRegular, faLocationDotSolid)
+library.add(faClockSolid, faClockRegular, faBurgerSolid, faChevronDownSolid, faTwitter, faFacebookF, faInstagram, faLinkedin, faArrowUpLongSolid, faCircleSolid, faArrowRightLongSolid, faUserRegular, faFileLinesRegular, faEyeSolid, faCalendarRegular, faLocationDotSolid)
 
 
 

@@ -44,11 +44,11 @@
         <div class="hero">
 
             <div class="container title-container">    
-                <div class="row justify-content-between">
-                    <div class="col-12 col-lg-5 p-3">
+                <div class="row gap-4 justify-content-center">
+                    <div class="col-10 col-lg-5 p-3">
                         <img src="/imgs/logo.png" class="logo-big" alt="">
                     </div>
-                    <div class="col-12 col-lg-5 d-flex flex-column justify-content-center p-3">
+                    <div class="col-10 col-lg-5 d-flex flex-column justify-content-center p-3">
                         <h1 class="title">Ordina tutto il cibo che vuoi da casa tua!</h1>
                    
                     </div>
@@ -57,8 +57,8 @@
         </div>
         <div class="container container-btn">
             
-            <ul class="row gap-2 food-types__container">
-                <li v-for="type in types" class="btn btn-outline-coral col-6 col-md-2">
+            <ul class="row g-2 food-types__container">
+                <li v-for="type in types" class="btn btn-outline-blue col-6 col-md-2">
                     <RouterLink :to="{name: 'type', params: { slug:type.slug }}">{{ type.name }}</RouterLink> 
                 </li>
             </ul>
