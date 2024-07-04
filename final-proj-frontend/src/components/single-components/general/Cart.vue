@@ -11,11 +11,14 @@ export default {
     <div class="card">
         <div class="card-header">Stai acquistando persso: {{ company.name }}</div>
         <div class="card-body">
-            <div class="row" v-for="(dish, i) in cartDishes">
-                <div class="col-1">
-                    <input type="number" class="w-100 ps-2" :value="dish.qty">
+            <div class="row mb-2" v-for="(dish, i) in cartDishes">
+                <div class="col-2 d-flex gap-2">
+                    <span class="btn btn-outline-coral" @click="$emit('decrease', dish.id)">-</span>
+                    <input type="hidden" class="w-25 ps-2" :value="dish.qty">
+                    <span class="btn btn-outline-dark">{{ dish.qty }}</span>
+                    <span class="btn btn-outline-coral" @click="$emit('increase', dish.id)">+</span>
                 </div>
-                <div class="col-7 text-start">
+                <div class="col-6 text-start">
                     <h5>{{ dish.name }}</h5>                   
                 </div>
                 <div class="col-3">
