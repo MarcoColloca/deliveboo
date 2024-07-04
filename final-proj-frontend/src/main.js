@@ -33,6 +33,7 @@ import {
     faFileLines as faFileLinesRegular,
     faCalendar as faCalendarRegular,
 
+    faTrashCan as faTrashCanRegular,
 } from '@fortawesome/free-regular-svg-icons'
 
 // Icone Brands Font Awesome
@@ -43,7 +44,7 @@ import{
     faLinkedin,
 } from '@fortawesome/free-brands-svg-icons'
 
-library.add(faClockSolid, faClockRegular, faBurgerSolid, faChevronDownSolid, faTwitter, faFacebookF, faInstagram, faLinkedin, faArrowUpLongSolid, faCircleSolid, faArrowRightLongSolid, faUserRegular, faFileLinesRegular, faEyeSolid, faCalendarRegular, faLocationDotSolid)
+library.add(faClockSolid, faClockRegular, faBurgerSolid, faChevronDownSolid, faTwitter, faFacebookF, faInstagram, faLinkedin, faArrowUpLongSolid, faCircleSolid, faArrowRightLongSolid, faUserRegular, faFileLinesRegular, faEyeSolid, faCalendarRegular, faLocationDotSolid, faTrashCanRegular)
 
 
 

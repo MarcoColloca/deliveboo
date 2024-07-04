@@ -13,7 +13,7 @@
         {
             "name": "Fettuccine al ragù",
             "slug": "fettuccine-al-ragù",
-            "image": "image/fettuccine-al-ragù.jpg",
+            "image": "image/fettuccine-al-ragu.jpg",
             "description": "Fettucine condite con ragù",
             "ingredients": "Farina, carne, pomodoro",
             "price": 12.00,
@@ -281,7 +281,7 @@
             "company_id": "1"
         },
         {
-            "name": "Gnocchi alla sporrentina",
+            "name": "Gnocchi alla sorrentina",
             "slug": "gnocchi-alla-sorrentina",
             "description": "",
             "image": "",
