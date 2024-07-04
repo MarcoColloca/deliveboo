@@ -1,4 +1,6 @@
 <script>
+import { RouterLink } from 'vue-router';
+
 export default {
     props: {
         company: Object,
@@ -69,7 +71,9 @@ export default {
         </div>
         <div class="card-fooder d-flex justify-content-end pe-2 pb-2 gap-3">
             <input type="submit " class="btn btn-outline-coral" value="Aggiungi nota all'ordine">
-            <input type="submit " class="btn btn-outline-coral" value="Completa ordine">
+            <RouterLink class="btn btn-outline-coral" :to="{ name: 'payment' }">
+                Procedi al Pagamento
+            </RouterLink>
 
         </div>
     </div>
