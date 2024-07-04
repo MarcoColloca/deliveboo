@@ -65,21 +65,17 @@ export default {
         },
 
         removeDishFromCart(index) {
-            // console.log(id)
             this.cartDishes.splice(index, 1)
         },
 
         increaseQty(id) {
             console.log(id)
 
-            // trovare piatto del carrello che già presenta il parametro qty
             this.cartDishes.forEach(element => {
                 if (element.id == id) {
                     element.qty++
                 }
             });
-            // ciclo cartDishes trovando il dish con líd che gli sto passando
-            // aumentare di 1 la qty dell'oggetto dish.qty
         },
 
         decreaseQty(id) {
@@ -131,10 +127,10 @@ export default {
             <div class="row">
                 <div class="col">
                     <Cart :company="this.company" 
-                    :cartDishes="this.cartDishes" 
-                    @remove="removeDishFromCart"
-                    @increase="increaseQty"
-                    @decrease="decreaseQty"
+                     :cartDishes="this.cartDishes" 
+                     @remove="removeDishFromCart"
+                     @increase="increaseQty"
+                     @decrease="decreaseQty"
                     ></Cart>
                 </div>
             </div>
