@@ -124,6 +124,21 @@ export default {
                             </h5>
                         </div>
                     </div>
+                    <div class="card h-100" v-else>
+                        <div class="card-header">
+                            <div class="card-top-img">
+                                <img v-if="dish.image_fullpath" :src="dish.image_fullpath" class="my-img-card" alt="">
+                                <img v-else src="http://127.0.0.1:8000/storage/image/default-image.jpg" class="my-img-card" alt="">
+                            </div>
+                        </div>
+                        <div class="card-body d-flex flex-column justify-content-between">
+                            <p><strong>Nome:</strong> {{ dish.name }}</p>
+                            <p><strong>Ingredienti:</strong> {{ dish.ingredients }}</p>
+                            <p><strong>Descrizione:</strong> {{ dish.description ? dish.description : 'Nessuna Descrizione per questo piatto.' }}</p>
+                            <p><strong>Prezzo:</strong> {{ dish.price }} €</p>
+                            <p class="btn btn-outline-danger not-available">Piatto non disponibile</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -180,6 +195,13 @@ export default {
                             height: 180px;
                             object-fit: cover;
                         }
+                    }
+                }
+
+                .card-body{
+                    .not-available{
+                        pointer-events: none;
+                        cursor: default;
                     }
                 }
             }
