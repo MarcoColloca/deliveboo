@@ -6,7 +6,8 @@ export default {
     data() {
         return {
             dropinInstance: null,
-            successMessage: null
+            successMessage: null,
+            paymentLoad: false
         };
     },
     mounted() {
@@ -72,7 +73,9 @@ export default {
 
 
 
-<style>
+<style  lang="scss" scoped>
+@use '../assets/style/partials/variables' as*; 
+
 .payment-container {
     display: flex;
     flex-direction: column;
@@ -91,22 +94,22 @@ export default {
 }
 
 .payment-button {
-    background-color: #007bff;
+    background-color: $app-brand-blue;
     color: white;
     border: none;
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
     border-radius: 5px;
-    transition: background-color 0.3s;
+    transition: background-color 0.5s;
 }
 
 .payment-button:hover {
-    background-color: #0056b3;
+    background-color: $app-brand-yellow;
 }
 
 .success-message {
-    color: #1E4B5F;
+    color: $app-brand-blue;
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 20px;
