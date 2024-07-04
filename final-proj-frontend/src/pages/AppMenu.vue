@@ -1,44 +1,77 @@
 <script>
-    import axios from 'axios';
+import axios from 'axios';
+import Cart from '../components/single-components/general/Cart.vue'
 
-    export default {
-        props: {
-            slug: {
-                type: String,
-                required: true
-            }
-        },
-        computed: {
-            companySlug() {
-                return this.slug;
-            }
-        },
-        data() {
-            return {
-                dishes: [],
-                company: {}
-            };
-        },
-        created() {
-            this.fetchDishes(this.slug);
-        },
-        methods: {
-            fetchDishes(slug) {
-                axios.get(`http://127.0.0.1:8000/api/companies/${slug}`)
-                    .then(res => {
+export default {
+    components: {
+        Cart,
+    },
+    props: {
+        slug: {
+            type: String,
+            required: true
+        }
+    },
+    computed: {
+        companySlug() {
+            return this.slug;
+        }
+    },
+    data() {
+        return {
+            dishes: [],
+            company: {},
+            cartDishes: []
+        };
+    },
+    created() {
+        this.fetchDishes(this.slug);
+    },
+    methods: {
+        fetchDishes(slug) {
+            axios.get(`http://127.0.0.1:8000/api/companies/${slug}`)
+                .then(res => {
 
-                        this.dishes = res.data.results.dishes;
-                        this.company = res.data.results;
-                        console.log(res);
-                    })
-                    .catch(error => {
-                        this.$router.replace({
-                            name: 'NotFound',
-                            params: {patchMatch: this.$route.path.substring(1).split('/')},
-                        });
+                    this.dishes = res.data.results.dishes;
+                    this.company = res.data.results;
+                    console.log(res);
+                })
+                .catch(error => {
+                    this.$router.replace({
+                        name: 'NotFound',
+                        params: { patchMatch: this.$route.path.substring(1).split('/') },
                     });
-            }
+                });
         },
+
+        addDishToCart(item) {
+            const newItem = {
+                ...item,
+                qty: 1
+            }
+            this.cartDishes.push(newItem)
+        },
+
+        isVisible(id) {
+            let visible = false
+
+            this.cartDishes.forEach(element => {
+                if (element.id == id) {
+                    visible = true
+                }
+            });
+
+            return visible
+        },
+
+        removeDishFromCart(index) {
+            // console.log(id)
+            
+            this.cartDishes.splice(index,1)
+            
+
+        }
+    },
 }
 </script>
 
@@ -64,13 +97,28 @@
                         <div class="card-body">
                             <p><strong>Nome:</strong> {{ dish.name }}</p>
                             <p><strong>Ingredienti:</strong> {{ dish.ingredients }}</p>
-                            <p><strong>Descrizione:</strong> {{ dish.description ? dish.description : 'Nessuna Descrizione per questo piatto.' }}</p>                            <p><strong>Prezzo:</strong> {{ dish.price }} €</p>
+                            <p><strong>Descrizione:</strong> {{ dish.description ? dish.description : 'Nessuna Descrizione per questo piatto.' }}</p>
+                            <p><strong>Prezzo:</strong> {{ dish.price }} €</p>
+                            <h5 class="btn btn-outline-coral" v-if="isVisible(dish.id)" @click="console.log('click')">aumenta quantità</h5>
+                            <h5 class="btn btn-outline-coral" v-else @click="addDishToCart(dish)">Aggiungi al carrello</h5>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <Cart
+                     :company="this.company"
+                     :cartDishes="this.cartDishes"
+                     @remove="removeDishFromCart"
+                    ></Cart>
+                </div>
+            </div>
+        </div>
     </div>
+
 </template>
 
 
@@ -83,10 +131,12 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;   
-    margin: 30px 0; 
+    align-items: center;
+    margin: 30px 0;
+
     .container {
         margin-top: 15px;
+
         .row {
             .card {
                 margin-bottom: 20px;
