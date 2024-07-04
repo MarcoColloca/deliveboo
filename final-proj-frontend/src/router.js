@@ -5,6 +5,7 @@ import AppHome from './pages/AppHome.vue';
 import AppAdvancedSearch from './pages/AppAdvancedSearch.vue';
 import AppMenu from './pages/AppMenu.vue';
 import NotFound from './pages/NotFound.vue';
+import AppPayment from './pages/AppPayment.vue';
 
 
 const routes = [
@@ -16,6 +17,9 @@ const routes = [
     },
     {
         path: '/search/:slug', name: 'type', component: AppAdvancedSearch, props: true
+    },
+    {
+        path: '/payment', name: 'payment', component: AppPayment, props: true
     },
     {
         path: '/menu/:slug', name: 'menu', component: AppMenu, props: true
