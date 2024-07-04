@@ -4,6 +4,7 @@ import {createRouter, createWebHistory } from 'vue-router';
 import AppHome from './pages/AppHome.vue';
 import AppAdvancedSearch from './pages/AppAdvancedSearch.vue';
 import AppMenu from './pages/AppMenu.vue';
+import NotFound from './pages/NotFound.vue';
 
 
 const routes = [
@@ -18,7 +19,10 @@ const routes = [
     },
     {
         path: '/menu/:slug', name: 'menu', component: AppMenu, props: true
-    }
+    },
+    {
+        path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound
+    },
 ]
 
 

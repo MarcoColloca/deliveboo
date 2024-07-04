@@ -1,71 +1,92 @@
+<script>
+    import axios from 'axios';
+
+    export default {
+        props: {
+            slug: {
+                type: String,
+                required: true
+            }
+        },
+        computed: {
+            companySlug() {
+                return this.slug;
+            }
+        },
+        data() {
+            return {
+                dishes: [],
+                company: {}
+            };
+        },
+        created() {
+            this.fetchDishes(this.slug);
+        },
+        methods: {
+            fetchDishes(slug) {
+                axios.get(`http://127.0.0.1:8000/api/companies/${slug}`)
+                    .then(res => {
+
+                        this.dishes = res.data.results.dishes;
+                        this.company = res.data.results;
+                        console.log(res);
+                    })
+                    .catch(error => {
+                        this.$router.replace({
+                            name: 'NotFound',
+                            params: {patchMatch: this.$route.path.substring(1).split('/')},
+                        });
+                    });
+            }
+        },
+}
+</script>
+
+
+
+
 <template>
-<div class="menu-page">
-    <h1>{{ company.name }}</h1>
-    <p v-for="type in company.types">{{ type.name }}</p>
-    <div class="container">
-        <div class="row row-gap-5">
-            <div class="col-3" v-for="dish in dishes" :key="dish.id">
-                <div class="card" v-if="dish.visible === 1">
-                    <div class="card-header">
-                        <div class="card-top-img">
-                            <img :src="dish.image_fullpath" alt="">
+    <div class="menu-page">
+        <h1>{{ company.name }}</h1>
+        <ul class="d-flex gap-5">
+            <li v-for="type in company.types">{{ type.name }}</li>
+        </ul>
+        <div class="container my-5">
+            <div class="row row-gap-5">
+                <div class="col-3" v-for="dish in dishes" :key="dish.id">
+                    <div class="card" v-if="dish.visible === 1">
+                        <div class="card-header">
+                            <div class="card-top-img">
+                                <img v-if="dish.image_fullpath" :src="dish.image_fullpath" alt="">
+                                <img v-else src="http://127.0.0.1:8000/storage/image/default-image.jpg" alt="">
+                            </div>
                         </div>
-                    </div>
-                    <div class="card-body">
-                        <p><strong>Nome:</strong> {{ dish.name }}</p>
-                        <p><strong>Ingredienti:</strong> {{ dish.ingredients }}</p>
-                        <p><strong>Descrizione:</strong> {{ dish.description }}</p>
-                        <p><strong>Prezzo:</strong> {{ dish.price }} €</p>
+                        <div class="card-body">
+                            <p><strong>Nome:</strong> {{ dish.name }}</p>
+                            <p><strong>Ingredienti:</strong> {{ dish.ingredients }}</p>
+                            <p><strong>Descrizione:</strong> {{ dish.description ? dish.description : 'Nessuna Descrizione per questo piatto.' }}</p>                            <p><strong>Prezzo:</strong> {{ dish.price }} €</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </template>
 
-<script>
-import axios from 'axios';
 
-export default {
-    props: {
-        slug: {
-            type: String,
-            required: true
-        }
-    },
-    computed: {
-        companySlug() {
-            return this.slug;
-        }
-    },
-    data() {
-        return {
-            dishes: [],
-            company: {}
-        };
-    },
-    created() {
-        this.fetchDishes(this.slug);
-    },
-    methods: {
-        fetchDishes(slug) {
-            axios.get(`http://127.0.0.1:8000/api/companies/${slug}`)
-                .then(res => {
-                    this.dishes = res.data.results.dishes;
-                    this.company = res.data.results;
-                    console.log(res);
-                })
-        }
-    },
-}
-</script>
+
+
 
 <style lang="scss" scoped>
 .menu-page {
     text-align: center;
-
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;   
+    margin: 30px 0; 
     .container {
+        margin-top: 15px;
         .row {
             .card {
                 margin-bottom: 20px;
@@ -74,6 +95,7 @@ export default {
                     .card-top-img {
                         img {
                             max-width: 100%;
+                            height: 200px;
                         }
                     }
                 }

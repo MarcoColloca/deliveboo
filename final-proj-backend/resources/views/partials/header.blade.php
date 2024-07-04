@@ -18,12 +18,31 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav me-auto">
                 @auth
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.dishes.index') }}"> Piatti </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.companies.index') }}"> Ristoranti </a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.companies.index') }}"> Ristoranti </a>
+                        
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Menu
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                            <a class="nav-link" href="{{ route('admin.dishes.index') }}"> Tutti i tuoi Menu </a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            @foreach ($companies as $company)                            
+                                <li>
+                                    <a href="{{route('admin.dishes.showOne', $company->id)}}">
+                                        {{$company->name}}
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </li>
                 @endauth
             </ul>
             <!-- Right Side Of Navbar -->
@@ -49,7 +68,7 @@
                             <a class="dropdown-item" href="{{ route('admin.dashboard') }}">{{__('Dashboard')}}</a>
                             <a class="dropdown-item" href="{{ url('profile') }}">{{__('Profile')}}</a>
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                         document.getElementById('logout-form').submit();">
+                                                             document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
 
