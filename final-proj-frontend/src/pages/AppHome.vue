@@ -41,15 +41,24 @@
 
 <template>
     <section>
-        <div class="title-container">            
-            <h1>Benvenuto in Fooder!</h1>
-    
-            <p>Piccola Descrizione di cos'è Fooder.</p>
+        <div class="hero">
+
+            <div class="container title-container">    
+                <div class="row justify-content-between">
+                    <div class="col-12 col-lg-5 p-3">
+                        <img src="/imgs/logo.png" class="logo-big" alt="">
+                    </div>
+                    <div class="col-12 col-lg-5 d-flex flex-column justify-content-center p-3">
+                        <h1 class="title">Ordina tutto il cibo che vuoi da casa tua!</h1>
+                   
+                    </div>
+                </div>        
+            </div>
         </div>
-        <div class="container">
+        <div class="container container-btn">
             
-            <ul class="food-types__container">
-                <li v-for="type in types" class="btn btn-outline-coral">
+            <ul class="row gap-2 food-types__container">
+                <li v-for="type in types" class="btn btn-outline-coral col-6 col-md-2">
                     <RouterLink :to="{name: 'type', params: { slug:type.slug }}">{{ type.name }}</RouterLink> 
                 </li>
             </ul>
@@ -61,13 +70,30 @@
 
 
 <style lang="scss" scoped>
+@use '../assets/style/partials/variables' as*;
+   
+    .hero{
+        background-image: url(/imgs/sfondo.png);
+        background-size: cover;
+    }
+
+    .container-btn{
+       padding-top: 100px;
+    }
+    
+    .logo-big{
+        width:100%;
+    }
 
     .title-container{
-        height: 300px;
+        min-height:500px;
         text-align: center;
-        background-color: beige;
-        color: black;
-        padding: 30px 0;
+        color: $app-brand-blue;
+     
+        .title{
+            font-size: 70px;
+        }
+      
     }
 
     .food-types__container{

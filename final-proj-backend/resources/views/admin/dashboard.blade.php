@@ -19,15 +19,15 @@
 
                 <div class="card-body">
                     
-                        <div class="row gap-5 justify-content-center">
+                        <div class="row g-5 py-5 row-cols-1 row-cols-md-2 row-cols-lg-3 justify-content-center">
                             @foreach ($companies as $company)
-                                <div class="col-3">
-                                    <div class="card h-100">
-                                        <div class="card-header">
+                                <div class="col d-flex card-group justify-content-center">
+                                    <div class="card w-75">
+                                        <div class="card-header" style="height:200px">
                                             @if($company->image)
-                                            <img src="{{ asset('storage/' . $company->image) }}" alt="nessuna immagine" class="card-img-top">
+                                            <img src="{{ asset('storage/' . $company->image) }}" alt="nessuna immagine" class="card-img-top h-100 object-fit-cover">
                                             @else
-                                            <img src="{{  asset('storage/image/default-company.jpg') }} " class="card-img-top" alt="...">      
+                                            <img src="{{  asset('storage/image/default-company.jpg') }} " class="card-img-top h-100 object-fit-cover" alt="...">      
                                             @endif
                                         </div>
                                         <div class="card-body">
