@@ -61,7 +61,7 @@
 
         <!-- Immagine Piatto -->
         <div class="mb-3">
-            <label for="image" class="form-label fb-bold">Carica un'immagineAA</label>
+            <label for="image" class="form-label fb-bold">Carica un'immagine</label>
             <input class="form-control" type="file" name="image" id="image" accept=".jpg, .jpeg, .png, .bmp, .svg, .webp">
         </div>
 
