@@ -1,15 +1,22 @@
 <script>
     import axios from 'axios';
     import BentoBox from '../components/single-components/general/BentoBox.vue';
+    import AppAdvancedSearch from './AppAdvancedSearch.vue';
+    import { store } from '../store';
 
-    export default {
+    export default {        
         components:{
-            BentoBox
+            BentoBox,
+            AppAdvancedSearch
+        },
+
+        props:{
+            slug: String,
         },
 
         data(){
             return {
-
+                store,
                 types: [],                
                 currentPage: 1,
                 perPage: 10,
@@ -32,6 +39,14 @@
                 .then(res => {
                     this.types = res.data.results.data
                 })
+            },
+            enableSearch()
+            {
+                this.store.advancedSearchVisibility = true;
+            },
+            storeSlug(givenSlug)
+            {
+                this.store.storedSlug = givenSlug;
             }
         }
     }
@@ -55,14 +70,19 @@
                 </div>        
             </div>
         </div>
-        <div class="container container-btn">
+        <div class="container container-btn" v-if="!this.store.advancedSearchVisibility">
             
             <ul class="row g-2 food-types__container">
                 <li v-for="type in types" class="btn btn-outline-blue col-6 col-md-2">
-                    <RouterLink :to="{name: 'type', params: { slug:type.slug }}">{{ type.name }}</RouterLink> 
+                    <RouterLink :to="{name: 'homeSearch', params: { slug:type.slug }}" @click="enableSearch(), storeSlug(type.slug)">{{ type.name }}</RouterLink> 
                 </li>
             </ul>
             
+        </div>
+        <div v-else>
+            <AppAdvancedSearch
+             :slug="slug"
+            ></AppAdvancedSearch>
         </div>
 
     </section>
