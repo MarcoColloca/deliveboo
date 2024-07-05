@@ -36,9 +36,21 @@ class TypeController extends Controller
                 'message' => 'typeSlugs should be an array'
             ], 400);
         }
+
+
+        // Se typeSlugs è vuoto, restituisco tutte le compagnie
+        if (empty($typeSlugs)) {
+            $allCompanies = Company::all();
+            return response()->json([
+                'success' => true,
+                'results' => ['companies' => $allCompanies]
+            ]);
+        }
     
         // Recupero tutti i tipi, in base agli slug che ricevo.
         $types = Type::whereIn('slug', $typeSlugs)->get();
+        
+
         
 
         // messaggio di errore, nel caso ci siano slug non validi

@@ -26,6 +26,10 @@ export default {
         if (this.slug) {
             this.addSlugToSelectedTypes(this.slug);
         }
+        
+        if(!this.slug){
+            this.fetchCompanies()
+        }
     },
 
     watch: {
