@@ -2,9 +2,9 @@
 @section('title', 'Crea un nuovo ristorante')
 
 @section('content')
-<div class="container bg-light mt-5 mb-5 rounded-4 p-5">
+<div class="container bg-light mt-5 mb-5 rounded-4 p-5 text-blue shadow">
     <h1>Crea il tuo ristorante</h1>
-    <form action="{{ route('admin.companies.store')}}" method="POST"  enctype="multipart/form-data">
+    <form action="{{ route('admin.companies.store')}}" method="POST" class="my-company-form" enctype="multipart/form-data">
         @csrf
         
         <div>
@@ -39,23 +39,27 @@
            <textarea class="form-control" name="description" id="description" placeholder="Inserisci la descrizione" maxlength="2000">{{ old('description') }}</textarea>
         </div>
         <div class="form-group mb-3">
-            <label for="type_id">Tipologia *</label>
-            <div class="mb-3">
+            <label for="type_id"class="mb-2">Tipologia *</label>
+            <div class="mb-3 d-flex flex-wrap justify-content-around w-100 p-3">
                 @foreach ($types as $type)
                     <div class="form-check">
                         <input @checked(in_array($type->id, old('types', []))) type="checkbox" id="type-{{ $type->id }}"
                             value="{{ $type->id }}" name="types[]" class="form-check-input checkbox">
                         <label class="form-check-label" for="type-{{ $type->id }}">{{ $type->name }}</label>
                     </div>
-                @endforeach
-            </div>
-        <div class="mb-3">
-            <label for="image" class="form-label fb-bold">Carica un'immagine</label>
-            <input class="form-control" type="file" name="image" id="image" accept=".jpg, .jpeg, .png, .bmp, .svg, .webp">
-        </div>
-        <button class="btn btn-success">Crea</button>
-
-    </form>
+                    @endforeach
+                </div>
+                <div>
+                    <p id="error-text" class="text-danger"></p>
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label fb-bold">Carica un'immagine</label>
+                    <input class="form-control text-blue" type="file" name="image" id="image" accept=".jpg, .jpeg, .png, .bmp, .svg, .webp">
+                </div>
+                <button class="btn btn-primary">Crea</button>
+                
+            </form>
+            <p id="selectedOptions"></p>
 </div>
 <div class="container mt-4">
     @if($errors->any())

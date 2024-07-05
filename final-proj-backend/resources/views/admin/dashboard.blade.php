@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container">
-    <h2 class="fs-4 text-secondary my-4">    
+    <h2 class="fs-4 text-blue my-4">    
         Benvenuto {{$user_name}}
     </h2>
 
@@ -12,14 +12,14 @@
         <div class="col">
             <div class="card">
                 <div class="card-header"> 
-                    <h5>
+                    <h4 class="text-blue">
                         Lista Ristoranti 
-                    </h5>
+                    </h4>
                 </div>
 
-                <div class="card-body">
+                <div class="card-body container px-3">
                     
-                        <div class="row g-5 py-5 row-cols-1 row-cols-md-2 row-cols-lg-3 justify-content-center">
+                        <div class="row py-5 gap-4 row-cols-1 row-cols-md-2 row-cols-lg-3 justify-content-center">
                             @foreach ($companies as $company)
                                 <div class="col d-flex card-group justify-content-center">
                                     <div class="card w-75">
@@ -30,7 +30,7 @@
                                             <img src="{{  asset('storage/image/default-company.jpg') }} " class="card-img-top h-100 object-fit-cover" alt="...">      
                                             @endif
                                         </div>
-                                        <div class="card-body">
+                                        <div class="card-body text-blue">
                                             <h5 class="card-title">
                                                 <a href="{{route('admin.dishes.showOne', $company->id)}}">
                                                     {{$company->name}}

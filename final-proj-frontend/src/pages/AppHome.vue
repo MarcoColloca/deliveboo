@@ -75,6 +75,7 @@
     .hero{
         background-image: url(/imgs/sfondo.png);
         background-size: cover;
+        height:700px;
     }
 
     .container-btn{

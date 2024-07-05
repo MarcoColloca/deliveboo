@@ -3,7 +3,7 @@
 @section('title', 'Modifica Ristorante')
 
 @section('content')
-<div class="container bg-light mt-5 mb-5 rounded-4 p-5">
+<div class="container bg-light mt-5 mb-5 rounded-4 p-5 text-blue shadow">
     <h1 class="text-center mb-3">Modifica le informazioni della tua compagnia</h1>
     @if($company->image)
     <img src="{{ asset('storage/'. $company->image) }}" alt="image{{$company->name}}">
@@ -47,7 +47,7 @@
         </div>
         <div class="form-group mb-3">
             <label for="type_id">Tipologia *</label>
-            <div class="mb-3">
+            <div class="mb-3 d-flex flex-wrap justify-content-around w-100 p-3">
                 @foreach ($types as $type)
                     <div class="form-check">
                         <input @checked(in_array($type->id, old('types', $company->types->pluck('id')->all()))) type="checkbox" id="type-{{ $type->id }}"
@@ -58,11 +58,11 @@
             </div>
             <div class="mb-3">
                 <label for="image" class="form-label fb-bold">Cambia la tua immagine</label>
-                <input class="form-control" type="file" name="image" id="image" accept=".jpg, .jpeg, .png, .bmp, .svg, .webp">
+                <input class="form-control text-blue" type="file" name="image" id="image" accept=".jpg, .jpeg, .png, .bmp, .svg, .webp">
             </div>
 
         </div>
-        <button class="btn btn-success">Modifica</button>
+        <button class="btn btn-primary">Modifica</button>
     </form>
 </div>
 <div class="container mt-4">
