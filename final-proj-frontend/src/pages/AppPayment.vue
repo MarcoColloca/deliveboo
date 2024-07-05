@@ -66,7 +66,7 @@ export default {
                 {{ successMessage }}
             </h1>
             <p class="back-home">
-                <RouterLink :to="{ name: 'home' }">Torna alla Home</RouterLink>
+                <RouterLink :to="{ name: 'home' }">Ordina qualcos'altro!</RouterLink>
             </p>
 
         </div>

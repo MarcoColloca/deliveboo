@@ -1,14 +1,28 @@
 <script>
+    import {store} from '../store'
 
-export default {
-    components: {
-    },
+    export default {
+        components: {
+        },
 
-    data() {
-        return {
+        data() {
+            return {
+                store,
+            }
+        },
+        methods:{
+            enableSearch()
+            {
+                this.store.advancedSearchVisibility = true;
+            },
+
+            disableSearch()
+            {
+                this.store.advancedSearchVisibility = false;
+                this.store.storedSlug = '';
+            }
         }
     }
-}
 </script>
 
 
@@ -20,7 +34,7 @@ export default {
         <nav class="navbar navbar-dark navbar-expand-lg  h-100 w-100">
             <div class="container d-flex w-100 h-100 align-items-center justify-content-between">
                 <div class="logo-box">
-                    <RouterLink :to="{ name: 'home' }"><img src="/imgs/logo.png" class="logo navbar-brand" alt="logo">
+                    <RouterLink :to="{ name: 'home' }"><img src="/imgs/logo.png" class="logo navbar-brand" alt="logo" @click="disableSearch()">
                     </RouterLink>
                 </div>
                 <div class="down-menu pt-1">
@@ -34,7 +48,7 @@ export default {
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav pt-4 d-flex">
                             <li class="nav-item text-end">
-                                <RouterLink :to="{ name: 'search' }" class="btn btn-outline-blue" aria-current="page">
+                                <RouterLink :to="{ name: 'home' }" @click="enableSearch()" class="btn btn-outline-blue" aria-current="page">
                                     Ricerca Avanzata</RouterLink>
                             </li>
                             <li class="nav-item text-end">

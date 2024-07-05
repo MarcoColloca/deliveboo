@@ -1,6 +1,7 @@
 <script>
 import axios from 'axios';
 import BentoBox from '../components/single-components/general/BentoBox.vue';
+import { store } from '../store';
 
 export default {
     components: {
@@ -8,11 +9,12 @@ export default {
     },
 
     props: {
-        slug: String
+        slug: String,
     },
 
     data() {
         return {
+            store,
             types: [],
             currentPage: 1,
             perPage: 99,
@@ -23,8 +25,18 @@ export default {
 
     created() {
         this.fetchTypes();
+
+        if(this.store.advancedSearchVisibility && this.store.storedSlug !== '')
+        {
+            this.addSlugToSelectedTypes(this.store.storedSlug)
+        }
+
         if (this.slug) {
             this.addSlugToSelectedTypes(this.slug);
+        }
+        
+        if(!this.slug){
+            this.fetchCompanies()
         }
     },
 
@@ -122,7 +134,7 @@ export default {
                 </div>
                 <div v-else>
                     <img src="/imgs/fooder.gif" class="my-gif" alt="">
-                    <h2 class="sub-title">Seleziona la categoria</h2>
+                    <h2 class="sub-title">Nessuna compagnia rispetta i parametri della Ricerca</h2>
                 </div>
             </div>
         </div>
