@@ -1,5 +1,8 @@
 import { reactive } from 'vue'
 
 export const store = reactive({
-    test: 'test'
+    test: 'test',
+    advancedSearchVisibility: false,
+    storedSlug: '',
+
 })
