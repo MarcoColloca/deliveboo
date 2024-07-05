@@ -97,28 +97,26 @@ export default {
                 <h1 v-if="companies.length !== 0" class="title mb-4">Scegli un ristorante</h1>
             </div>
             <div class="container">
-                <div v-if="companies.length !== 0" class="row row-gap-5">
-                    <div class="col-3" v-for="company in companies" :key="company.id">
-                        <div class="card h-100">
-                            <div class="card-header">
-                                <div class="card-top-img">
-                                    <img v-if="company.image_fullpath" :src="company.image_fullpath" class="my-img-card"
-                                        alt="">
-                                    <img v-else src="http://127.0.0.1:8000/storage/image/default-company.jpg"
-                                        class="my-img-card" alt="">
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <p>{{ company.name }}</p>
-                                <p>{{ company.address }}</p>
-                                <p>{{ company.phone_number }}</p>
-                                <p>{{ company.email }}</p>
-                                <span class="me-2 text-danger" v-for="type in company.types" :key="type.id">{{ type.name
-                                    }}</span>
-                            </div>
-                            <RouterLink :to="{ name: 'menu', params: { slug: company.slug } }">
+                <div v-if="companies.length !== 0" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 company-row">
+                    <div class="col " v-for="company in companies" :key="company.id">
+                        <div class="company-card">
+                            <div class="company-link-card">
+                                 <RouterLink :to="{ name: 'menu', params: { slug: company.slug } }" class="company-link">
                                 Vai al menù
-                            </RouterLink>
+                                </RouterLink>
+                            </div>
+                            <div class="img-company">
+                                <img v-if="company.image_fullpath" :src="company.image_fullpath"  alt="">
+                                        
+                                <img v-else src="http://127.0.0.1:8000/storage/image/default-company.jpg" alt="">
+                                 <div class="company-text d-flex h-100 flex-column p-1 justify-content-around ">
+                                     <h3 class="company-name">{{ company.name }}</h3>
+                                     <ul class="d-flex flex-wrap px-1 mb-0 justify-content-start">
+                                        <li class="company-type text-light px-1 rounded-4 mb-2 me-1" v-for="type in company.types" :key="type.id">{{ type.name}}</li>
+                                     </ul>
+                                     
+                                 </div>     
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -135,6 +133,7 @@ export default {
 
 <style lang="scss" scoped>
 @use '../assets/style/partials/variables' as*;
+@use '../assets/style/partials/companyCard';
 
 .search-container {
     height: 100%;

@@ -11,7 +11,7 @@
     <img src="{{  asset('storage/image/default-company.jpg') }} " class="card-img-top w-50" alt="...">      
     @endif
  
-    <form action="{{ route('admin.companies.update', $company)}}" method="POST"  enctype="multipart/form-data">
+    <form action="{{ route('admin.companies.update', $company)}}" method="POST" class="my-company-form" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div>
@@ -55,6 +55,9 @@
                         <label class="form-check-label" for="type-{{ $type->id }}">{{ $type->name }}</label>
                     </div>
                 @endforeach
+            </div>
+            <div>
+                <p id="error-text" class="text-danger"></p>
             </div>
             <div class="mb-3">
                 <label for="image" class="form-label fb-bold">Cambia la tua immagine</label>
