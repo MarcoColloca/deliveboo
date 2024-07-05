@@ -7,6 +7,9 @@ import.meta.glob([
 ])
 
 
+
+// Logica per i Form di eliminazione 
+
 document.querySelectorAll('.item-delete-form').forEach(form => {
     form.addEventListener('submit', (ev)=>{
         ev.preventDefault();
@@ -28,6 +31,10 @@ document.querySelectorAll('.item-delete-form').forEach(form => {
 
     })
 })
+
+
+
+// Logica per la Validazione clientside delle tipologie di Compagnie 
 
 const checkboxesDOMElement = document.querySelectorAll('input[type="checkbox"]');
 let checked = false;
@@ -52,10 +59,13 @@ mySubmitDOMElement.forEach(form => {
             document.getElementById('error-text').textContent='perfavore seleziona una tipologia';
         }
    
-        });
-    
     });
+    
+});
 
+
+
+// Logica per la validazione clientside dell Registrazione
 
 const loginFormDOMElement = document.querySelector('#loginForm');
 
