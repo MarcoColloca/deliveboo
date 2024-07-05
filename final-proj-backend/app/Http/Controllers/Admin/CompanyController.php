@@ -18,11 +18,15 @@ class CompanyController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $user_id = Auth::id();
 
-        $companies = Company::where('user_id', $user_id)->get();
+        if ($request->has('trash')) {
+            $companies = Company::onlyTrashed()->where('user_id', $user_id)->get();
+        } else {
+            $companies = Company::where('user_id', $user_id)->get();
+        }
 
         return view("admin.companies.index", compact("companies"));
     }
@@ -32,7 +36,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        $types = Type::orderBy("name","asc")->get();
+        $types = Type::orderBy("name", "asc")->get();
 
         return view("admin.companies.create", compact("types"));
     }
@@ -43,23 +47,22 @@ class CompanyController extends Controller
     public function store(StoreCompanyRequest $request)
     {
         $user_id = Auth::id();
-        
-        $form_data = $request->validated();// per la validazione
-        
-            $form_data['slug'] = Company::getUniqueSlug($form_data['name']);
-            
-            if($request->hasFile('image')) {
-                $image_path = Storage::disk('public')->put('image', $request->image);
-                $form_data['image'] = $image_path;
-            }
-            
-            $form_data['user_id'] = $user_id;
 
-            $new_company = Company::create($form_data);
-            
-            if($request->has('types'))
-            {
-                $new_company->types()->attach($form_data['types']);
+        $form_data = $request->validated();// per la validazione
+
+        $form_data['slug'] = Company::getUniqueSlug($form_data['name']);
+
+        if ($request->hasFile('image')) {
+            $image_path = Storage::disk('public')->put('image', $request->image);
+            $form_data['image'] = $image_path;
+        }
+
+        $form_data['user_id'] = $user_id;
+
+        $new_company = Company::create($form_data);
+
+        if ($request->has('types')) {
+            $new_company->types()->attach($form_data['types']);
         }
 
 
@@ -73,11 +76,10 @@ class CompanyController extends Controller
      * Display the specified resource.
      */
     public function show(Company $company)
-    { 
+    {
         $user_id = Auth::id();
 
-        if($company->user_id !== $user_id)
-        {
+        if ($company->user_id !== $user_id) {
             abort(403, 'Accesso non autorizzato');
         }
 
@@ -92,13 +94,12 @@ class CompanyController extends Controller
     {
         $user_id = Auth::id();
 
-        if($company->user_id !== $user_id)
-        {
+        if ($company->user_id !== $user_id) {
             abort(403, 'Accesso non autorizzato');
         }
 
         $company->load(['types']);
-        $types = Type::orderBy("name","asc")->get();
+        $types = Type::orderBy("name", "asc")->get();
 
         return view("admin.companies.edit", compact("company", 'types'));
     }
@@ -110,23 +111,21 @@ class CompanyController extends Controller
     {
         $user_id = Auth::id();
 
-        if($company->user_id !== $user_id)
-        {
+        if ($company->user_id !== $user_id) {
             abort(403, 'Modifiche non autorizzate, puoi modificare solo i tuoi ristoranti');
         }
 
         $form_data = $request->validated();// per la validazione
 
 
-        if($company->name !== $request->name)
-        {
+        if ($company->name !== $request->name) {
             $form_data['slug'] = Company::getUniqueSlug($form_data['name']);
         }
 
 
-        if($request->hasFile('image')) {
+        if ($request->hasFile('image')) {
             $image_path = Storage::disk('public')->put('image', $request->image);
-            if($company->image) {
+            if ($company->image) {
                 Storage::disk('public')->delete($company->image);
             }
             $form_data['image'] = $image_path;
@@ -134,10 +133,10 @@ class CompanyController extends Controller
 
         $company->update($form_data);
 
-        if($request->has('types')){
+        if ($request->has('types')) {
 
             $company->types()->sync($request->types);
-        }else{
+        } else {
             $company->types()->detach();
         }
 
@@ -151,12 +150,43 @@ class CompanyController extends Controller
     {
         $user_id = Auth::id();
 
-        if($company->user_id !== $user_id)
-        {
+        if ($company->user_id !== $user_id) {
             abort(403, 'Non puoi eliminare questo ristorante, puoi eliminare solo i tuoi ristoranti');
         }
 
         $company->delete();
         return to_route("admin.companies.index");
+    }
+    public function restore($id)
+    {
+        $user_id = Auth::id();
+
+        $company = Company::withTrashed()->where('id', $id)->where('user_id', $user_id)->first();
+
+        if (!$company) {
+            abort(404, 'Utente non abilitato a fare questa azione');
+        }
+
+        $company->restore();
+
+        return back();
+    }
+    public function forceDestroy($id)
+    {
+        $user_id = Auth::id();
+
+        $company = Company::onlyTrashed()->where('id', $id)->where('user_id', $user_id)->first();
+
+        if (!$company) {
+            abort(404, 'Utente non abilitato a fare questa azione');
+        }
+
+        if ($company->image) {
+            Storage::disk('public')->delete($company->image);
+        }
+
+        $company->forceDelete();
+        
+        return back();
     }
 }

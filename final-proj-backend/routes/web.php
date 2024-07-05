@@ -40,6 +40,9 @@ Route::middleware(['auth', 'verified'])
     Route::get('dishes/showOne/{dish:company_id}', [DishController::class, 'showOne'])->name('dishes.showOne');
     Route::resource('orders', OrderController::class);
     Route::resource('types', TypeController::class);
+    Route::delete('/companies/{company}/forceDelete', [CompanyController::class,'forceDestroy'])->name('companies.forceDestroy');
+    Route::patch('/companies/{company}/restore', [CompanyController::class, 'restore'])->name('companies.restore');
+
 });
 
 
