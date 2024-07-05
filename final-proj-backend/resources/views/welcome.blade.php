@@ -6,18 +6,22 @@
 
 @section('content')
 
-    <div class="jumbotron p-5 m-5 bg-light rounded-3">
+    <div class="jumbotron p-5 m-5 bg-light rounded-3 shadow">
         <div class="container py-5">
-            <div class="">
-                <img src="{{Vite::asset('resources/img/logo-placeholder.png')}}" alt="">
+            <div class="row justify-content-around gap-2">
+                <div class="col-10 col-md-6">
+                    <img src="{{Vite::asset('resources/img/logo.png')}}" alt="">
+                </div>
+                <div class="col-10 col-md-4">
+                    <h1 class="display-5 fw-bold text-blue">
+                        Benvenuto in Fooder! <i class="bi bi-cake"></i>
+                    </h1>
+        
+                    <p class="fs-4 mt-4 text-blue text-center">
+                        Questa è una intro al sito, che ancora non dice nulla, ma presto verrà implementata.
+                    </p>
+                </div>
             </div>
-            <h1 class="display-5 fw-bold">
-                Benvenuto in Fooder! <i class="bi bi-cake"></i>
-            </h1>
-
-            <p class="col-md-8 fs-4">
-                Questa è una intro al sito, che ancora non dice nulla, ma presto verrà implementata.
-            </p>
         </div>
     </div>
 

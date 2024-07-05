@@ -2,7 +2,7 @@
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
             <div class="my-logo">
-                <img src="{{Vite::asset('resources/img/logo-placeholder.png')}}" alt="">
+                <img src="{{Vite::asset('resources/img/logo.png')}}" alt="">
             </div>
             {{-- config('app.name', 'Laravel') --}}
         </a>
@@ -19,24 +19,24 @@
             <ul class="navbar-nav me-auto">
                 @auth
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.companies.index') }}"> Ristoranti </a>
+                        <a class="nav-link text-blue" href="{{ route('admin.companies.index') }}"> Ristoranti </a>
                         
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        <a class="nav-link text-blue dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
                             Menu
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                            <a class="nav-link" href="{{ route('admin.dishes.index') }}"> Tutti i tuoi Menu </a>
+                            <a class="nav-link text-blue" href="{{ route('admin.dishes.index') }}"> Tutti i tuoi Menu </a>
                             </li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
                             @foreach ($companies as $company)                            
                                 <li>
-                                    <a href="{{route('admin.dishes.showOne', $company->id)}}">
+                                    <a href="{{route('admin.dishes.showOne', $company->id)}}" class="text-blue">
                                         {{$company->name}}
                                     </a>
                                 </li>
@@ -50,24 +50,24 @@
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <a class="nav-link text-blue" href="{{ route('login') }}">{{ __('Login') }}</a>
                     </li>
                     @if (Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a class="nav-link text-blue" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
                     @endif
                 @else
                     <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle text-blue" href="#" role="button"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }}
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('admin.dashboard') }}">{{__('Dashboard')}}</a>
-                            <a class="dropdown-item" href="{{ url('profile') }}">{{__('Profile')}}</a>
-                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                            <a class="dropdown-item text-blue" href="{{ route('admin.dashboard') }}">{{__('Dashboard')}}</a>
+                            <a class="dropdown-item text-blue" href="{{ url('profile') }}">{{__('Profile')}}</a>
+                            <a class="dropdown-item text-blue" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                              document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>

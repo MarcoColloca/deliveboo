@@ -5,8 +5,8 @@
 
 @section('content')
 
-<section class="">
-    <div class="container mt-3 mb-3 p-3 d-flex justify-content-center bg-light">
+<section class="container bg-light mt-5 mb-5 rounded-4 p-5 text-blue shadow">
+    <div class="container mt-3 mb-3 p-3 d-flex justify-content-center">
         <a class="btn btn-primary" href="{{ route('admin.companies.create')}}">Crea il tuo ristorante</a>
     </div>
     <div class="container">

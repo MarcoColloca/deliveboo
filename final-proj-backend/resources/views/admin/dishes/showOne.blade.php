@@ -6,13 +6,14 @@
 
 @section('content')
 
-<section class="my-3 py-1">
+
+<section class="container bg-light mt-5 mb-5 rounded-4 p-5 text-blue shadow">
     <div class="container my-5">
         <div class="d-flex justify-content-center align-items-center mt-5">
-            <h1 class="text-light text-center">
+            <h1 class="text-blue text-center">
                 {{$company->name}}
             </h1>
-            <a class="btn btn-outline-light text-decoration-none d-flex align-items-center h-75 px-2 ms-5"
+            <a class="btn btn-outline-warning text-decoration-none d-flex align-items-center h-75 px-2 ms-5"
                 href="{{ route('admin.dishes.create', ['company_id' => $company->id]) }}">
                 <i class="fas fa-plus"></i> 
             </a>

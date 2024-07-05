@@ -15,7 +15,7 @@
                 @foreach ($company_dishes as $company_name => $dishes)
                     <div class="d-flex justify-content-between align-items-end mt-5 mb-1">
                         <h3 class="text-light">
-                            <p>
+                            <p class="text-blue">
                                 {{ $company_name }} <span class="fs-6 ms-3">{{$companies_dict[$company_name]->address}}</span>
                             </p>
                             
@@ -27,25 +27,25 @@
                             </a>
                         @endif
                     </div>
-                    <table class="table">
+                    <table class="table text-">
                         <thead>
                             <tr>
-                                <th class="text-center" scope="col">Nome piatto</th>
-                                <th class="text-center" scope="col">Prezzo</th>
-                                <th class="text-center" scope="col">Disponibile</th>
-                                <th class="text-center" scope="col"></th>
-                                <th class="text-center" scope="col"></th>
-                                <th class="text-center" scope="col"></th>
+                                <th class="text-center " scope="col">Nome piatto</th>
+                                <th class="text-center " scope="col">Prezzo</th>
+                                <th class="text-center " scope="col">Disponibile</th>
+                                <th class="text-center " scope="col"></th>
+                                <th class="text-center " scope="col"></th>
+                                <th class="text-center " scope="col"></th>
                             </tr>
                         </thead>
 
                         <tbody>
                             @foreach ($dishes as $dish)
                                 <tr class="position-relative">
-                                    <td class="text-center">{{ $dish->name }}</td>
-                                    <td class="text-center">{{ $dish->price}} €</td>
-                                    <td class="text-center">{{ $dish->visible === 1 ? 'Sì' : 'No'}}</td>
-                                    <td class="text-center">
+                                    <td class="text-center ">{{ $dish->name }}</td>
+                                    <td class="text-center ">{{ $dish->price}} €</td>
+                                    <td class="text-center ">{{ $dish->visible === 1 ? 'Sì' : 'No'}}</td>
+                                    <td class="text-center ">
                                         <a href="{{ route('admin.dishes.show', $dish)}}" class="link link-success">Dettagli</a>
                                     </td>
                                     <td class="text-center"><a href="{{route('admin.dishes.edit', $dish)}}"
