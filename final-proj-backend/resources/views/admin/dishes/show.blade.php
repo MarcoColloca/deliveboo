@@ -40,7 +40,7 @@
                         </tbody>
                     </table>
                     
-                    <div class="card-body d-flex justify-content-around">
+                    <div class="card-body d-flex justify-content-around position-relative">
                         <a href="{{route('admin.dishes.edit', $dish)}}" class="link link-primary">Modifica</a>
                         <form class="item-delete-form" action="{{ route('admin.dishes.destroy', $dish) }}"
                             method="POST">

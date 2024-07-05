@@ -53,7 +53,7 @@
                         </tbody>
                     </table>
 
-                    <div class="card-body d-flex justify-content-around">
+                    <div class="card-body d-flex justify-content-around position-relative">
                         <a href="{{ route('admin.companies.edit', $company)}}" class="link link-primary">Modifica</a>
                         <form class="item-delete-form" action="{{ route('admin.companies.destroy', $company) }}" method="POST">
                             @csrf
@@ -61,7 +61,7 @@
                             <button class="btn btn-link p-0 m-0 no-style text-danger"><i class="fas fa-trash-alt "></i></button>
                             <div class="my-modal">
                                 <div class="my-modal__box">
-                                    <h4 class="text-center me-5">Vuoi eliminare questo piatto?</h4>
+                                    <h4 class="text-center px-2 me-3">Vuoi eliminare questo Ristorante?</h4>
                                     <span class="link link-danger my-modal-yes mx-5">Si</span>
                                     <span class="link link-success my-modal-no mx-5">No</span>
         
