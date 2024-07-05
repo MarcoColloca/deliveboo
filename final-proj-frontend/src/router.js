@@ -13,6 +13,9 @@ const routes = [
         path: '/', name:'home', component: AppHome
     },
     {
+        path: '/:slug', name:'homeSearch', component: AppHome, props: true
+    },
+    {
         path: '/search', name:'search', component: AppAdvancedSearch
     },
     {
