@@ -17,20 +17,21 @@ class DishController extends Controller
      * Display a listing of the resource.
     */
     
-    public function index()
+    public function index(Request $request)
     {
         $user_id = Auth::id();
 
-        $companies = Company::where('user_id', $user_id)->get();
-                       
+        $companies = Company::where('user_id', $user_id)->get();        
 
         $company_dishes = [];
 
         foreach ($companies as $company) {
-            $dishes = Dish::where('company_id', $company->id)->orderby('name','asc')->get();
-
+            if($request->has('trash')){
+                $dishes = Dish::onlyTrashed()->where('company_id', $company->id)->orderby('name','asc')->get();
+            } else{
+                $dishes = Dish::where('company_id', $company->id)->orderby('name','asc')->get();
+            }
             $company_dishes[$company->name] = $dishes;
-
         }
 
         return view('admin.dishes.index', compact('company_dishes', 'companies'));
@@ -164,11 +165,11 @@ class DishController extends Controller
 
         if($dish->company->user_id !== $user_id)
         {
-            abort(403, 'Eliminazione non autorizzata.');
+            abort(403, 'Utente non abilitato a fare questa azione');
         }
 
         $dish->delete();
-        return to_route("admin.dishes.index");
+        return back();
     }
 
 
@@ -176,8 +177,37 @@ class DishController extends Controller
     /**
      * Metodi Aggiuntivi
     */
+    public function restore($id)
+    {
+        $user_id = Auth::id();
+        $dish = Dish::withTrashed()->where('id', $id)->first();
 
-    public function showOne($company_id)
+        if (!$dish || $dish->company->user_id !== $user_id) {
+            abort(403, 'Utente non abilitato a fare questa azione');
+        }
+
+        $dish->restore();
+
+        return back();
+    }
+    public function forceDestroy($id)
+    {
+        $user_id = Auth::id();
+        $dish = Dish::onlyTrashed()->where('id', $id)->first();
+
+        if (!$dish || $dish->company->user_id !== $user_id) {
+            abort(403, 'Utente non abilitato a fare questa azione');
+        }
+
+        if ($dish->image) {
+            Storage::disk('public')->delete($dish->image);
+        }
+
+        $dish->forceDelete();
+        return back();
+    }
+
+    public function showOne($company_id, Request $request)
     {     
         $user_id = Auth::id();
 
@@ -194,10 +224,15 @@ class DishController extends Controller
             abort(403, 'Accesso alla pagina non autorizzato');
         }
 
-        $dishes = Dish::with('company')->where('company_id', $company_id)->get();
+        if ($request->has('trash')) {
+            $dishes = Dish::onlyTrashed()->with('company')->where('company_id', $company_id)->get();
+        } else {
+            $dishes = Dish::with('company')->where('company_id', $company_id)->get();
+        }
  
         $company = Company::find($company_id);
        
         return view('admin.dishes.showOne', compact('company', 'dishes'));
     }
+    
 }
