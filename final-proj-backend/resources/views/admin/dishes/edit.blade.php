@@ -19,7 +19,7 @@
         <!-- Nome Piatto -->
         <div class="mb-3">
             <label for="name" class="form-label fb-bold">Nome *</label>
-            <input type="text" name="name" class="form-control" id="name" placeholder="Inserisci il nome" value="{{ old('name', $dish->name) }}" required>
+            <input type="text" name="name" class="form-control" id="name" placeholder="Inserisci il nome" value="{{ old('name', $dish->name) }}" required maxlength="250">
         </div>
 
         <!-- Prezzo Piatto -->
@@ -41,21 +41,21 @@
         <!-- Ingredienti Piatto -->
         <div class="mb-3">
             <label for="ingredients" class="form-label">Ingredienti *</label>
-           <textarea class="form-control" name="ingredients" id="ingredients" placeholder="Inserisci la descrizione" required>{{ old('ingredients', $dish->ingredients) }}</textarea>
+           <textarea class="form-control" name="ingredients" id="ingredients" placeholder="Inserisci la descrizione" required maxlength="2000">{{ old('ingredients', $dish->ingredients)}}</textarea>
         </div>
 
 
         <!-- Descrizione Piatto -->
         <div class="mb-3">
             <label for="description" class="form-label">Descrizione</label>
-           <textarea class="form-control" name="description" id="description" placeholder="Inserisci la descrizione">{{ old('description', $dish->description) }}</textarea>
+           <textarea class="form-control" name="description" id="description" placeholder="Inserisci la descrizione" maxlength="2000">{{ old('description', $dish->description)}}</textarea>
         </div>
 
 
         <!-- Immagine Piatto -->
         <div class="mb-3">
             <label for="image" class="form-label fb-bold">Cambia la tua immagine</label>
-            <input class="form-control" type="file" name="image" id="image">
+            <input class="form-control" type="file" name="image" id="image" accept=".jpg, .jpeg, .png, .bmp, .svg, .webp">
         </div>
 
         </div>

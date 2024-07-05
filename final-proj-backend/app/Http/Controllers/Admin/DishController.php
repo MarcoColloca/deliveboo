@@ -69,6 +69,8 @@ class DishController extends Controller
 
         $form_data['slug'] = Dish::getUniqueSlug($form_data['name']);
 
+        number_format(floatval($form_data['price']), 2, '.'); 
+
         if($request->hasFile('image')) {
             $image_path = Storage::disk('public')->put('image', $request->image);
             $form_data['image'] = $image_path;
@@ -125,7 +127,8 @@ class DishController extends Controller
     {
         $form_data = $request->validated();
 
-        
+
+
         if($dish->name !== $request->name)
         {
             $form_data['slug'] = Dish::getUniqueSlug($form_data['name']);
@@ -142,6 +145,10 @@ class DishController extends Controller
     
             $form_data['image'] = $image_path;
         }
+
+
+        number_format(floatval($dish->price), 2, '.'); 
+
 
         $dish->update($form_data);
 
