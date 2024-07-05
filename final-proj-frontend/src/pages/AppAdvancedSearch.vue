@@ -105,9 +105,7 @@ export default {
             </ul>
         </div>
         <div class="content">
-            <div class="container">
-                <h1 v-if="companies.length !== 0" class="title mb-4">Scegli un ristorante</h1>
-            </div>
+         
             <div class="container">
                 <div v-if="companies.length !== 0" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 company-row">
                     <div class="col " v-for="company in companies" :key="company.id">
