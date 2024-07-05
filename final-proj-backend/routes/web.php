@@ -42,6 +42,9 @@ Route::middleware(['auth', 'verified'])
     Route::resource('types', TypeController::class);
     Route::delete('/companies/{company}/forceDelete', [CompanyController::class,'forceDestroy'])->name('companies.forceDestroy');
     Route::patch('/companies/{company}/restore', [CompanyController::class, 'restore'])->name('companies.restore');
+    Route::delete('/dishes/{dish}/forceDelete', [DishController::class,'forceDestroy'])->name('dishes.forceDestroy');
+    Route::patch('/dishes/{dish}/restore', [DishController::class, 'restore'])->name('dishes.restore');
+    
 
 });
 
