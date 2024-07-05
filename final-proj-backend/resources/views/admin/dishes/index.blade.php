@@ -11,47 +11,74 @@
 <section class="my-3 py-1">
     <div class="container">
         <div class="row">
+            @unless (request('trash'))
+                <a href="{{ route('admin.dishes.index', ['trash' => 1])}}"
+                    class="btn btn-link p-0 m-0 no-style text-danger align-content-center"><i class="fas fa-trash-alt "></i>
+                </a>
+            @elseif (request('trash'))
+            <a href="{{ route('admin.dishes.index')}}"
+                class="btn link-primary p-0 m-0 no-style align-content-center">Indietro</a>
+            @endif
             <div class="col-12">
                 @foreach ($company_dishes as $company_name => $dishes)
                     <div class="d-flex justify-content-between align-items-end mt-5 mb-1">
                         <h3 class="text-light">
                             <p class="text-blue">
-                                {{ $company_name }} <span class="fs-6 ms-3">{{$companies_dict[$company_name]->address}}</span>
+                                <a
+                                    href="{{route('admin.dishes.showOne', ['dish' => $companies_dict[$company_name]->id])}}">{{ $company_name }}
+                                </a>
+                                <span class="fs-6 ms-3">{{$companies_dict[$company_name]->address}}</span>
                             </p>
-                            
+
                         </h3>
-                        @if(isset($companies_dict[$company_name]))
-                            <a class="btn btn-outline-light text-decoration-none d-flex align-items-center h-75 px-2"
-                                href="{{ route('admin.dishes.create', ['company_id' => $companies_dict[$company_name]->id]) }}">
-                                <i class="fas fa-plus"></i>
-                            </a>
-                        @endif
+                        @unless (request('trash'))
+                            @if(isset($companies_dict[$company_name]))
+                                <a class="btn btn-outline-light text-decoration-none d-flex align-items-center h-75 px-2"
+                                    href="{{ route('admin.dishes.create', ['company_id' => $companies_dict[$company_name]->id]) }}">
+                                    <i class="fas fa-plus"></i>
+                                </a>
+                            @endif
+                        @endunless
                     </div>
-                    <table class="table text-">
+                    <table class="table">
                         <thead>
                             <tr>
-                                <th class="text-center " scope="col">Nome piatto</th>
-                                <th class="text-center " scope="col">Prezzo</th>
-                                <th class="text-center " scope="col">Disponibile</th>
-                                <th class="text-center " scope="col"></th>
-                                <th class="text-center " scope="col"></th>
-                                <th class="text-center " scope="col"></th>
+                                <th scope="col">Nome piatto</th>
+                                <th class="text-center" scope="col">Prezzo</th>
+                                <th class="text-center" scope="col">Disponibile</th>
+                                @unless(request('trash'))
+                                    <th class="text-center" scope="col"></th>
+                                @endunless                               
+                                <th class="text-center" scope="col"></th>
+                                <th class="text-center" scope="col"></th>
                             </tr>
                         </thead>
 
                         <tbody>
                             @foreach ($dishes as $dish)
                                 <tr class="position-relative">
-                                    <td class="text-center ">{{ $dish->name }}</td>
+                                    <td>{{ $dish->name }}</td>
                                     <td class="text-center ">{{ $dish->price}} €</td>
                                     <td class="text-center ">{{ $dish->visible === 1 ? 'Sì' : 'No'}}</td>
-                                    <td class="text-center ">
-                                        <a href="{{ route('admin.dishes.show', $dish)}}" class="link link-success">Dettagli</a>
-                                    </td>
-                                    <td class="text-center"><a href="{{route('admin.dishes.edit', $dish)}}"
-                                            class="link link-primary">Modifica</a></td>
+                                    @unless($dish->trashed())
+                                        <td class="text-center ">
+                                            <a href="{{ route('admin.dishes.show', $dish)}}" class="link link-success">Dettagli</a>
+                                        </td>
+                                        <td class="text-center"><a href="{{route('admin.dishes.edit', $dish)}}"
+                                                class="link link-primary">Modifica</a>
+                                        </td>
+                                    @elseif ($dish->trashed())
+                                        <td class="text-center">
+                                            <form action="{{ route('admin.dishes.restore', $dish->id) }}" method="POST">
+                                                @csrf
+                                                @method('PATCH')
+                                                <button class="btn link-warning p-0 m-0 no-style">Ripristina</button>
+                                            </form>
+                                        </td>
+                                    @endunless
                                     <td class="text-center">
-                                        <form class="item-delete-form" action="{{ route('admin.dishes.destroy', $dish) }}"
+                                        <form class="item-delete-form"
+                                            action="{{ $dish->trashed() ? route('admin.dishes.forceDestroy', $dish) : route('admin.dishes.destroy', $dish) }}"
                                             method="POST">
                                             @csrf
                                             @method('DELETE')

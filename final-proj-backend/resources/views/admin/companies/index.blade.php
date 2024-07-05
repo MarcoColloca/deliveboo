@@ -39,7 +39,9 @@
             <tbody>
                 @foreach ($companies as $company)
                     <tr class="position-relative">
-                        <td>{{ $company->name }}</td>
+                        <td>
+                            <a href="{{ route('admin.dishes.showOne', $company->id) }}">{{ $company->name }}</a>
+                        </td>
                         <td class="text-center">{{ $company->address}}, {{ $company->city }}</td>
                         <td class="text-center">{{ $company->phone_number}}</td>
                         <td class="text-center">{{ $company->email}}</td>
