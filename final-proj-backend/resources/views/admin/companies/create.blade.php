@@ -4,7 +4,7 @@
 @section('content')
 <div class="container bg-light mt-5 mb-5 rounded-4 p-5 text-blue shadow">
     <h1>Crea il tuo ristorante</h1>
-    <form action="{{ route('admin.companies.store')}}" method="POST"  enctype="multipart/form-data">
+    <form action="{{ route('admin.companies.store')}}" method="POST" class="my-company-form" enctype="multipart/form-data">
         @csrf
         
         <div>
@@ -47,15 +47,19 @@
                             value="{{ $type->id }}" name="types[]" class="form-check-input checkbox">
                         <label class="form-check-label" for="type-{{ $type->id }}">{{ $type->name }}</label>
                     </div>
-                @endforeach
-            </div>
-        <div class="mb-3">
-            <label for="image" class="form-label fb-bold">Carica un'immagine</label>
-            <input class="form-control text-blue" type="file" name="image" id="image">
-        </div>
-        <button class="btn btn-primary">Crea</button>
-
-    </form>
+                    @endforeach
+                </div>
+                <div>
+                    <p id="error-text" class="text-danger"></p>
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label fb-bold">Carica un'immagine</label>
+                    <input class="form-control text-blue" type="file" name="image" id="image">
+                </div>
+                <button class="btn btn-primary">Crea</button>
+                
+            </form>
+            <p id="selectedOptions"></p>
 </div>
 <div class="container mt-4">
     @if($errors->any())

@@ -29,15 +29,30 @@ document.querySelectorAll('.item-delete-form').forEach(form => {
     })
 })
 
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.querySelector('form');
-    const checkboxesDOMElement = document.querySelectorAll('.checkbox');
-
-    form.addEventListener('submit', function(ev) {
-
-        Array.from(checkboxesDOMElement).some(checkbox => checkbox.checked);
+const checkboxesDOMElement = document.querySelectorAll('input[type="checkbox"]');
+let checked = false;
 
 
-    })
-})
+const mySubmitDOMElement = document.querySelectorAll('.my-company-form')
+mySubmitDOMElement.forEach(form => {
+
+    form.addEventListener('submit', (ev) => {
+        ev.preventDefault();
+        checked = false;
+        checkboxesDOMElement.forEach(checkbox =>{
+          if(checkbox.checked) {
+              checked = true;
+        } 
+    }); 
+        if(checked) {
+            document.getElementById('error-text').textContent='';
+            form.submit();
+        }else{
+
+            document.getElementById('error-text').textContent='perfavore seleziona una tipologia';
+        }
+   
+        });
+    
+    });
 
