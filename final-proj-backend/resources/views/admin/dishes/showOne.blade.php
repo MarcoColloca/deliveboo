@@ -3,10 +3,10 @@
 @section('title', $company->name)
 
 <?php
- $slug = $company->slug;
- $frontendUrl = 'http://localhost';
- $frontendPort = env('APP_FRONTEND_PORT');
- $url = "{$frontendUrl}:{$frontendPort}/menu/{$slug}";
+    $slug = $company->slug;
+    $frontendUrl = 'http://localhost';
+    $frontendPort = env('APP_FRONTEND_PORT');
+    $url = "{$frontendUrl}:{$frontendPort}/menu/{$slug}";
 ?>
 
 @section('content')
@@ -19,18 +19,22 @@
         </a>
     </h5>
     <div class="container my-5">
-        <div class="d-flex justify-content-between align-items-center mt-5">            
+        <div class="d-flex justify-content-between align-items-center mt-5">
             <h1 class="text-blue text-center">
                 {{$company->name}}
             </h1>
             @unless (request('trash'))
-                <a class="btn btn-outline-warning text-decoration-none d-flex align-items-center h-75 px-2" href="{{ route('admin.dishes.create')}}"><i class="fas fa-plus"></i> </a>
+                <a class="btn btn-outline-warning text-decoration-none d-flex align-items-center h-75 px-2"
+                    href="{{ route('admin.dishes.create', ['company_id' => $company->id])}}"><i class="fas fa-plus"></i>
+                </a>
+
                 <a href="{{ route('admin.dishes.showOne', ['dish' => $company->id, 'trash' => 1])}}"
-                    class="btn btn-link p-0 m-0 no-style text-danger align-content-center"><i
-                        class="fas fa-trash-alt "></i></a>
+                    class="btn btn-link p-0 m-0 no-style text-danger align-content-center">
+                    <i class="fas fa-trash-alt "></i>
+                </a>
             @elseif (request('trash'))
-                <a href="{{ route('admin.dishes.showOne', ['dish' => $company->id])}}"
-                    class="btn link-primary p-0 m-0 no-style align-content-center">Indietro</a>
+            <a href="{{ route('admin.dishes.showOne', ['dish' => $company->id])}}"
+                class="btn link-primary p-0 m-0 no-style align-content-center">Indietro</a>
             @endif
         </div>
     </div>
@@ -45,7 +49,7 @@
                             <th class="text-center" scope="col">Prezzo</th>
                             <th class="text-center" scope="col">Disponibile</th>
                             @unless(request('trash'))
-                            <th class="text-center" scope="col"></th>
+                                <th class="text-center" scope="col"></th>
                             @endunless
                             <th class="text-center" scope="col"></th>
                             <th class="text-center" scope="col"></th>
@@ -74,7 +78,8 @@
                                     </td>
                                 @endunless
                                 <td class="text-center">
-                                    <form class="item-delete-form" action="{{$dish->trashed() ? route('admin.dishes.forceDestroy', $dish) : route('admin.dishes.destroy', $dish) }}"
+                                    <form class="item-delete-form"
+                                        action="{{$dish->trashed() ? route('admin.dishes.forceDestroy', $dish) : route('admin.dishes.destroy', $dish) }}"
                                         method="POST">
                                         @csrf
                                         @method('DELETE')

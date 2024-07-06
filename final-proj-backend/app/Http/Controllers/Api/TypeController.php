@@ -40,7 +40,7 @@ class TypeController extends Controller
 
         // Se typeSlugs è vuoto, restituisco tutte le compagnie
         if (empty($typeSlugs)) {
-            $allCompanies = Company::all();
+            $allCompanies = Company::with('types')->get();
             return response()->json([
                 'success' => true,
                 'results' => ['companies' => $allCompanies]
@@ -67,7 +67,7 @@ class TypeController extends Controller
         // Recupero le compagnie che sono associate a tutti i tipi
         $companies = Company::whereHas('types', function ($query) use ($typeIds) {
             $query->whereIn('types.id', $typeIds);
-        }, '=', $typeIds->count())->get(); // condizione che assicura che una compagnia debba essere associata a tutti i tipi per essere inserita nel risultato.
+        }, '=', $typeIds->count())->with('types')->get(); // condizione che assicura che una compagnia debba essere associata a tutti i tipi per essere inserita nel risultato.
         
 
         // Ritorno la risposta in json
