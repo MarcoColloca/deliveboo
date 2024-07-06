@@ -37,4 +37,4 @@ Route::get('types/{type:slug}', [TypeController::class,'select']);
 
 Route::post('types/select', [TypeController::class, 'select']);
 
-Route::post('orders', [OrderController::class, 'store']);
+Route::post('/orders', [OrderController::class, 'store']);
