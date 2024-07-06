@@ -2,10 +2,15 @@
 import axios from 'axios';
 import BentoBox from '../components/single-components/general/BentoBox.vue';
 import { store } from '../store';
+import Cart from '../components/single-components/general/Cart.vue';
+import ToggleCart from '../components/single-components/general/ToggleCart.vue';
+
 
 export default {
     components: {
-        BentoBox
+        BentoBox,
+        Cart,
+        ToggleCart,
     },
 
     props: {
@@ -85,7 +90,32 @@ export default {
                 .catch(error => {
                     console.error(error);
                 });
-        }
+        },
+
+        // Metodi per il Carrello
+
+        removeDishFromCart(index) {
+            this.store.cartDishes.splice(index, 1)
+        },
+
+        increaseQty(id) {
+
+            this.store.cartDishes.forEach(element => {
+                if (element.id == id) {
+                    element.qty++
+                }
+            });
+        },
+
+        decreaseQty(id) {
+            this.store.cartDishes.forEach(element => {
+                if (element.id == id && element.qty > 1) {
+                    element.qty--
+                }
+            });
+
+        },
+
     }
 }
 </script>
@@ -134,6 +164,20 @@ export default {
                     <img src="/imgs/fooder.gif" class="my-gif" alt="">
                     <h2 class="sub-title">Nessuna compagnia rispetta i parametri della Ricerca</h2>
                 </div>
+            </div>
+
+            <div class="container cart-container">
+                
+                <!-- Bottone per il carrello -->
+                <div>
+                    <ToggleCart></ToggleCart>
+                </div>
+                <div v-show="store.showCart">
+                    <Cart :company="this.store.cartCompany" :cartDishes="this.store.cartDishes" @remove="removeDishFromCart"
+                    @increase="increaseQty" @decrease="decreaseQty" >
+                    </Cart>
+                </div>
+                
             </div>
         </div>
     </div>
@@ -198,6 +242,7 @@ export default {
         background-image: url(/imgs/sfondo-down.png);
         background-size: cover;
         color: black;
+        display: flex;
 
         .my-img-card {
             height: 180px;
