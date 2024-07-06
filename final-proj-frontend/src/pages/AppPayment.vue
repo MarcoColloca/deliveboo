@@ -34,107 +34,99 @@ export default {
                 console.error('Errore nel recuperare il token del cliente:', error);
             }
         },
-        submitPayment() {
-            this.paymentLoad = true;
+        async submitPayment() {
+    this.paymentLoad = true;
 
-            this.dropinInstance.requestPaymentMethod((err, payload) => {
-                if (err) {
-                    console.error(err);
-                    this.paymentLoad = false;
-                    return;
-                }
-                axios.post('/checkout', {
-                    paymentMethodNonce: payload.nonce
-                }).then(response => {
-                    console.log('Transazione simulata:', response.data);
-                    this.paymentLoad = false;
-                    this.successMessage = 'Pagamento completato con successo!';
-                }).catch(error => {
-                    this.paymentLoad = false;
-                    console.error('Errore nella transazione:', error);
-                });
+    this.dropinInstance.requestPaymentMethod(async (err, payload) => {
+        if (err) {
+            console.error(err);
+            this.paymentLoad = false;
+            return;
+        }
+        try {
+            const response = await axios.post('/checkout', {
+                paymentMethodNonce: payload.nonce
             });
-        },
+            console.log('Transazione simulata:', response.data);
+            this.successMessage = 'Pagamento completato con successo!';
 
+            // Raccogli i dati dal form
+            const customerData = {
+                customer_name: this.$refs.customer_name.value,
+                customer_address: this.$refs.customer_address.value,
+                customer_phone: this.$refs.customer_phone.value,
+                customer_email: this.$refs.customer_email.value,
+                details: this.$refs.details.value,
+                total: this.getTotal(),
+                dishes: this.store.cartDishes.map(dish => ({
+                    id: dish.id,
+                    qty: dish.qty
+                }))
+            };
 
-        // Funzioni per il Form ed il Carello Fake
-        getTotal(){
+            console.log('Dati dell\'ordine:', customerData); // Log dei dati dell'ordine
+
+            // Invia i dati al backend
+            const orderResponse = await axios.post('http://127.0.0.1:8000/api/orders', customerData);
+            console.log('Ordine inviato con successo', orderResponse.data);
+        } catch (orderError) {
+            console.error('Errore nell\'invio dell\'ordine:', orderError);
+        } finally {
+            this.paymentLoad = false;
+        }
+    });
+},
+        getTotal() {
             let sum = 0;
-
             this.store.cartDishes.forEach(element => {
-
-
-
-                const dishPrice = element.price * element.qty
-
-
-                sum += dishPrice
-                
+                const dishPrice = element.price * element.qty;
+                sum += dishPrice;
             });
-
-            return sum
+            return sum;
         },
-
-        getPrice(qty, price){
-
+        getPrice(qty, price) {
             const total = (qty * price).toFixed(2);
-
-            return total
+            return total;
         },
-
-
     }
 };
 </script>
 
 
-
 <template>
-    {{ console.log(store.cartDishes) }}
     <div class="payment-container">
         <div class="user-data-container">
-            <form action="">
+            <form>
                 <h4 class="text-center">Inserisci i tuoi dati</h4>
 
                 <!-- Nome -->
                 <div class="mb-3">
-                    <label for="customer_name" class="form-label fb-bold ">Nome *</label>
-                    <input type="text" required name="customer_name" class="form-control" id="customer_name" placeholder="Inserisci il nome" value="" maxlength="250">
+                    <label for="customer_name" class="form-label fb-bold">Nome *</label>
+                    <input type="text" required name="customer_name" class="form-control" id="customer_name" placeholder="Inserisci il nome" ref="customer_name" maxlength="250">
                 </div>
 
                 <!-- Indirizzo -->
                 <div class="mb-3">
-                    <label for="customer_address" class="form-label fb-bold ">Indirizzo *</label>
-                    <input type="text" required name="customer_address" class="form-control" id="customer_address" placeholder="Inserisci l'indirizzo" value="" maxlength="250">
+                    <label for="customer_address" class="form-label fb-bold">Indirizzo *</label>
+                    <input type="text" required name="customer_address" class="form-control" id="customer_address" placeholder="Inserisci l'indirizzo" ref="customer_address" maxlength="250">
                 </div>
 
                 <!-- Telefono -->
                 <div class="mb-3">
-                    <label for="customer_phone" class="form-label fb-bold ">Telefono *</label>
-                    <input type="tel" required name="customer_phone" class="form-control" id="customer_phone" placeholder="Inserisci il numero di telefono" value="" maxlength="250">
+                    <label for="customer_phone" class="form-label fb-bold">Telefono *</label>
+                    <input type="tel" required name="customer_phone" class="form-control" id="customer_phone" placeholder="Inserisci il numero di telefono" ref="customer_phone" maxlength="250">
                 </div>
 
                 <!-- Email -->
                 <div class="mb-3">
-                    <label for="customer_email" class="form-label fb-bold ">Email *</label>
-                    <input type="email" required name="customer_email" class="form-control" id="customer_email" placeholder="Inserisci la tua mail" value="" maxlength="250">
+                    <label for="customer_email" class="form-label fb-bold">Email *</label>
+                    <input type="email" required name="customer_email" class="form-control" id="customer_email" placeholder="Inserisci la tua mail" ref="customer_email" maxlength="250">
                 </div>
-                
+
                 <!-- Descrizione -->
                 <div class="mb-3">
                     <label for="details" class="form-label">Dettagli</label>
-                    <textarea class="form-control" name="details" id="details" placeholder="Inserisci eventuali dettagli" maxlength="2000"></textarea>
-                </div>
-
-                <!-- Totale (nascosto) -->
-                <div class="d-none">
-                    <input type="hidden" required name="total" class="form-control d-none" id="total" :value="getTotal()" hidden>
-                </div>
-
-                <!-- Piatti e Quantità (nascosti) -->
-                <div class="d-none" v-for="(dish, i) in store.cartDishes">
-                    <input type="hidden" :name="`dish[${i}][id]`" id="dishId" :value="dish.id" class="form-control d-none" hidden required>
-                    <input type="hidden" :name="`dish[${i}][qty]`" id="qty" :value="dish.qty" class="form-control d-none" hidden required>
+                    <textarea class="form-control" name="details" id="details" placeholder="Inserisci eventuali dettagli" ref="details" maxlength="2000"></textarea>
                 </div>
             </form>
         </div>
@@ -148,7 +140,6 @@ export default {
             <p class="back-home">
                 <RouterLink :to="{ name: 'home' }">Ordina qualcos'altro!</RouterLink>
             </p>
-
         </div>
 
         <div v-if="paymentLoad" class="processing-message">
@@ -157,24 +148,21 @@ export default {
             </h1>
         </div>
 
-
-        
         <button @click="submitPayment" class="payment-button" v-show="!paymentLoad && !successMessage">Paga</button>
     </div>
 
     <div class="fake-cart">
-        <h5 class="text-center mb-4">Riepilogo Ordine</h5> 
-        <div class="row mb-2" v-for="(dish, i) in store.cartDishes">
-            <div class="col-2 d-flex gap-2">                        
-                <span class="">{{ dish.qty }}</span>                        
+        <h5 class="text-center mb-4">Riepilogo Ordine</h5>
+        <div class="row mb-2" v-for="(dish, i) in store.cartDishes" :key="i">
+            <div class="col-2 d-flex gap-2">
+                <span class="">{{ dish.qty }}</span>
             </div>
             <div class="col-5 text-start">
-                <p>{{ dish.name }}</p>                   
+                <p>{{ dish.name }}</p>
             </div>
             <div class="col-3">
                 <p>{{ getPrice(dish.qty, dish.price) }} €</p>
             </div>
-            
         </div>
         <div class="row mb-2 text-center">
             <h4>Totale Ordine: {{ getTotal() }} €</h4>
