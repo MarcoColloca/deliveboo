@@ -190,7 +190,7 @@ export default {
                 </div>
                 <div v-show="store.showCart">
                     <Cart :company="this.store.cartCompany" :cartDishes="this.store.cartDishes" @remove="removeDishFromCart"
-                        @increase="increaseQty" @decrease="decreaseQty" @newPurchase="newPurchase()">
+                        @increase="increaseQty" @decrease="decreaseQty" @newPurchase="newPurchase">
                     </Cart>
                 </div>
             </div>

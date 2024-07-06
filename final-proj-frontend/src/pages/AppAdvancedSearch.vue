@@ -174,7 +174,7 @@ export default {
                 </div>
                 <div v-show="store.showCart">
                     <Cart :company="this.store.cartCompany" :cartDishes="this.store.cartDishes" @remove="removeDishFromCart"
-                    @increase="increaseQty" @decrease="decreaseQty" >
+                        @increase="increaseQty" @decrease="decreaseQty" >
                     </Cart>
                 </div>
                 
