@@ -44,6 +44,27 @@
                             @endforeach
                         </ul>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link text-blue dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Ordini
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="nav-link text-blue" href="{{ route('admin.orders.index') }}"> Tutti i tuoi Ordini </a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            @foreach ($companies as $company)                            
+                                <li>                                   
+                                    <a href="{{ route('admin.orders.showOne', $company->id) }}" class="text-blue">
+                                        {{ $company->name }}
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </li>
                 @endauth
             </ul>
             <!-- Right Side Of Navbar -->
