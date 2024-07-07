@@ -32,36 +32,68 @@ document.querySelectorAll('.item-delete-form').forEach(form => {
     })
 })
 
-
-
-// Logica per la Validazione clientside delle tipologie di Compagnie 
-
-const checkboxesDOMElement = document.querySelectorAll('input[type="checkbox"]');
-let checked = false;
-
-
-const mySubmitDOMElement = document.querySelectorAll('.my-company-form')
-mySubmitDOMElement.forEach(form => {
-
+//logica per validazione client-side della company-create
+document.querySelectorAll('.my-company-form').forEach(form => {
     form.addEventListener('submit', (ev) => {
         ev.preventDefault();
-        checked = false;
-        checkboxesDOMElement.forEach(checkbox =>{
-          if(checkbox.checked) {
-              checked = true;
-        } 
-    }); 
-        if(checked) {
-            document.getElementById('error-text').textContent='';
-            form.submit();
-        }else{
 
-            document.getElementById('error-text').textContent='perfavore seleziona una tipologia';
+        const inputsDomElement = form.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"]');
+        const checkboxesDOMElement = form.querySelectorAll('input[type="checkbox"]');
+        const companyEmailError = document.getElementById('error-mail');
+        
+        let error = false;
+
+        // Resetto bordi e messagi d'errore
+        inputsDomElement.forEach(input => input.classList.remove('border', 'border-danger'));
+        checkboxesDOMElement.forEach(checkbox => checkbox.classList.remove('border', 'border-danger'));
+        companyEmailError.textContent = '';
+
+        // controllo se almeno una checkbox è selezionata
+        let checked = false;
+        checkboxesDOMElement.forEach(checkbox => {
+            if (checkbox.checked) {
+                checked = true;
+            }
+        });
+
+        if (!checked) {
+            checkboxesDOMElement.forEach(checkbox => {
+                checkbox.classList.add('border', 'border-danger');
+            });
+            error = true;
         }
-   
-    });
+
+        // controllo se la value degli input sono vuoti
+
+        inputsDomElement.forEach(input => {
+            if (input.value.trim() === '') {
+                input.classList.add('border', 'border-danger');
+                error = true;
+            }
+
+        });
+        
+        const inputEmail = document.getElementById('email');
+        const companyEmailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!companyEmailPattern.test(inputEmail.value)) {
     
+            inputEmail.classList.add('border', 'border-danger');
+            companyEmailError.textContent = 'Inserisci un indirizzo email valido.';
+            error = true;
+        }
+
+        if (error) {
+            document.getElementById('error-text').textContent = 'riempi i campi richiesti';
+        } else {
+            document.getElementById('error-text').textContent = '';
+            form.submit();
+        }
+    });
 });
+
+
+
 
 
 
