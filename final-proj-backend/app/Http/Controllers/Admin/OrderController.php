@@ -10,11 +10,44 @@ class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
-     */
+    */
     public function index()
     {
         //
     }
+
+
+
+    /**
+     * Display the specified resource.
+    */
+    public function show(Order $order)
+    {
+        //
+    }
+
+
+    // Metodo per mostrare gli ordini relativi ad una singola azienda
+    public function showOne()
+    {
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* CRUD INUTILIZZATE */    
+
 
     /**
      * Show the form for creating a new resource.
@@ -32,13 +65,7 @@ class OrderController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Order $order)
-    {
-        //
-    }
+
 
     /**
      * Show the form for editing the specified resource.

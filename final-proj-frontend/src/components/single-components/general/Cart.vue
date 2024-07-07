@@ -1,5 +1,6 @@
 <script>
 import { RouterLink } from 'vue-router';
+import { store } from '../../../store';
 
 export default {
     props: {
@@ -9,7 +10,7 @@ export default {
 
     data(){
         return{
-
+            store,
         }
     },
 
@@ -38,42 +39,68 @@ export default {
             });
 
             return sum
-        }
+        },
+
+        hideClearCart(){
+            this.store.showClearCart = false;
+        },
     }
 }
 </script>
 
 <template>
-    <div class="card">
-        <div class="card-header">Stai acquistando persso: {{ company.name }}</div>
-        <div class="card-body">
-            <div class="row mb-2" v-for="(dish, i) in cartDishes">
-                <div class="col-2 d-flex gap-2">
-                    <span class="btn btn-outline-coral px-3" @click="$emit('decrease', dish.id)">-</span>
-                    <input type="hidden" class="w-25 ps-2" :value="dish.qty">
-                    <span class="btn btn-outline-dark px-3">{{ dish.qty }}</span>
-                    <span class="btn btn-outline-coral px-3" @click="$emit('increase', dish.id)">+</span>
-                </div>
-                <div class="col-6 text-start">
-                    <h5>{{ dish.name }}</h5>                   
-                </div>
-                <div class="col-3">
-                    <h5>{{ getPrice(dish.qty, dish.price) }} €</h5>
-                </div>
-                <div class="col-1">
-                    <span @click="$emit('remove', i)" ><font-awesome-icon class="cart-trash" :icon="['far', 'trash-can']" /></span>
-                </div>
+    <div class="cart-component">
+        <div class="card">
+            <div class="card-header">
                 
+                <p  v-if="store.cartCompany !== null" >
+                    Stai acquistando presso: {{ store.cartCompany.name }}
+                </p>
+                <p v-else>
+                    Nessuna compagnia selezionata.
+                </p>
             </div>
-            <div class="row mb-2 text-center">
-                <h4>Totale Ordine: {{ getTotal() }} €</h4>
+            <div class="card-body">
+
+                <div class="row mb-2" v-for="(dish, i) in cartDishes">
+                    <div class="col-2 d-flex gap-2">
+                        <span  class="my-cart-btn" @click="$emit('decrease', dish.id)">-</span>
+                        <input type="hidden" class="w-25" :value="dish.qty">
+                        <span class="">{{ dish.qty }}</span>
+                        <span  class="my-cart-btn" @click="$emit('increase', dish.id)">+</span>
+                    </div>
+                    <div class="col-5 text-start">
+                        <p>{{ dish.name }}</p>                   
+                    </div>
+                    <div class="col-3">
+                        <p>{{ getPrice(dish.qty, dish.price) }} €</p>
+                    </div>
+                    <div class="col-1">
+                        <span @click="$emit('remove', i)" ><font-awesome-icon class="cart-trash" :icon="['far', 'trash-can']" /></span>
+                    </div>
+                    
+                </div>
+                <div class="row mb-2 text-center">
+                    <h4>Totale Ordine: {{ getTotal() }} €</h4>
+                </div>
+
+                <div class="card-fooder d-flex justify-content-center pe-2 pb-2 gap-3">
+                    <RouterLink class="btn btn-outline-coral" :to="{ name: 'payment' }">
+                        Procedi al Pagamento
+                    </RouterLink>
+                </div>
+
+                                
+                <div class="my-cart-alert" v-show="store.showClearCart === true">
+                    <p>
+                        Non puoi aggiungere piatti da un altro ristorante.
+                        Vuoi svuotare il carrello e comprare da questo ristorante?
+                    </p>
+                    <h5>
+                        <span class="my-cart-alert__yes" @click="$emit('newPurchase')">Sì</span> <span class="my-cart-alert__no" @click="hideClearCart">No</span>
+                    </h5>
+                </div>
             </div>
-        </div>
-        <div class="card-fooder d-flex justify-content-end pe-2 pb-2 gap-3">
-            <span class="btn btn-outline-coral">Aggiungi nota all'ordine</span>
-            <RouterLink class="btn btn-outline-coral" :to="{ name: 'payment' }">
-                Procedi al Pagamento
-            </RouterLink>
 
         </div>
     </div>
@@ -82,12 +109,53 @@ export default {
 <style lang="scss" scoped>
     @use '../../../assets/style/partials/variables.scss' as *;
 
-    .cart-trash{
-        padding: 0 5px;
-
-        &:hover{
+    .my-cart-alert{
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        background-color: $app-brand-blue;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        .my-cart-alert__no,
+        .my-cart-alert__yes{
+            cursor: pointer;  
+            padding: 3px 5px;
+        }
+        .my-cart-alert__yes{
+            margin-right: 55px;
             color: red;
+            &:hover{
+                color:rgb(218, 136, 136)
+            }                                  
+        }
+        .my-cart-alert__no{
+            color: green;  
+            &:hover{
+                color: rgb(144, 214, 144)
+            } 
+        }
+    }
+
+    .cart-component{
+        font-weight: 100;
+        .my-cart-btn{
+            color: $app-brand-blue;
             cursor: pointer;
+            &:hover{
+                color: $app-brand-yellow;
+            }
+        }
+
+        .cart-trash{
+            padding: 0 5px;
+    
+            &:hover{
+                color: red;
+                cursor: pointer;
+            }
         }
     }
 </style>
