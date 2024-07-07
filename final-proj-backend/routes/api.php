@@ -37,4 +37,6 @@ Route::get('types/{type:slug}', [TypeController::class,'select']);
 
 Route::post('types/select', [TypeController::class, 'select']);
 
+Route::post('/validate-order', [OrderController::class, 'validateOrder']);
+
 Route::post('/orders', [OrderController::class, 'store']);

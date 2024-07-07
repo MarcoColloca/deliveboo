@@ -9,6 +9,36 @@ use Illuminate\Support\Facades\Log;
 
 class OrderController extends Controller
 {
+    public function validateOrder(Request $request)
+    {
+        Log::info('Ricevuta richiesta per validare un ordine', ['request_data' => $request->all()]);
+
+        try {
+        // Validazione dei dati ricevuti
+        $validatedData = $request->validate([
+            'customer_name' => 'required|string|max:255',
+            'customer_address' => 'required|string|max:255',
+            'customer_phone' => 'required|string|max:20',
+            'customer_email' => 'required|email|max:255',
+            'details' => 'nullable|string|max:2000',
+            'total' => 'required|numeric',
+            'dishes' => 'required|array',
+            'dishes.*.id' => 'required|exists:dishes,id',
+            'dishes.*.qty' => 'required|integer|min:1'
+        ]);
+
+            Log::info('Dati validati con successo', ['validated_data' => $validatedData]);
+
+            return response()->json(['valid' => true]);
+    
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return response()->json([
+                'valid' => false,
+                'errors' => $e->errors()
+            ], 422);
+        }
+    }
+
     public function store(Request $request)
     {
         Log::info('Ricevuta richiesta per creare un ordine', ['request_data' => $request->all()]);
@@ -62,6 +92,5 @@ class OrderController extends Controller
                 'error' => $e->getMessage()
             ], 500);
         }
-
     }
 }
