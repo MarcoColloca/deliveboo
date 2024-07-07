@@ -223,6 +223,15 @@ return [
         'visible'               => '"visibile"',
         'phone_number'          => '"numero di telefono"',
         'vat_number'            => '"P.iva"',
-        'types'                 => '"tipologia"'
+        'types'                 => '"tipologia"',
+        'customer_name' => 'Il nome del cliente',
+        'customer_address' => 'L\' indirizzo del cliente',
+        'customer_phone' => 'Il numero di telefono del cliente',
+        'customer_email' => 'L\' email del cliente',
+        'details' => 'I dettagli dell\' ordine',
+        'total' => 'Il totale',
+        'dishes' => 'I piatti',
+        'dishes.*.id' => 'L\' ID del piatto',
+        'dishes.*.qty' => 'La quantità del piatto',
     ],
 ];
