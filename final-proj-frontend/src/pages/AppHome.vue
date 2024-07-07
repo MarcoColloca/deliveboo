@@ -19,7 +19,7 @@
                 store,
                 types: [],                
                 currentPage: 1,
-                perPage: 10,
+                perPage: 12,
             }
         },
 
@@ -72,9 +72,12 @@
         </div>
         <div class="container container-btn" v-if="!this.store.advancedSearchVisibility">
             
-            <ul class="row g-2 food-types__container">
-                <li v-for="type in types" class="btn btn-outline-blue col-6 col-md-2">
-                    <RouterLink :to="{name: 'homeSearch', params: { slug:type.slug }}" @click="enableSearch(), storeSlug(type.slug)">{{ type.name }}</RouterLink> 
+            <ul class="row justify-content-center row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-lg-6 p-0 row-gap-4">
+                <li v-for="type in types" :key="type.slug" class="col type-col">
+                    <div class="type-card">
+                       <img :src="`/imgs/${type.slug}.png`" class="type-img" alt="">
+                       <RouterLink :to="{name: 'homeSearch', params: { slug:type.slug }}" @click="enableSearch(), storeSlug(type.slug)" class="type-link" >{{ type.name }}</RouterLink> 
+                    </div>
                 </li>
             </ul>
             
@@ -95,13 +98,47 @@
     .hero{
         background-image: url(/imgs/sfondo.png);
         background-size: cover;
-        // height:700px;
+       
     }
 
     .container-btn{
        padding-top: 100px;
     }
-    
+    .type-col{
+    width: 210px;
+        .type-card {
+           background-color: white;
+           width: 189px;
+           height: 160px;
+           position: relative;
+        //    border:1px solid grey;
+           box-shadow: 0 0 1.75rem grey;
+        //    border-radius: 15px 22px 22px;
+           border-radius: 15px 32px 15px;
+           margin-bottom: 6px;
+               .type-img{
+                width:100%;
+                position: absolute;
+                border-radius: 15px 32px 0 2px;
+               }
+               .type-link {
+               width: 100%;
+               height: 100%;
+               color: #18475D;
+               position: absolute;
+               display: flex;
+               flex-direction:column-reverse;
+               padding-bottom: 10px;
+               padding-left: 10px;
+           }
+           &:hover{
+            width: 196px;
+            height: 166px;
+            margin-bottom:0;
+           }
+        }
+    }
+
     .logo-big{
        width:75%;
     }
