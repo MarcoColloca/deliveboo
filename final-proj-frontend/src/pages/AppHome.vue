@@ -74,7 +74,7 @@
             
             <ul class="row g-2 food-types__container">
                 <li v-for="type in types" class="btn btn-outline-blue col-6 col-md-2">
-                    <RouterLink :to="{name: 'homeSearch', params: { slug:type.slug }}" @click="enableSearch(), storeSlug(type.slug)">{{ type.name }}</RouterLink> 
+                    <RouterLink :to="{name: 'homeSearch', params: { slug:type.slug }}" @click="enableSearch(), storeSlug(type.slug)" class="type-link" >{{ type.name }}</RouterLink> 
                 </li>
             </ul>
             
@@ -100,6 +100,11 @@
 
     .container-btn{
        padding-top: 100px;
+       .type-link{
+        display:inline-block;
+        width: 100%;
+        height: 100%;
+       }
     }
     
     .logo-big{
