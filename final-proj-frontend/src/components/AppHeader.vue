@@ -81,11 +81,12 @@ header {
 }
 
 .logo-box {
-    flex-shrink: 0;
+    // flex-shrink: 1;
+    max-width:120px;
 }
 
 .logo {
-    width: 120px;
+    width: 100%;
 }
 
 .burger {
@@ -107,8 +108,7 @@ header {
 
 .down-menu {
     display: flex;
-    flex-direction: row-reverse;
-    align-items: flex-start;
-    flex-shrink: 0;
+    flex-direction: column;
+    align-items: flex-end;
 }
 </style>

@@ -58,13 +58,13 @@
     <section>
         <div class="hero">
 
-            <div class="container title-container">    
-                <div class="row gap-4 justify-content-center">
-                    <div class="col-10 col-lg-5 p-3">
+            <div class="container-fluid title-container">    
+                <div class="row gap-1 justify-content-center align-items-center">
+                    <div class="col-10 col-lg-5 mt-4 pt-4">
                         <img src="/imgs/logo.png" class="logo-big" alt="">
                     </div>
-                    <div class="col-10 col-lg-5 d-flex flex-column justify-content-center p-3">
-                        <h1 class="title">Ordina tutto il cibo che vuoi da casa tua!</h1>
+                    <div class="col-10 col-lg-5 px-3">
+                        <h1 class="title">Ordina tutto il cibo che vuoi<br> da casa tua!</h1>
                    
                     </div>
                 </div>        
@@ -95,7 +95,7 @@
     .hero{
         background-image: url(/imgs/sfondo.png);
         background-size: cover;
-        height:700px;
+        // height:700px;
     }
 
     .container-btn{
@@ -103,17 +103,17 @@
     }
     
     .logo-big{
-        width:100%;
+       width:75%;
     }
 
     .title-container{
-        min-height:500px;
+        min-height:450px;
         text-align: center;
         color: $app-brand-blue;
      
-        .title{
-            font-size: 70px;
-        }
+        // .title{
+        //     font-size: 10vw;
+        // }
       
     }
 
