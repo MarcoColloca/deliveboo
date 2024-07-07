@@ -39,6 +39,7 @@ Route::middleware(['auth', 'verified'])
     Route::resource('dishes', DishController::class);
     Route::get('dishes/showOne/{dish:company_id}', [DishController::class, 'showOne'])->name('dishes.showOne');
     Route::resource('orders', OrderController::class);
+    Route::get('/orders/company/{company_id}', [OrderController::class, 'showOne'])->name('orders.showOne');
     Route::resource('types', TypeController::class);
     Route::delete('/companies/{company}/forceDelete', [CompanyController::class,'forceDestroy'])->name('companies.forceDestroy');
     Route::patch('/companies/{company}/restore', [CompanyController::class, 'restore'])->name('companies.restore');
