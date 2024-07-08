@@ -19,27 +19,30 @@
         </div>
         <div class="mb-3">
             <label for="name" class="form-label fb-bold">Nome *</label>
-            <input type="text" required name="name" class="form-control" id="name" placeholder="Inserisci il nome" value="{{ old('name', $company->name) }}" maxlength="255">
+            <input type="text" name="name" class="form-control" id="name" placeholder="Inserisci il nome" value="{{ old('name', $company->name) }}" maxlength="255">
         </div>
         <div class="mb-3">
          <label for="city" class="form-label fb-bold">Città *</label>
-         <input type="text"required  class="form-control" name="city" id="city" placeholder="Inserisci la città" value="{{ old('city', $company->city) }}"  maxlength="255">
+         <input type="text"  class="form-control" name="city" id="city" placeholder="Inserisci la città" value="{{ old('city', $company->city) }}"  maxlength="255">
         </div>
         <div class="mb-3">
             <label for="address" class="form-label fb-bold">Indirizzo *</label>
-            <input type="text" required class="form-control" name="address" id="address" placeholder="Inserisci la via" value="{{ old('address', $company->address) }}" maxlength="255">
+            <input type="text" class="form-control" name="address" id="address" placeholder="Inserisci la via" value="{{ old('address', $company->address) }}" maxlength="255">
         </div>
         <div class="mb-3">
             <label for="vat_number" class="form-label fb-bold">P.iva *</label>
-            <input type="text" required class="form-control" name="vat_number" id="vat_number" placeholder="Inserisci la p.iva" value="{{ old('vat_number', $company->vat_number) }}" minlength="11" maxlength="11">
+            <input type="text" class="form-control" name="vat_number" id="vat_number" placeholder="Inserisci la p.iva" value="{{ old('vat_number', $company->vat_number) }}" minlength="11" maxlength="11">
         </div>
         <div class="mb-3">
             <label for="phone_number" class="form-label fb-bold">Telefono *</label>
-            <input type="tel" required  class="form-control" name="phone_number" id="phone_number" placeholder="Inserisci il numero di telefono" value="{{ old('phone_number', $company->phone_number) }}">
+            <input type="tel"  class="form-control" name="phone_number" id="phone_number" placeholder="Inserisci il numero di telefono" value="{{ old('phone_number', $company->phone_number) }}">
         </div>
         <div class="mb-3">
             <label for="email" class="form-label fb-bold">Email *</label>
-            <input type="email" required class="form-control" name="email" id="email" placeholder="Inserisci la tua email" value="{{ old('email', $company->email) }}" maxlength="255">
+            <input type="email" class="form-control" name="email" id="email" placeholder="Inserisci la tua email" value="{{ old('email', $company->email) }}" maxlength="255">
+            <div>
+                <p id="error-mail" class="text-danger"></p>
+            </div>
         </div>
         <div class="mb-3">
             <label for="description" class="form-label">Descrizione</label>
@@ -56,12 +59,12 @@
                     </div>
                 @endforeach
             </div>
-            <div>
-                <p id="error-text" class="text-danger"></p>
-            </div>
             <div class="mb-3">
                 <label for="image" class="form-label fb-bold">Cambia la tua immagine</label>
                 <input class="form-control text-blue" type="file" name="image" id="image" accept=".jpg, .jpeg, .png, .bmp, .svg, .webp">
+            </div>
+            <div>
+                <p id="error-text" class="text-danger"></p>
             </div>
 
         </div>
