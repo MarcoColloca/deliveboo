@@ -135,6 +135,7 @@
             width: 196px;
             height: 166px;
             margin-bottom:0;
+            transition: 250ms;
            }
         }
     }
