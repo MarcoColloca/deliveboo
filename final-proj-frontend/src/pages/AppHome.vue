@@ -19,7 +19,7 @@
                 store,
                 types: [],                
                 currentPage: 1,
-                perPage: 12,
+                perPage: 18,
             }
         },
 
@@ -70,7 +70,7 @@
                 </div>        
             </div>
         </div>
-        <div class="container container-btn" v-if="!this.store.advancedSearchVisibility">
+        <div class="container-fluid container-btn" v-if="!this.store.advancedSearchVisibility">
             
             <ul class="row justify-content-center row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-lg-6 p-0 row-gap-4">
                 <li v-for="type in types" :key="type.slug" class="col type-col">
@@ -102,7 +102,7 @@
     }
 
     .container-btn{
-       padding-top: 100px;
+       padding-top: 50px;
     }
     .type-col{
     width: 210px;
@@ -135,6 +135,7 @@
             width: 196px;
             height: 166px;
             margin-bottom:0;
+            transition: 250ms;
            }
         }
     }
