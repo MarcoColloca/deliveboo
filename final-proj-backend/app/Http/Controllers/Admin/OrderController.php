@@ -16,26 +16,46 @@ class OrderController extends Controller
      */
     public function index()
     {
-        // Recupera l'utente attualmente autenticato
+        // Recupero l'utente autenticato
         $user = auth()->user();
-    
-        // Recupera le compagnie associate all'utente
+        
+        // Recupero tutte le compagnie associate all'utente autenticato
         $companies = Company::where('user_id', $user->id)->get();
     
-        // Recupera i piatti associati a queste compagnie
-        $dishes = Dish::whereIn('company_id', $companies->pluck('id'))->get();
+        // Recupero gli ID delle compagnie
+        $companyIds = $companies->pluck('id');
+        
+        // Recupero gli ID dei piatti appartenenti alle compagnie dell'utente
+        $dishIds = Dish::whereIn('company_id', $companyIds)->pluck('id');
     
-        // Recupera gli ordini che contengono i piatti di queste compagnie
-        $orders = Order::whereHas('dishes', function($query) use ($dishes) {
-            $query->whereIn('dishes.id', $dishes->pluck('id'));
-        })->with('dishes.company')->get();
+        // Recupero gli ordini che hanno piatti appartenenti alle compagnie dell'utente
+        $orders = Order::whereHas('dishes', function ($query) use ($dishIds) {
+            $query->whereIn('dishes.id', $dishIds);
+        })->with([
+            // Aggiungo le le informazioni delle compagnie dei piatti
+            'dishes' => function ($query) {
+                $query->with('company');
+            }
+        ])->get();
     
-        // Raggruppa gli ordini per nome della compagnia
-        $companyOrders = $orders->groupBy(function ($order) {
+        // Filtro gli ordini per includere solo quelli che contengono piatti delle compagnie dell'utente
+        $filteredOrders = $orders->filter(function ($order) use ($companyIds) {
+            foreach ($order->dishes as $dish) {
+                // Se un piatto non appartiene alle compagnie dell'utente, escludo l'ordine
+                if (!$companyIds->contains($dish->company_id)) {
+                    return false;
+                }
+            }
+            return true;
+        });
+    
+        // Raggruppo gli ordini per nome della compagnia
+        $companyOrders = $filteredOrders->groupBy(function ($order) {
+            // Uso il nome della compagnia del primo piatto nell'ordine.
             return $order->dishes->first()->company->name;
         });
     
-        // Passa i dati alla vista usando compact
+        // Ritorno le compagnie e gli ordini alla vista
         return view('admin.orders.index', compact('companies', 'companyOrders'));
     }
     
@@ -47,8 +67,28 @@ class OrderController extends Controller
      * Display the specified resource.
      */
     public function show(Order $order)
-    {
-        return 'Show';
+    {   
+        // se l'ordine appartiene ad una compagnia, diversa dalla compagnia dell'utente loggato faccio un abort. 
+        // l'id dello user sta nella compagnia, io sono in order, devo quindi:
+        // se l'ordine è legato a dei piatti che appartengono alla compagnia che non appartiene all'utente loggato facio un abort
+
+        // Recupera l'ID dell'utente autenticato
+        $user_id = Auth::id();
+
+        // Recupera gli ID delle compagnie appartenenti all'utente
+        $company_ids = Company::where('user_id', $user_id)->pluck('id');
+
+        // Controlla se l'ordine contiene piatti che appartengono a compagnie che non sono dell'utente autenticato
+        $belongsToUser = $order->dishes->every(function ($dish) use ($company_ids) {
+            return $company_ids->contains($dish->company_id);
+        });
+
+        // Se l'ordine contiene piatti di compagnie non appartenenti all'utente, esegui un abort
+        if (!$belongsToUser) {
+            abort(403, 'Accesso negato. Non puoi visualizzare questo ordine.');
+        }
+
+        return view('admin.orders.show', compact('order'));
     }
 
 
@@ -56,26 +96,26 @@ class OrderController extends Controller
     public function showOne($company_id, Request $request)
     {
         $user_id = Auth::id();
-    
+
         // Recupera la compagnia specificata
         $company = Company::find($company_id);
-    
+
         if (!$company) {
             abort(404, 'Compagnia non trovata');
         }
-    
+
         if ($company->user_id !== $user_id) {
             abort(403, 'Accesso alla pagina non autorizzato');
         }
-    
+
         // Recupera gli ordini associati ai piatti di questa compagnia
-        $orders = Order::whereHas('dishes', function($query) use ($company_id) {
+        $orders = Order::whereHas('dishes', function ($query) use ($company_id) {
             $query->where('company_id', $company_id);
         })->with('dishes')->get();
-    
+
         return view('admin.orders.showOne', compact('company', 'orders'));
     }
-    
+
 
 
 
