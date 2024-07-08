@@ -38,6 +38,10 @@
     @use '../../../assets/style/partials/variables' as *;
 
     .show-cart{
+        position:fixed;
+        top:50%;
+        transform: translate(0, -50%);
+        right:20px;
         width: 40px;
         height: 40px;
         margin-bottom: 10px;
@@ -55,5 +59,6 @@
             background-color: $app-brand-blue;
 
         }
+
     }
 </style>
