@@ -70,7 +70,7 @@
                 </div>        
             </div>
         </div>
-        <div class="container container-btn" v-if="!this.store.advancedSearchVisibility">
+        <div class="container-fluid container-btn" v-if="!this.store.advancedSearchVisibility">
             
             <ul class="row justify-content-center row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-lg-6 p-0 row-gap-4">
                 <li v-for="type in types" :key="type.slug" class="col type-col">
