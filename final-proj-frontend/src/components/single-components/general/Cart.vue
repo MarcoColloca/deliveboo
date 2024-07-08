@@ -84,17 +84,23 @@ export default {
                     <h4>Totale Ordine: {{ getTotal() }} €</h4>
                 </div>
 
-                <div class="card-fooder d-flex justify-content-center pe-2 pb-2 gap-3">
+                
+                <div class="card-fooder d-flex justify-content-center pe-2 pb-2 gap-3" v-if="store.cartDishes.length > 0">
                     <RouterLink class="btn btn-outline-coral" :to="{ name: 'payment' }">
                         Procedi al Pagamento
                     </RouterLink>
+                </div>
+                <div class="card-fooder d-flex justify-content-center pe-2 pb-2 gap-3" v-else>
+                    <p class="btn btn-outline-dark fake-pay">
+                        Procedi al Pagamento
+                    </p>
                 </div>
 
                                 
                 <div class="my-cart-alert" v-show="store.showClearCart === true">
                     <p>
                         Non puoi aggiungere piatti da un altro ristorante.
-                        Vuoi svuotare il carrello e comprare da questo ristorante?
+                        Vuoi svuotare il carrello e comprare da un altro ristorante?
                     </p>
                     <h5>
                         <span class="my-cart-alert__yes" @click="$emit('newPurchase')">Sì</span> <span class="my-cart-alert__no" @click="hideClearCart">No</span>
@@ -157,5 +163,9 @@ export default {
                 cursor: pointer;
             }
         }
+    }
+    .fake-pay{
+        pointer-events: none;
+        cursor: not-allowed;
     }
 </style>
