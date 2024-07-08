@@ -28,7 +28,7 @@
                         </thead>
 
                         <tbody>
-                            @foreach ($orders as $order)
+                            @forelse ($orders as $order)
                                 <tr class="position-relative">
                                     <td class="text-start fw-lighter">{{ $order->customer_name }}</td>
                                     <td class="text-start fw-lighter">{{ $order->customer_address }}</td>
@@ -39,7 +39,10 @@
                                         <a href="{{ route('admin.orders.show', $order) }}" class="link link-success">Dettagli</a>
                                     </td>
                                 </tr>
-                            @endforeach
+                            @empty
+                                <td colspan="6" class="text-center fw-lighter">Nessun ordine per questa compagnia.</td>
+                            @endforelse
+                           
                         </tbody>
                     </table>
             </div>
