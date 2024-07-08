@@ -31,16 +31,15 @@ export default {
     created() {
         this.fetchTypes();
 
-        if(this.store.advancedSearchVisibility && this.store.storedSlug !== '')
-        {
+        if (this.store.advancedSearchVisibility && this.store.storedSlug !== '') {
             this.addSlugToSelectedTypes(this.store.storedSlug)
         }
 
         if (this.slug) {
             this.addSlugToSelectedTypes(this.slug);
         }
-        
-        if(!this.slug){
+
+        if (!this.slug) {
             this.fetchCompanies()
         }
     },
@@ -123,9 +122,9 @@ export default {
 
 
 <template>
-    <div class="search-container">
-        <div class="sidebar">
-            <ul>
+    <div class="search-container d-flex flex-column">
+        <div class="sidebar container-fluid ms-0 w-100">
+            <ul class="d-flex flex-row gap-2 overflow-x-auto">
                 <li v-for="type in types" :key="type.slug">
                     <p @click="toggleTypeSelection(type.slug)"
                         :class="{ selected: selectedTypeSlugs.includes(type.slug) }">
@@ -134,28 +133,31 @@ export default {
                 </li>
             </ul>
         </div>
+
         <div class="content">
-         
+
             <div class="container">
-                <div v-if="companies.length !== 0" class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 company-row">
+                <div v-if="companies.length !== 0"
+                    class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 company-row">
                     <div class="col my-col" v-for="company in companies" :key="company.id">
                         <div class="company-card">
                             <div class="company-link-card">
-                                 <RouterLink :to="{ name: 'menu', params: { slug: company.slug } }" class="company-link">
-                                Vai al menù
+                                <RouterLink :to="{ name: 'menu', params: { slug: company.slug } }" class="company-link">
+                                    Vai al menù
                                 </RouterLink>
                             </div>
                             <div class="img-company">
-                                <img v-if="company.image_fullpath" :src="company.image_fullpath"  alt="">
-                                        
+                                <img v-if="company.image_fullpath" :src="company.image_fullpath" alt="">
+
                                 <img v-else src="http://127.0.0.1:8000/storage/image/default-company.jpg" alt="">
-                                 <div class="company-text d-flex h-100 flex-column py-4 justify-content-between">
-                                     <ul class="d-flex flex-wrap px-1 mb-0 justify-content-start">
-                                        <li class="company-type bg-warning rounded-2 px-1 mb-2 mx-1" v-for="type in company.types" :key="type.id">{{ type.name}}</li>
-                                     </ul>
-                                     <h3 class="company-name">{{ company.name }}</h3>
-                                     
-                                 </div>     
+                                <div class="company-text d-flex h-100 flex-column py-4 justify-content-between">
+                                    <ul class="d-flex flex-wrap px-1 mb-0 justify-content-start">
+                                        <li class="company-type bg-warning rounded-2 px-1 mb-2 mx-1"
+                                            v-for="type in company.types" :key="type.id">{{ type.name }}</li>
+                                    </ul>
+                                    <h3 class="company-name">{{ company.name }}</h3>
+
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -167,17 +169,17 @@ export default {
             </div>
 
             <div class="container cart-container">
-                
+
                 <!-- Bottone per il carrello -->
                 <div>
                     <ToggleCart></ToggleCart>
                 </div>
                 <div v-show="store.showCart">
                     <Cart :company="this.store.cartCompany" :cartDishes="this.store.cartDishes" @remove="removeDishFromCart"
-                        @increase="increaseQty" @decrease="decreaseQty" >
+                        @increase="increaseQty" @decrease="decreaseQty"class="card-cart">
                     </Cart>
                 </div>
-                
+
             </div>
         </div>
     </div>
@@ -203,23 +205,24 @@ export default {
         background-color: transparent;
         text-align: center;
         padding-top: 30px;
-        margin-left:30px;
+        margin-left: 30px;
 
         ul {
             padding: 0;
 
             li {
                 // display: flex;
-                width: 100%;
+                width: 120px;
+                flex-shrink: 0;
                 // justify-content: center;
 
                 p {
-                    display:block;
-                    width:100%;
-                    border-radius:10px;
+                    display: block;
+                    width: 100%;
+                    border-radius: 10px;
                     cursor: pointer;
                     color: white;
-                    padding:6px 0;
+                    padding: 6px 0;
                     border-radius: 15px;
                     background-color: $app-brand-blue;
                 }
@@ -230,7 +233,7 @@ export default {
                     background-color: $app-brand-yellow;
                     border: 1px solid white;
                     border-radius: 15px;
-                    padding:6px 0;
+                    padding: 6px 0;
                 }
             }
         }
@@ -250,7 +253,7 @@ export default {
         text-align: center;
         flex-grow: 1;
         // background-color: white;
-    
+
         color: black;
         display: flex;
 
@@ -264,5 +267,16 @@ export default {
             transform: scaleX(-1);
         }
     }
+
+    .card-cart {
+        position: fixed;
+        top:50%;
+        transform: translate(0, -50%);
+        right:80px;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 0;
 }
 </style>
