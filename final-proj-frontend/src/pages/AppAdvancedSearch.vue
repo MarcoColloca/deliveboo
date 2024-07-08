@@ -174,7 +174,7 @@ export default {
                 </div>
                 <div v-show="store.showCart">
                     <Cart :company="this.store.cartCompany" :cartDishes="this.store.cartDishes" @remove="removeDishFromCart"
-                        @increase="increaseQty" @decrease="decreaseQty" >
+                        @increase="increaseQty" @decrease="decreaseQty"class="card-cart">
                     </Cart>
                 </div>
                 
@@ -263,6 +263,12 @@ export default {
             width: 550px;
             transform: scaleX(-1);
         }
+    }
+    .card-cart{
+        position: fixed;
+        top:50%;
+        transform: translate(0, -50%);
+        right:80px;
     }
 }
 </style>
