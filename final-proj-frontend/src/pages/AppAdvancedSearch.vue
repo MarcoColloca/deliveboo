@@ -175,8 +175,8 @@ export default {
                     <ToggleCart></ToggleCart>
                 </div>
                 <div v-show="store.showCart">
-                    <Cart :company="this.store.cartCompany" :cartDishes="this.store.cartDishes"
-                        @remove="removeDishFromCart" @increase="increaseQty" @decrease="decreaseQty">
+                    <Cart :company="this.store.cartCompany" :cartDishes="this.store.cartDishes" @remove="removeDishFromCart"
+                        @increase="increaseQty" @decrease="decreaseQty"class="card-cart">
                     </Cart>
                 </div>
 
@@ -267,10 +267,16 @@ export default {
             transform: scaleX(-1);
         }
     }
+
+    .card-cart {
+        position: fixed;
+        top:50%;
+        transform: translate(0, -50%);
+        right:80px;
+    }
 }
 
 ::-webkit-scrollbar {
-    width: 0; 
+    width: 0;
 }
-
 </style>

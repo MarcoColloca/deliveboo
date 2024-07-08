@@ -242,12 +242,6 @@ export default {
 
 .menu-page {
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-image: url(/imgs/sfondo-down.png);
-    background-size: cover;
     position: relative;
 
     .not-available {
