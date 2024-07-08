@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container bg-light mt-5 mb-5 rounded-4 p-5">
+<div class="container bg-light mt-5 mb-5 rounded-4 p-5 text-blue shadow">
     <h1>Crea il tuo Piatto </h1>
-    <form action="{{ route('admin.dishes.store')}}" method="POST"  enctype="multipart/form-data">
+    <form action="{{ route('admin.dishes.store')}}" method="POST" class="my-dish-form"  enctype="multipart/form-data">
         @csrf
 
 
@@ -11,7 +11,7 @@
         <div class="mb-3">
             <label for="name" class="form-label fb-bold">Nome *</label>
             <input type="text" name="name" class="form-control" id="name" placeholder="Inserisci il nome"
-                value="{{ old('name') }}" required maxlength="250">
+                value="{{ old('name') }}" maxlength="250">
         </div>
 
 
@@ -19,14 +19,14 @@
         <div class="mb-3">
             <label for="price" class="form-label fb-bold">Prezzo *</label>
             <input type="number" class="form-control" name="price" id="price" min="0" max="9999" step=".01"
-                placeholder="Inserisci il Prezzo (Es 10.00)" value="{{ old('price') }}" required >
+                placeholder="Inserisci il Prezzo (Es 10.00)" value="{{ old('price') }}" >
         </div>
 
 
         <!-- Visibilità Piatto -->
         <div class="mb-3">
             <label for="visible" class="form-label fb-bold">Visibilità nel Menù *</label>
-            <select class="form-control" name="visible" id="visible" required>
+            <select class="form-control" name="visible" id="visible">
                 @foreach ($visibility as $visible => $boolean)                        
                     <option @selected($boolean == old('visible', '')) value="{{$boolean}}">{{$visible}}</option>
                 @endforeach
@@ -38,7 +38,7 @@
         <div class="mb-3">
             <label for="ingredients" class="form-label">Ingredienti *</label>
             <textarea class="form-control" name="ingredients" id="ingredients"
-                placeholder="Inserisci gli ingredienti" required maxlength="2000">{{ old('ingredients') }}</textarea>
+                placeholder="Inserisci gli ingredienti"  data-required="true" maxlength="2000">{{ old('ingredients') }}</textarea>
         </div>
 
 
@@ -54,7 +54,7 @@
         <div class="form-group mb-3 d-none" hidden>
             <label class="form-label fw-bold" for="company_id">Ristorante *</label>
             <input type="hidden" class="form-control d-none" name="company_id" id="company_id" value="{{$selected_company}}"
-                required>
+                >
             <input />
         </div>
 
@@ -65,9 +65,14 @@
             <input class="form-control" type="file" name="image" id="image" accept=".jpg, .jpeg, .png, .bmp, .svg, .webp">
         </div>
 
+        {{-- messaggio d'errore --}}
+        <div>
+            <p id="error-text-dish" class="text-danger"></p>
+        </div>
+
 
         <!-- Bottone di Invo Form -->
-        <button class="btn btn-success">Crea</button>
+        <button class="btn btn-primary">Crea</button>
 
     </form>
 </div>
