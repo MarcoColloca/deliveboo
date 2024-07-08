@@ -141,7 +141,7 @@ export default {
             </div>
             <div class="d-flex">
                 <div class="container my-5">
-                    <div class="row justify-content-center row-gap-3">
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-4 justify-content-center row-gap-3">
                         <div class="col d-flex justify-content-center" v-for="dish in dishes" :key="dish.id">
                             <div class="dish-card" v-if="dish.visible === 1">
                               
@@ -152,11 +152,11 @@ export default {
                                             class="my-dish-img" alt="">
                                     </div>
                                
-                                <div class="card-dish-body d-flex flex-column text-dark">
+                                <div class="card-dish-body d-flex flex-column">
                                     <h3 class="text-center">{{ dish.name }}</h3>
                                     <p class="m-0 text-start">Ingredienti:<br>{{ dish.ingredients }}</p>
                                     <p class="m-0 text-start">Descrizione:<br>{{ dish.description ? dish.description : '' }}</p>
-                                    <h5 class="m-0 text-danger">Prezzo:{{ dish.price }} €</h5>
+                                    <h4 class="m-0 text-danger">Prezzo:{{ dish.price }} €</h4>
                                     <h5 class="btn dish-btn btn-outline-coral" v-if="isVisible(dish.id)"
                                         @click="increaseQty(dish.id)">
                                         aumenta quantità</h5>
@@ -175,13 +175,13 @@ export default {
                                             class="my-dish-img" alt="">
                                     
                                     </div>
-                                <div class="card-dish-body d-flex flex-column text-dark">
+                                <div class="card-dish-body d-flex flex-column">
                                     <h3 class="text-center">{{ dish.name }}</h3>
                                     <p class="m-0 text-start">Ingredienti:{{ dish.ingredients }}</p>
                                     <p class="m-0 text-start">Descrizione:{{ dish.description ? dish.description :
                                         '' }}</p>
-                                    <p class="m-0 text-danger">Prezzo:{{ dish.price }} €</p>
-                                    <p class="btn dish-btn btn-outline-danger not-available">Piatto non disponibile</p>
+                                    <h4 class="m-0 text-danger">Prezzo:{{ dish.price }} €</h4>
+                                    <h5 class="btn dish-btn btn-outline-danger not-available">Piatto non disponibile</h5>
                                 </div>
                             </div>
                         </div>
@@ -253,45 +253,13 @@ export default {
     background-image: url(/imgs/sfondo-down.png);
     background-size: cover;
 
-    // .title {
-    //     color: $app-brand-blue;
-    //     margin-top: 50px;
-    // }
-    
-    // .sub-title {
-    //     color: $app-brand-blue;
-    // }
-
     .not-available {
                         pointer-events: none;
                         cursor: default;
                     }
+
     .container {
         margin-top: 15px;
-
-        // .row {
-        //     .card {
-        //         margin-bottom: 20px;
-
-        //         .card-header {
-        //             .card-top-img {
-        //                 .my-img-card {
-        //                     height: 180px;
-        //                     object-fit: cover;
-        //                 }
-        //             }
-        //         }
-
-        //         .card-body {
-        //             p {
-        //                 font-weight: lighter;
-        //             }
-
-        //            
-        //         }
-        //     }
-        // }
-
         .dish-card {
            background-color: white;
            width: 310px;
@@ -303,6 +271,7 @@ export default {
            flex-direction:column;
            justify-content: space-between;
            margin-bottom:30px;
+           border: 12px solid $app-brand-yellow;
            &:hover{
             width: 320px;
             height: 560px;
@@ -318,7 +287,7 @@ export default {
                     width:100%;
                     object-fit: cover;
                     object-position: center;
-                    border-radius: 15px 32px 0 2px;
+                    border-radius:4px 67px 0 2px;
                    
                 }
                }
@@ -332,9 +301,13 @@ export default {
             padding:10px 15px 0 15px;
             flex-direction: column;
             justify-content: space-between;
-            
+            color: $app-brand-blue;
+            h3, p{
+                pointer-events: none;
+            }
             h4{
-                justify-self:flex-start;
+                pointer-events: none;
+                cursor: default;
             }
 
            }

@@ -123,7 +123,7 @@ export default {
 
 
 <template>
-    <div class="search-container mb-4">
+    <div class="search-container">
         <div class="sidebar">
             <ul>
                 <li v-for="type in types" :key="type.slug">
@@ -189,37 +189,48 @@ export default {
 @use '../assets/style/partials/variables' as*;
 @use '../assets/style/partials/companyCard';
 
+
 .search-container {
     height: 100%;
     display: flex;
+    background-image: url(/imgs/sfondo-down.png);
+    background-size: cover;
+    margin-top: 30px;
 
     .sidebar {
-        width: 200px;
+        width: 150px;
         flex-shrink: 0;
-        background-color: $app-brand-blue;
+        background-color: transparent;
         text-align: center;
         padding-top: 30px;
+        margin-left:30px;
 
         ul {
             padding: 0;
 
             li {
-                display: flex;
+                // display: flex;
                 width: 100%;
-                justify-content: center;
+                // justify-content: center;
 
                 p {
+                    display:block;
+                    width:100%;
+                    border-radius:10px;
                     cursor: pointer;
-                    width: max-content;
+                    color: white;
+                    padding:6px 0;
+                    border-radius: 15px;
+                    background-color: $app-brand-blue;
                 }
 
                 p.selected {
                     font-weight: bold;
-                    color: $app-brand-yellow;
-                    //background-color: white;
+                    color: $app-brand-blue;
+                    background-color: $app-brand-yellow;
                     border: 1px solid white;
-                    border-radius: 18px;
-                    padding: 0 6px;
+                    border-radius: 15px;
+                    padding:6px 0;
                 }
             }
         }
@@ -238,9 +249,8 @@ export default {
     .content {
         text-align: center;
         flex-grow: 1;
-        background-color: white;
-        background-image: url(/imgs/sfondo-down.png);
-        background-size: cover;
+        // background-color: white;
+    
         color: black;
         display: flex;
 
