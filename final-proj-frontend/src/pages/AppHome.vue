@@ -19,7 +19,7 @@
                 store,
                 types: [],                
                 currentPage: 1,
-                perPage: 12,
+                perPage: 18,
             }
         },
 
@@ -102,7 +102,7 @@
     }
 
     .container-btn{
-       padding-top: 100px;
+       padding-top: 50px;
     }
     .type-col{
     width: 210px;

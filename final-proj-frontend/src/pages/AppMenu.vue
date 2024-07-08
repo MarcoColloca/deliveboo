@@ -136,46 +136,47 @@ export default {
         </ul>
         <div class="d-flex">
             <div class="container my-5">
-                <div class="row row-gap-5">
-                    <div class="col-4" v-for="dish in dishes" :key="dish.id">
-                        <div class="card h-100" v-if="dish.visible === 1">
-                            <div class="card-header">
-                                <div class="card-top-img">
-                                    <img v-if="dish.image_fullpath" :src="dish.image_fullpath" class="my-img-card"
+                <div class="row justify-content-center row-gap-3">
+                    <div class="col d-flex justify-content-center" v-for="dish in dishes" :key="dish.id">
+                        <div class="dish-card" v-if="dish.visible === 1">
+                          
+                                <div class="dish-img">
+                                    <img v-if="dish.image_fullpath" :src="dish.image_fullpath" class="my-dish-img"
                                         alt="">
                                     <img v-else src="http://127.0.0.1:8000/storage/image/default-image.jpg"
-                                        class="my-img-card" alt="">
+                                        class="my-dish-img" alt="">
                                 </div>
-                            </div>
-                            <div class="card-body d-flex flex-column justify-content-between">
-                                <p><span class="fw-bold">Nome:</span> {{ dish.name }}</p>
-                                <p><span class="fw-bold">Ingredienti:</span> {{ dish.ingredients }}</p>
-                                <p><span class="fw-bold">Descrizione:</span> {{ dish.description ? dish.description : 'Nessuna Descrizione per questo piatto.' }}</p>
-                                <p><span class="fw-bold">Prezzo:</span> {{ dish.price }} €</p>
-                                <h5 class="btn btn-outline-coral" v-if="isVisible(dish.id)"
+                           
+                            <div class="card-dish-body d-flex flex-column text-dark">
+                                <h3 class="text-center">{{ dish.name }}</h3>
+                                <p class="m-0 text-start">Ingredienti:<br>{{ dish.ingredients }}</p>
+                                <p class="m-0 text-start">Descrizione:<br>{{ dish.description ? dish.description : '' }}</p>
+                                <h5 class="m-0 text-danger">Prezzo:{{ dish.price }} €</h5>
+                                <h5 class="btn dish-btn btn-outline-coral" v-if="isVisible(dish.id)"
                                     @click="increaseQty(dish.id)">
                                     aumenta quantità</h5>
-                                <h5 class="btn btn-outline-coral" v-else @click="addDishToCart(dish)">Aggiungi al
+                                <h5 class="btn dish-btn btn-outline-blue cart-link" v-else @click="addDishToCart(dish)">Aggiungi al
                                     carrello
                                 </h5>
                             </div>
+
                         </div>
-                        <div class="card h-100" v-else>
-                            <div class="card-header">
-                                <div class="card-top-img">
-                                    <img v-if="dish.image_fullpath" :src="dish.image_fullpath" class="my-img-card"
+                        <div class="dish-card" v-else>
+                           
+                                <div class="dish-img">
+                                    <img v-if="dish.image_fullpath" :src="dish.image_fullpath" class="my-dish-img"
                                         alt="">
                                     <img v-else src="http://127.0.0.1:8000/storage/image/default-image.jpg"
-                                        class="my-img-card" alt="">
+                                        class="my-dish-img" alt="">
+                                
                                 </div>
-                            </div>
-                            <div class="card-body d-flex flex-column justify-content-between">
-                                <p><span class="fw-bold">Nome:</span> {{ dish.name }}</p>
-                                <p><span class="fw-bold">Ingredienti:</span> {{ dish.ingredients }}</p>
-                                <p><span class="fw-bold">Descrizione:</span> {{ dish.description ? dish.description :
-                                    'Nessuna Descrizione per questo piatto.' }}</p>
-                                <p><span class="fw-bold">Prezzo:</span> {{ dish.price }} €</p>
-                                <p class="btn btn-outline-danger not-available">Piatto non disponibile</p>
+                            <div class="card-dish-body d-flex flex-column text-dark">
+                                <h3 class="text-center">{{ dish.name }}</h3>
+                                <p class="m-0 text-start">Ingredienti:{{ dish.ingredients }}</p>
+                                <p class="m-0 text-start">Descrizione:{{ dish.description ? dish.description :
+                                    '' }}</p>
+                                <p class="m-0 text-danger">Prezzo:{{ dish.price }} €</p>
+                                <p class="btn dish-btn btn-outline-danger not-available">Piatto non disponibile</p>
                             </div>
                         </div>
                     </div>
@@ -223,7 +224,7 @@ export default {
         color: $app-brand-blue;
         margin-top: 50px;
     }
-
+    
     .sub-title {
         color: $app-brand-blue;
     }
@@ -231,31 +232,81 @@ export default {
     .container {
         margin-top: 15px;
 
-        .row {
-            .card {
-                margin-bottom: 20px;
+        // .row {
+        //     .card {
+        //         margin-bottom: 20px;
 
-                .card-header {
-                    .card-top-img {
-                        .my-img-card {
-                            height: 180px;
-                            object-fit: cover;
-                        }
-                    }
+        //         .card-header {
+        //             .card-top-img {
+        //                 .my-img-card {
+        //                     height: 180px;
+        //                     object-fit: cover;
+        //                 }
+        //             }
+        //         }
+
+        //         .card-body {
+        //             p {
+        //                 font-weight: lighter;
+        //             }
+
+        //             .not-available {
+        //                 pointer-events: none;
+        //                 cursor: default;
+        //             }
+        //         }
+        //     }
+        // }
+
+        .dish-card {
+           background-color: white;
+           width: 310px;
+           height: 550px;
+           box-shadow: 0 0 1.75rem grey;
+           border-radius: 15px 80px 25px;
+           margin-bottom: 6px;
+           display:flex;
+           flex-direction:column;
+           justify-content: space-between;
+               .dish-img{
+                width:100%;
+                height:50%;
+                flex-shrink: 0;
+                border-radius: 15px 32px 0 2px;
+                .my-dish-img{
+                    height:100%;
+                    width:100%;
+                    object-fit: cover;
+                    object-position: center;
+                    border-radius: 15px 32px 0 2px;
+                   
                 }
-
-                .card-body {
-                    p {
-                        font-weight: lighter;
-                    }
-
-                    .not-available {
-                        pointer-events: none;
-                        cursor: default;
-                    }
-                }
+               }
+               .cart-link {
+               width: 100%;
+               justify-self:flex-end;
+             
+           }
+           .card-dish-body{
+            height:50%;
+            padding:10px 15px 0 15px;
+            flex-direction: column;
+            justify-content: space-between;
+            
+            h4{
+                justify-self:flex-start;
             }
+
+           }
+           .dish-btn{
+            width: 150px;
+            align-self:center;
+            padding: 0 10px;
+            margin-bottom:10px
+           }
+  
         }
     }
-}
+    }
+
 </style>
