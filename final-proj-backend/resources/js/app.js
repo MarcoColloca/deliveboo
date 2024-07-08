@@ -31,8 +31,38 @@ document.querySelectorAll('.item-delete-form').forEach(form => {
 
     })
 })
+//logica per validazione form piatto-create/edit
+document.querySelectorAll('.my-dish-form').forEach(form=> {
+    form.addEventListener('submit', (ev) => {
+        ev.preventDefault();
+        const inputsDishDomEl = form.querySelectorAll('input[type="text"], input[type="number"], select, textarea[data-required="true"]');
+        let hasError = false;
 
-//logica per validazione client-side della company-create
+        //reset bordi e messaggi d'errore
+        inputsDishDomEl.forEach(input => input.classList.remove('border', 'border-danger'));
+
+        inputsDishDomEl.forEach(input => {
+            if (input.value.trim() === '') {
+                input.classList.add('border', 'border-danger');
+                hasError = true;
+            }
+            
+        });
+        
+        if (hasError) {
+            document.getElementById('error-text-dish').textContent = 'riempi i campi richiesti';
+        } else {
+            document.getElementById('error-text-dish').textContent = '';
+            form.submit();
+        }
+
+    });
+});
+
+
+
+
+//logica per validazione client-side della company-create/edit
 document.querySelectorAll('.my-company-form').forEach(form => {
     form.addEventListener('submit', (ev) => {
         ev.preventDefault();
