@@ -80,27 +80,29 @@
                                         </td>
                                     @endunless
                                     <td class="text-center">
-                                        <form class="item-delete-form"
-                                            action="{{ $dish->trashed() ? route('admin.dishes.forceDestroy', $dish) : route('admin.dishes.destroy', $dish) }}"
-                                            method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-link p-0 m-0 no-style text-danger"><i
-                                                    class="fas fa-trash-alt "></i></button>
-                                            <div class="my-modal">
-                                                <div class="my-modal__box">
-                                                    @unless($dish->trashed())
-                                                        <h4 class="text-center me-5">Vuoi eliminare questo piatto?</h4>
-                                                    @else
-                                                        <h4 class="text-center me-5">Questa eliminazione è definitiva, sei sicuro?</h4>
-                                                    @endunless
-                                                    <span class="link link-danger my-modal-yes mx-5">Si</span>
-                                                    <span class="link link-success my-modal-no mx-5">No</span>
+                                        @if(!$dish->trashed())
+                                            <form class="item-delete-form"
+                                                action="{{ $dish->trashed() ? route('admin.dishes.forceDestroy', $dish) : route('admin.dishes.destroy', $dish) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-link p-0 m-0 no-style text-danger"><i
+                                                        class="fas fa-trash-alt "></i></button>
+                                                <div class="my-modal">
+                                                    <div class="my-modal__box">
+                                                        @unless($dish->trashed())
+                                                            <h4 class="text-center me-5">Vuoi eliminare questo piatto?</h4>
+                                                        @else
+                                                            <h4 class="text-center me-5">Questa eliminazione è definitiva, sei sicuro?</h4>
+                                                        @endunless
+                                                        <span class="link link-danger my-modal-yes mx-5">Si</span>
+                                                        <span class="link link-success my-modal-no mx-5">No</span>
 
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                        </form>
+                                            </form>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
