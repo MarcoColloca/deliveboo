@@ -54,7 +54,7 @@ export default {
 
 <template>
     <section>
-        <div class="hero">
+        <div class="hero mb-3">
 
             <div class="container-fluid title-container">
                 <div class="row gap-1 justify-content-center align-items-center">
@@ -68,16 +68,18 @@ export default {
                 </div>
             </div>
         </div>
-        <div class="container-fluid ms-0 w-100 container-btn" v-if="!this.store.advancedSearchVisibility">
-            <ul class="d-flex flex-row gap-5 overflow-x-auto mb-0 pb-0">
-                <li v-for="type in types" :key="type.slug" class="col type-col">
+        <div class="my-container mt-4" v-if="!this.store.advancedSearchVisibility">
+    
+            <div class="scrollmenu">
+                <div v-for="type in types" :key="type.slug" class="col type-col">
                     <div class="type-card">
                         <img :src="`/imgs/${type.slug}.png`" class="type-img" alt="">
                         <RouterLink :to="{ name: 'homeSearch', params: { slug: type.slug } }"
                             @click="enableSearch(), storeSlug(type.slug)" class="type-link">{{ type.name }}</RouterLink>
                     </div>
-                </li>
-            </ul>
+                </div>
+            </div>
+           
         </div>
         
         <div v-else>
@@ -103,9 +105,17 @@ ul {
     height: 250px;
     align-items: center;
 }
-
+.my-container{
+    width:90%;
+    margin: auto;
+}
+.scrollmenu{
+    overflow: auto;
+    white-space: nowrap;
+}
 .type-col {
     width: 210px;
+    display:inline-block;
 
     .type-card {
         background-color: white;
@@ -113,7 +123,7 @@ ul {
         height: 160px;
         position: relative;
         //    border:1px solid grey;
-        box-shadow: 0 0 1.75rem grey;
+        
         //    border-radius: 15px 22px 22px;
         border-radius: 15px 32px 15px;
         margin-bottom: 6px;
@@ -171,6 +181,18 @@ ul {
 }
 
 ::-webkit-scrollbar {
-    width: 0;
+    height: 10px;
+    border-radius: 50%;
 }
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: $app-brand-blue;
+    border-radius:10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #076c9b;
+}
+
 </style>

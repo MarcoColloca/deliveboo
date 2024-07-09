@@ -123,18 +123,29 @@ export default {
 
 <template>
     <div class="search-container d-flex flex-column">
-        <div class="sidebar container-fluid ms-0 w-100">
-            <ul class="d-flex flex-row gap-2 overflow-x-auto">
-                <li v-for="type in types" :key="type.slug">
-                    <p @click="toggleTypeSelection(type.slug)"
+       
+        <div class="my-container my-4">
+
+            <div
+                class="scrollmenu">
+                <div v-for="type in types" :key="type.slug" class="col type-col">
+                    <div class="type-card">
+                        <img :src="`/imgs/${type.slug}.png`" class="type-img" alt="">
+                        <p @click="toggleTypeSelection(type.slug)"
                         :class="{ selected: selectedTypeSlugs.includes(type.slug) }">
                         {{ type.name }}
                     </p>
-                </li>
-            </ul>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
-        <div class="content">
+
+
+      
+      
+        <div class="content mt-3">
 
             <div class="container">
                 <div v-if="companies.length !== 0"
@@ -175,8 +186,8 @@ export default {
                     <ToggleCart></ToggleCart>
                 </div>
                 <div v-show="store.showCart">
-                    <Cart :company="this.store.cartCompany" :cartDishes="this.store.cartDishes" @remove="removeDishFromCart"
-                        @increase="increaseQty" @decrease="decreaseQty"class="card-cart">
+                    <Cart :company="this.store.cartCompany" :cartDishes="this.store.cartDishes"
+                        @remove="removeDishFromCart" @increase="increaseQty" @decrease="decreaseQty" class="card-cart">
                     </Cart>
                 </div>
 
@@ -252,8 +263,8 @@ export default {
     .content {
         text-align: center;
         flex-grow: 1;
-        // background-color: white;
-
+        background-color: $app-brand-yellow;
+        padding-top:30px;
         color: black;
         display: flex;
 
@@ -276,7 +287,91 @@ export default {
     }
 }
 
+.type-col {
+    width: 210px;
+    display:inline-block;
+
+    .type-card {
+        background-color: white;
+        width: 189px;
+        height: 160px;
+        position: relative;
+        //    border:1px solid grey;
+        box-shadow: 0 0 0.5rem grey;
+        //    border-radius: 15px 22px 22px;
+        border-radius: 15px 32px 15px;
+        margin-bottom: 6px;
+        
+
+        .type-img {
+            width: 100%;
+            position: absolute;
+            border-radius: 15px 32px 0 2px;
+        }
+
+        .type-link {
+            width: 100%;
+            height: 100%;
+            color: #18475D;
+            position: absolute;
+            display: flex;
+            flex-direction: column-reverse;
+            padding-bottom: 10px;
+            padding-left: 10px;
+            
+        }
+        p {
+                    display: flex;
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    width: 100%;
+                    flex-direction: column-reverse;
+                    cursor: pointer;
+                    color: #18475D;
+                    padding-bottom: 10px;
+                    padding-left: 10px;
+                  
+                   
+                }
+
+                p.selected {
+                    font-weight: bold;
+                    color: $app-brand-red;
+                    border-radius: 15px 32px 15px;
+                   border:8px solid $app-brand-red;
+                   
+                }
+
+        &:hover {
+            width: 196px;
+            height: 166px;
+            margin-bottom: 0;
+            transition: 250ms;
+           
+        }
+    }
+}
 ::-webkit-scrollbar {
-    width: 0;
+    height: 10px;
+    border-radius: 50%;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: $app-brand-blue;
+    border-radius:10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #076c9b;
+}
+.my-container{
+    width:90%;
+    margin: auto;
+}
+.scrollmenu{
+    overflow: auto;
+    white-space: nowrap;
 }
 </style>
