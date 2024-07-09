@@ -65,23 +65,24 @@
                         @endunless
 
                         <td class="text-center">
-                            <form class="item-delete-form"
-                                action="{{ $company->trashed() ? route('admin.companies.forceDestroy', $company) : route('admin.companies.destroy', $company) }}"
-                                method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-link p-0 m-0 no-style text-danger"><i
-                                        class="fas fa-trash-alt "></i></button>
-                                <div class="my-modal">
-                                    <div class="my-modal__box">
-                                        <h4 class="text-center me-5">Vuoi eliminare questo ristorante?</h4>
-                                        <span class="link link-danger my-modal-yes mx-5">Si</span>
-                                        <span class="link link-success my-modal-no mx-5">No</span>
+                            @unless($company->trashed())
+                                <form class="item-delete-form"
+                                    action="{{ $company->trashed() ? route('admin.companies.forceDestroy', $company) : route('admin.companies.destroy', $company) }}"
+                                    method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-link p-0 m-0 no-style text-danger"><i
+                                            class="fas fa-trash-alt "></i></button>
+                                    <div class="my-modal">
+                                        <div class="my-modal__box">
+                                            <h4 class="text-center me-5">Vuoi eliminare questo ristorante?</h4>
+                                            <span class="link link-danger my-modal-yes mx-5">Si</span>
+                                            <span class="link link-success my-modal-no mx-5">No</span>
 
+                                        </div>
                                     </div>
-                                </div>
-
-                            </form>
+                                </form>
+                            @endunless
                         </td>
                     </tr>
                 @endforeach
