@@ -178,12 +178,14 @@ export default {
                     <h1>
                         {{ successMessage }}
                     </h1>
-                    <p class="back-home">
+                    <img src="/imgs/payment-ok.png" class="payment-ok" alt="">
+                    <h3 class="back-home">
                         <RouterLink :to="{ name: 'home' }">Ordina qualcos'altro!</RouterLink>
-                    </p>
+                    </h3>
                 </div>
         
                 <div v-if="paymentLoad" class="processing-message">
+                    <img src="/imgs/payment-process.png" class="payment-img" alt="">
                     <h1>
                         Pagamento in Corso... <font-awesome-icon class="spinner" :icon="['fas', 'spinner']" />
                     </h1>
@@ -219,6 +221,12 @@ export default {
 .payment{
     height: 100%;
     padding:50px 0;
+}
+.payment-img{
+    width: 40%;
+}
+.payment-ok{
+    width: 40%;
 }
 .user-data-container {
     width: 100%;
@@ -295,12 +303,15 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content:space-around;
     .back-home {
-        text-decoration: underline;
+        
         &:hover {
             cursor: pointer;
             color: $app-brand-yellow;
+            background-color: $app-brand-blue;
+            padding: 5px;
+            border-radius: 6px;
         }
     }
 }
@@ -312,7 +323,10 @@ export default {
     margin-bottom: 20px;
     height: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content:space-around;
+    
 }
 
 .spinner {
