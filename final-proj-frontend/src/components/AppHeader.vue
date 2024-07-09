@@ -47,15 +47,15 @@
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav pt-4 d-flex">
-                            <li class="nav-item text-end">
+                            <li class="nav-item my-nav-link text-end">
                                 <RouterLink :to="{ name: 'home' }" @click="enableSearch()" class="btn btn-outline-blue" aria-current="page">
                                     Ricerca Avanzata</RouterLink>
                             </li>
-                            <li class="nav-item text-end">
+                            <li class="nav-item my-nav-link text-end">
                                 <a class="btn btn-outline-blue" aria-current="page"
                                     href="http://127.0.0.1:8000/register">Diventa Partner</a>
                             </li>
-                            <li class="nav-item text-end">
+                            <li class="nav-item my-nav-link text-end">
                                 <a class="btn btn-outline-blue" aria-current="page"
                                     href="http://127.0.0.1:8000/login">Sei già Partner?</a>
                             </li>
@@ -73,7 +73,7 @@
 @use '../assets/style/partials/variables' as*;
 
 header {
-    min-height: 170px;
+    // min-height: 170px;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -110,5 +110,9 @@ header {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    
+}
+.my-nav-link{
+    background-color: #FDB721;
 }
 </style>
