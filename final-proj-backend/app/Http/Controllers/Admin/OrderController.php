@@ -36,7 +36,7 @@ class OrderController extends Controller
             'dishes' => function ($query) {
                 $query->with('company');
             }
-        ])->get();
+        ])->orderBy('created_at', 'desc')->get();
     
         // Filtro gli ordini per includere solo quelli che contengono piatti delle compagnie dell'utente
         $filteredOrders = $orders->filter(function ($order) use ($companyIds) {
@@ -95,6 +95,9 @@ class OrderController extends Controller
     // Metodo per mostrare gli ordini relativi ad una singola azienda
     public function showOne($company_id, Request $request)
     {
+        // Recupera il valore di 'perPage' dalla query string della richiesta
+        $perPage = $request->query('perPage', 10); // Imposta un valore predefinito di 10 elementi per pagina
+
         $user_id = Auth::id();
 
         // Recupera la compagnia specificata
@@ -108,12 +111,42 @@ class OrderController extends Controller
             abort(403, 'Accesso alla pagina non autorizzato');
         }
 
-        // Recupera gli ordini associati ai piatti di questa compagnia
+        // Recupera gli ordini associati ai piatti di questa compagnia e paginali
         $orders = Order::whereHas('dishes', function ($query) use ($company_id) {
             $query->where('company_id', $company_id);
-        })->with('dishes')->get();
+        })->with('dishes')->orderBy('created_at', 'desc')->paginate($perPage);
 
-        return view('admin.orders.showOne', compact('company', 'orders'));
+        return view('admin.orders.showOne', compact('company', 'orders', 'perPage'));
+    }
+
+
+    public function fetchMore(Request $request, $company_id)
+    {
+        $perPage = $request->perPage ?? 10;
+        $currentCount = $request->currentCount ?? 0;
+
+        $user_id = Auth::id();
+
+        // Recupera la compagnia specificata
+        $company = Company::find($company_id);
+
+        if (!$company) {
+            abort(404, 'Compagnia non trovata');
+        }
+
+        if ($company->user_id !== $user_id) {
+            abort(403, 'Accesso alla pagina non autorizzato');
+        }
+
+        // Recupera gli ordini associati ai piatti di questa compagnia e paginali
+        $orders = Order::whereHas('dishes', function ($query) use ($company_id) {
+            $query->where('company_id', $company_id);
+        })->with('dishes')->orderBy('created_at', 'desc')
+        ->skip($currentCount)->take($perPage)->get();
+
+        return response()->json([
+            'orders' => $orders,
+        ]);
     }
 
 
