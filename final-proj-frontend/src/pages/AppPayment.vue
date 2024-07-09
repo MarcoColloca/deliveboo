@@ -251,17 +251,16 @@ export default {
 }
 .credit-data-container{
     width:100%;
-  
-    position: relative;
+    display:flex;
+    flex-direction:column;
+    align-items: center;
     #img-card-box{
-        // position: absolute;
-        
-        top: 94px;
-        right:15px;
-        z-index:2;
+        display:flex;
+        align-items:baseline;
+        justify-content: center;
         #credit-card-img{
-            width: 100%;  
-            border: radius 15px;
+            width: 90%;  
+            border-radius: 22px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);     
         }
     }
@@ -353,23 +352,19 @@ export default {
         justify-content:space-around;
     }
 }
-@media (min-width: 768px) {
-    #img-card-box{ 
-        display:absolute;
-        top: 94px;
-        right:15px;
-        z-index:2;
-        #credit-card-img{
-            width:150px;
-        }
-    }
-}
+
 @media (min-width: 992px) {
     .user-data-container{
         width: 65%;
     }
     .fake-cart{
         width: 30%;
+    }
+    .credit-data-container{
+        flex-direction: row-reverse;
+        #img-card-box{
+            justify-content: flex-end;
+        }
     }
 }
 
