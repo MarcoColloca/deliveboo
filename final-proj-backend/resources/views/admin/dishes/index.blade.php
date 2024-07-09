@@ -11,13 +11,16 @@
 <section class="my-3 py-1">
     <div class="container">
         <div class="row">
-            @unless (request('trash'))
-                <a href="{{ route('admin.dishes.index', ['trash' => 1])}}"
-                    class="btn btn-link p-0 m-0 no-style text-danger align-content-center"><i class="fas fa-trash-alt "></i>
-                </a>
+            @unless (request('trash')) 
+                <h2 class="text-center text-white mt-3">I tuoi Menu</h2> 
+                <p class="text-center text-danger">Vai al tuo Cestino: 
+                    <a href="{{ route('admin.dishes.index', ['trash' => 1])}}"
+                        class="btn btn-link p-0 m-0 no-style text-danger align-content-center"><i class="fas fa-trash-alt "></i>
+                    </a>
+                </p>    
             @elseif (request('trash'))
-            <a href="{{ route('admin.dishes.index')}}"
-                class="btn link-primary p-0 m-0 no-style align-content-center">Indietro</a>
+                <h3 class="text-center text-white mt-3">Il tuo Cestino</h3>
+                <a href="{{ route('admin.dishes.index')}}" class="btn link-primary p-0 m-0 no-style align-content-center">Indietro</a>
             @endif
             <div class="col-12">
                 @foreach ($company_dishes as $company_name => $dishes)
@@ -86,7 +89,11 @@
                                                     class="fas fa-trash-alt "></i></button>
                                             <div class="my-modal">
                                                 <div class="my-modal__box">
-                                                    <h4 class="text-center me-5">Vuoi eliminare questo piatto?</h4>
+                                                    @unless($dish->trashed())
+                                                        <h4 class="text-center me-5">Vuoi eliminare questo piatto?</h4>
+                                                    @else
+                                                        <h4 class="text-center me-5">Questa eliminazione è definitiva, sei sicuro?</h4>
+                                                    @endunless
                                                     <span class="link link-danger my-modal-yes mx-5">Si</span>
                                                     <span class="link link-success my-modal-no mx-5">No</span>
 

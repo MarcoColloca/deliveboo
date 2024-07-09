@@ -179,25 +179,27 @@ export default {
                 Pagamento in Corso... <font-awesome-icon class="spinner" :icon="['fas', 'spinner']" />
             </h1>
         </div>
+
+        <div class="fake-cart" v-show="!paymentLoad && !successMessage">
+            <h5 class="text-center mb-4">Riepilogo Ordine</h5>
+            <div class="row mb-2" v-for="(dish, i) in store.cartDishes" :key="i">
+                <div class="col-2 d-flex gap-2">
+                    <span class="">{{ dish.qty }}</span>
+                </div>
+                <div class="col-5 text-start">
+                    <p>{{ dish.name }}</p>
+                </div>
+                <div class="col-3">
+                    <p>{{ getPrice(dish.qty, dish.price) }} €</p>
+                </div>
+            </div>
+            <div class="row mb-2 text-center">
+                <h4>Totale Ordine: {{ getTotal() }} €</h4>
+            </div>
+            <span v-if="errors.dishes" class="text-danger">Non puoi effettuare un ordine con il carrello vuoto. Per favore torna <RouterLink class="text-warning" :to="{ name: 'home' }">indietro.</RouterLink></span>
+        </div>
     </div>
 
-    <div class="fake-cart" v-show="!paymentLoad && !successMessage">
-        <h5 class="text-center mb-4">Riepilogo Ordine</h5>
-        <div class="row mb-2" v-for="(dish, i) in store.cartDishes" :key="i">
-            <div class="col-2 d-flex gap-2">
-                <span class="">{{ dish.qty }}</span>
-            </div>
-            <div class="col-5 text-start">
-                <p>{{ dish.name }}</p>
-            </div>
-            <div class="col-3">
-                <p>{{ getPrice(dish.qty, dish.price) }} €</p>
-            </div>
-        </div>
-        <div class="row mb-2 text-center">
-            <h4>Totale Ordine: {{ getTotal() }} €</h4>
-        </div>
-    </div>
 </template>
 
 <style lang="scss" scoped>
@@ -289,11 +291,10 @@ export default {
 }
 
 .fake-cart {
-    position: fixed;
-    left: 150px;
-    top: 35%;
-    min-width: 500px;
+    max-width: 500px;
     padding: 30px 20px;
+    margin: 100px 0;
+    margin-top: 50px;
     color: black;
     font-weight: 100;
     background-color: #f7f7f7;

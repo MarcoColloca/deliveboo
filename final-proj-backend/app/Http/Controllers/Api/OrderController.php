@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Mail\CustomerOrderShipped;
+use App\Mail\CompanyOrderNotification;
 use App\Models\Order;
+use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -14,23 +18,22 @@ class OrderController extends Controller
         Log::info('Ricevuta richiesta per validare un ordine', ['request_data' => $request->all()]);
 
         try {
-        // Validazione dei dati ricevuti
-        $validatedData = $request->validate([
-            'customer_name' => 'required|string|max:255',
-            'customer_address' => 'required|string|max:255',
-            'customer_phone' => 'required|string|max:20',
-            'customer_email' => 'required|email|max:255',
-            'details' => 'nullable|string|max:2000',
-            'total' => 'required|numeric',
-            'dishes' => 'required|array',
-            'dishes.*.id' => 'required|exists:dishes,id',
-            'dishes.*.qty' => 'required|integer|min:1'
-        ]);
+            $validatedData = $request->validate([
+                'customer_name' => 'required|string|max:255',
+                'customer_address' => 'required|string|max:255',
+                'customer_phone' => 'required|string|max:20',
+                'customer_email' => 'required|email|max:255',
+                'details' => 'nullable|string|max:2000',
+                'total' => 'required|numeric',
+                'dishes' => 'required|array',
+                'dishes.*.id' => 'required|exists:dishes,id',
+                'dishes.*.qty' => 'required|integer|min:1'
+            ]);
 
             Log::info('Dati validati con successo', ['validated_data' => $validatedData]);
 
             return response()->json(['valid' => true]);
-    
+
         } catch (\Illuminate\Validation\ValidationException $e) {
             return response()->json([
                 'valid' => false,
@@ -77,6 +80,17 @@ class OrderController extends Controller
             }
 
             Log::info('Piatti associati all\'ordine con successo', ['order_id' => $order->id, 'dishes' => $validatedData['dishes']]);
+
+            // Inviare email al cliente
+            Mail::to($order->customer_email)->send(new CustomerOrderShipped($order));
+
+            // Inviare email alla compagnia
+            $companyEmails = $order->dishes->map(function($dish) {
+                return $dish->company->email;
+            })->unique();
+            foreach ($companyEmails as $email) {
+                Mail::to($email)->send(new CompanyOrderNotification($order));
+            }
 
             return response()->json([
                 'success' => true,
