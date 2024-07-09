@@ -117,6 +117,7 @@ export default {
             });
 
         },
+
     }
 }
 </script>
@@ -139,9 +140,8 @@ export default {
             </div>
             <div class="d-flex">
                 <div class="container my-5">
-                    <div
-                        class="row row-gap-3">
-                        <div class="col-12 px-4" v-for="dish in dishes" :key="dish.id">
+                    <div class="row row-gap-3 ms-1 me-5">
+                        <div class="col-12 px-2" v-for="dish in dishes" :key="dish.id">
                             <div class="dish-card row g-0 row-cols-1 row-cols-sm-2" v-if="dish.visible === 1">
 
                                 <div class="dish-img col">
@@ -187,6 +187,7 @@ export default {
                                 </div>
                             </div>
                         </div>
+
                     </div>
                     <div class="sidebar">
                         <Cart class="card-cart" :company="this.store.cartCompany" :cartDishes="this.store.cartDishes"
@@ -194,6 +195,21 @@ export default {
                             @newPurchase="newPurchase">
                         </Cart>
                     </div>
+                    <div class="container cart-container">
+
+                        <!-- Bottone per il carrello -->
+                        <div class="toggle-cart-float">
+                            <ToggleCart :cartDishes="this.store.cartDishes"></ToggleCart>
+                        </div>
+                        <div v-show="store.showCart">
+                            <Cart :company="this.store.cartCompany" :cartDishes="this.store.cartDishes"
+                                @remove="removeDishFromCart" @increase="increaseQty" @decrease="decreaseQty"
+                                class="card-cart-float">
+                            </Cart>
+                        </div>
+
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -254,14 +270,14 @@ export default {
 
         .dish-card {
             background-color: white;
-            // width: 310px;
+            width: 100%;
             // height: 550px;
             box-shadow: 0 0 1.75rem grey;
             border-radius: 20px;
             // margin-bottom: 6px;
             // display: flex;
             // flex-direction: column;
-            // justify-content: space-between;
+            justify-content: space-between;
             margin-bottom: 30px;
             border: 12px solid $app-brand-yellow;
 
@@ -296,9 +312,8 @@ export default {
             .card-dish-body {
                 height: 60%;
                 padding: 10px;
-                display:flex;
+                display: flex;
                 flex-direction: column;
-                justify-content: space-between;
                 justify-content: space-between;
                 color: $app-brand-blue;
 
@@ -322,16 +337,14 @@ export default {
             }
 
         }
-    }
 
-    // .row {
-    //     width: 70%;
-    // }
+        .card-cart-float {
+            position: fixed;
+            top: 50%;
+            transform: translate(0, -50%);
+            right: 80px;
+        }
 
-    .sidebar {
-        // margin-left: 12px;
-   
-        
     }
 }
 
@@ -342,19 +355,28 @@ export default {
     .menu-page {
         .container {
             display: block;
+
         }
     }
+
     .row {
         width: 100%;
         display: flex;
         margin: auto;
     }
-    .row-cols-sm-2 .col{
+
+    .row-cols-sm-2 .col {
         width: 45%;
     }
-    .sidebar{
-        // margin: auto;
+
+    .card-cart {
+        
+        position: sticky;
+        top: 30%;
+        transform: translate(0, 0);
+
     }
+
 }
 
 @media (min-width: 768px) {
@@ -362,41 +384,45 @@ export default {
     .menu-page {
         .container {
             display: flex;
+
         }
     }
+
     .row {
         width: 70%;
     }
-    .sidebar {
-        width: 30%;
-        
 
-        .card-cart {
-            
-            position: sticky;
-            top: 30%;
-            
-        }
+    .sidebar {
+        width: 50%;
     }
-    
+
+    .card-cart-float {
+        display: none;
+    }
+
+    .toggle-cart-float {
+        display: none;
+    }
+
+
 }
 
 @media (min-width: 992px) {
     .row {
         width: 70%;
-        
+
     }
+
     .sidebar {
         width: 30%;
 
         .card-cart {
-            
+
             position: sticky;
             top: 30%;
-            
+
         }
     }
-    
-} 
 
+}
 </style>
