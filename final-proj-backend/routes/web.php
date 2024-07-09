@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmailPreviewController;
 use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DishController;
@@ -7,6 +8,8 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\TestMail;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +21,16 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+
+Route::get('/send-test-email', function () {
+    $order = \App\Models\Order::first(); // Recupera un ordine di esempio
+    Mail::to('test@example.com')->send(new \App\Mail\CustomerOrderShipped($order));
+    return 'Email di test inviata!';
+});
+
+
+
 
 Route::get('/', function () {
     return view('welcome');

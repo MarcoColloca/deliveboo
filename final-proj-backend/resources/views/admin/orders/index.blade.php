@@ -9,13 +9,16 @@
 <section class="my-3 py-1">
     <div class="container">
         <div class="row">
+            <h2 class="text-center text-white mt-3">
+                Tutti i Tuoi Ordini
+            </h2>
             <div class="col-12">
                 @foreach ($companies as $company)
                     @php
                         $orders = $companyOrders[$company->name] ?? collect();
                     @endphp
                     <div class="d-flex justify-content-between align-items-end mt-5 mb-1">
-                        <h3 class="text-light">
+                        <h3 class="text-blue">
                             <p class="text-blue">
                                 <p>
                                     {{ $company->name }}

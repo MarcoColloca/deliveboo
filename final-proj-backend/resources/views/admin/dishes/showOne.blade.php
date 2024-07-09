@@ -13,11 +13,11 @@
 
 
 <section class="container bg-light mt-5 mb-5 rounded-4 p-5 text-blue shadow">
-    <h5 class="mb-3 text-center text-dark">
-        <a href="<?php  echo htmlspecialchars($url); ?>">
+    <h2 class="mb-3 text-center ">
+        <a class="text-decoration-none btn btn-outline-blue" href="<?php  echo htmlspecialchars($url); ?>">
             Il tuo Menu su Fooder
         </a>
-    </h5>
+    </h2>
     <div class="container my-5">
         <div class="d-flex justify-content-between align-items-center mt-5">
             <h1 class="text-blue text-center">
