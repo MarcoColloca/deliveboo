@@ -6,7 +6,7 @@ export default {
     data() {
         return {
             store,
-            
+
         }
     },
 
@@ -35,7 +35,7 @@ export default {
                 <font-awesome-icon :icon="['fas', 'cart-shopping']" />
             </span>
             <span v-if="this.cartDishes.length > 0" class="red-point">
-                .
+                <font-awesome-icon :icon="['fas', 'circle']" />
             </span>
         </div>
     </div>
@@ -61,7 +61,7 @@ export default {
     background-color: $app-brand-yellow;
     font-size: 15px;
     border: 1px solid $app-brand-blue;
-    border-radius: 18px;
+    border-radius: 50%;
     cursor: pointer;
 
     &:hover {
@@ -72,11 +72,30 @@ export default {
 
     .red-point {
         position: fixed;
-        top: 10px;
+        top: 33px;
         transform: translate(0, -50%);
-        right: 5px;
+        right: -2px;
         color: red;
-        font-size: 60px;
+        font-size: 16px;
+    }
+
+}
+
+// MEDIA QUERY
+
+@media (min-width: 768px) {
+
+    .show-cart {
+        right: 40px;
+        width: 60px;
+        height: 60px;
+        font-size: 25px;
+        
+        .red-point {
+            top: 51px;
+            right: -4px;
+            font-size: 23px;
+        }
     }
 
 }
