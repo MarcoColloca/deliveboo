@@ -77,8 +77,7 @@ export default {
 
                         if (paymentResponse.data.success) {
                             console.log('Pagamento completato con successo:', paymentResponse.data);
-                            this.successMessage = 'Pagamento completato con successo!';
-
+                            
                             // Invia i dati dell'ordine al backend
                             const orderResponse = await axios.post('http://127.0.0.1:8000/api/orders', customerData);
                             console.log('Ordine inviato con successo', orderResponse.data);
@@ -91,6 +90,7 @@ export default {
                         this.paymentLoad = false;
                         this.store.cartDishes = [];
                         this.store.cartCompany = null;
+                        this.successMessage = 'Pagamento completato con successo!';
                     }
                 });
             } catch (validationError) {
@@ -119,117 +119,157 @@ export default {
 </script>
 
 <template>
-    <div class="payment-container">
-        <div class="user-data-container" v-show="!paymentLoad && !successMessage">
-            <form @submit="submitPayment" >
-                <h4 class="text-center">Inserisci i tuoi dati</h4>
+    <section class="payment">
 
-                <!-- Nome -->
-                <div class="mb-3">
-                    <label for="customer_name" class="form-label fb-bold">Nome *</label>
-                    <input type="text" required name="customer_name" class="form-control" id="customer_name" placeholder="Inserisci il nome" ref="customer_name" maxlength="250">
-                    <span v-if="errors.customer_name" class="text-danger">{{ errors.customer_name[0] }}</span>
-                </div>
-
-                <!-- Indirizzo -->
-                <div class="mb-3">
-                    <label for="customer_address" class="form-label fb-bold">Indirizzo *</label>
-                    <input type="text" required name="customer_address" class="form-control" id="customer_address" placeholder="Inserisci l'indirizzo" ref="customer_address" maxlength="250">
-                    <span v-if="errors.customer_address" class="text-danger">{{ errors.customer_address[0] }}</span>
-                </div>
-
-                <!-- Telefono -->
-                <div class="mb-3">
-                    <label for="customer_phone" class="form-label fb-bold">Telefono *</label>
-                    <input type="tel" required name="customer_phone" class="form-control" id="customer_phone" placeholder="Inserisci il numero di telefono" ref="customer_phone" maxlength="250">
-                    <span v-if="errors.customer_phone" class="text-danger">{{ errors.customer_phone[0] }}</span>
-                </div>
-
-                <!-- Email -->
-                <div class="mb-3">
-                    <label for="customer_email" class="form-label fb-bold">Email *</label>
-                    <input type="email" required name="customer_email" class="form-control" id="customer_email" placeholder="Inserisci la tua mail" ref="customer_email" maxlength="250">
-                    <span v-if="errors.customer_email" class="text-danger">{{ errors.customer_email[0] }}</span>
-                </div>
-
-                <!-- Descrizione -->
-                <div class="mb-3">
-                    <label for="details" class="form-label">Dettagli</label>
-                    <textarea class="form-control" name="details" id="details" placeholder="Inserisci eventuali dettagli" ref="details" maxlength="2000"></textarea>
-                    <span v-if="errors.details" class="text-danger">{{ errors.details[0] }}</span>
-                </div>
-
-                <div ref="dropinContainer" class="dropin-container" v-show="!paymentLoad && !successMessage"></div>
+        <div class="payment-container  container">
+            <div class="row w-100 g-0 row-gap-2 justify-content-around">
                 
-                <button type="submit" class="payment-button" v-show="!paymentLoad && !successMessage">Paga</button>
-            </form>
-        </div>
+                <div class="user-data-container" v-show="!paymentLoad && !successMessage">
+                    <form @submit="submitPayment" >
+                        <h3 class="text-center">Inserisci i tuoi dati</h3>
+        
+                        <!-- Nome -->
+                        <div class="mb-3">
+                            <label for="customer_name" class="form-label fb-bold">Nome *</label>
+                            <input type="text" required name="customer_name" class="form-control" id="customer_name" placeholder="Inserisci il nome" ref="customer_name" maxlength="250">
+                            <span v-if="errors.customer_name" class="text-danger">{{ errors.customer_name[0] }}</span>
+                        </div>
+        
+                        <!-- Indirizzo -->
+                        <div class="mb-3">
+                            <label for="customer_address" class="form-label fb-bold">Indirizzo *</label>
+                            <input type="text" required name="customer_address" class="form-control" id="customer_address" placeholder="Inserisci l'indirizzo" ref="customer_address" maxlength="250">
+                            <span v-if="errors.customer_address" class="text-danger">{{ errors.customer_address[0] }}</span>
+                        </div>
+        
+                        <!-- Telefono -->
+                        <div class="mb-3">
+                            <label for="customer_phone" class="form-label fb-bold">Telefono *</label>
+                            <input type="tel" required name="customer_phone" class="form-control" id="customer_phone" placeholder="Inserisci il numero di telefono" ref="customer_phone" maxlength="250">
+                            <span v-if="errors.customer_phone" class="text-danger">{{ errors.customer_phone[0] }}</span>
+                        </div>
+        
+                        <!-- Email -->
+                        <div class="mb-3">
+                            <label for="customer_email" class="form-label fb-bold">Email *</label>
+                            <input type="email" required name="customer_email" class="form-control" id="customer_email" placeholder="Inserisci la tua mail" ref="customer_email" maxlength="250">
+                            <span v-if="errors.customer_email" class="text-danger">{{ errors.customer_email[0] }}</span>
+                        </div>
+        
+                        <!-- Descrizione -->
+                        <div class="mb-3">
+                            <label for="details" class="form-label">Dettagli</label>
+                            <textarea class="form-control" name="details" id="details" placeholder="Inserisci eventuali dettagli" ref="details" maxlength="2000"></textarea>
+                            <span v-if="errors.details" class="text-danger">{{ errors.details[0] }}</span>
+                        </div>
+                        <div class="credit-data-container">
+                            <div id="img-card-box">
+                                <img src="/imgs/credit-card.png" id="credit-card-img" alt="">
+                            </div>
+                            <div ref="dropinContainer" class="dropin-container" v-show="!paymentLoad && !successMessage"></div>
+                        </div>
 
-        <div v-if="successMessage" class="success-message">
-            <h1>
-                {{ successMessage }}
-            </h1>
-            <p class="back-home">
-                <RouterLink :to="{ name: 'home' }">Ordina qualcos'altro!</RouterLink>
-            </p>
-        </div>
-
-        <div v-if="paymentLoad" class="processing-message">
-            <h1>
-                Pagamento in Corso... <font-awesome-icon class="spinner" :icon="['fas', 'spinner']" />
-            </h1>
-        </div>
-
-        <div class="fake-cart" v-show="!paymentLoad && !successMessage">
-            <h5 class="text-center mb-4">Riepilogo Ordine</h5>
-            <div class="row mb-2" v-for="(dish, i) in store.cartDishes" :key="i">
-                <div class="col-2 d-flex gap-2">
-                    <span class="">{{ dish.qty }}</span>
+                        
+                        <button type="submit" class="payment-button" v-show="!paymentLoad && !successMessage">Paga</button>
+                    </form>
                 </div>
-                <div class="col-5 text-start">
-                    <p>{{ dish.name }}</p>
+        
+                <div v-if="successMessage" class="success-message">
+                    <h1>
+                        {{ successMessage }}
+                    </h1>
+                    <p class="back-home">
+                        <RouterLink :to="{ name: 'home' }">Ordina qualcos'altro!</RouterLink>
+                    </p>
                 </div>
-                <div class="col-3">
-                    <p>{{ getPrice(dish.qty, dish.price) }} €</p>
+        
+                <div v-if="paymentLoad" class="processing-message">
+                    <h1>
+                        Pagamento in Corso... <font-awesome-icon class="spinner" :icon="['fas', 'spinner']" />
+                    </h1>
+                </div>
+        
+                <div class="fake-cart" v-show="!paymentLoad && !successMessage">
+                    <h4 class="text-center recap-order-title mb-4">Riepilogo Ordine</h4>
+                    <div class="recap-box mb-2" v-for="(dish, i) in store.cartDishes" :key="i">
+                        <div class="col-2 d-flex align-items-center justify-content-center">
+                            <p class="">{{ dish.qty }}</p>
+                        </div>
+                        <div class="col-5  d-flex align-items-center justify-content-start">
+                            <p>{{ dish.name }}</p>
+                        </div>
+                        <div class="col-3  d-flex align-items-center justify-content-center">
+                            <p>{{ getPrice(dish.qty, dish.price) }} €</p>
+                        </div>
+                    </div>
+                    <div class="row p-0 mb-2 text-center">
+                        <h4>Totale Ordine: {{ getTotal() }} €</h4>
+                    </div>
+                    <span v-if="errors.dishes" class="text-danger">Non puoi effettuare un ordine con il carrello vuoto. Per favore torna <RouterLink class="text-warning" :to="{ name: 'home' }">indietro.</RouterLink></span>
                 </div>
             </div>
-            <div class="row mb-2 text-center">
-                <h4>Totale Ordine: {{ getTotal() }} €</h4>
-            </div>
-            <span v-if="errors.dishes" class="text-danger">Non puoi effettuare un ordine con il carrello vuoto. Per favore torna <RouterLink class="text-warning" :to="{ name: 'home' }">indietro.</RouterLink></span>
         </div>
-    </div>
+    </section>
 
 </template>
 
 <style lang="scss" scoped>
 @use '../assets/style/partials/variables' as*; 
 
+.payment{
+    height: 100%;
+    padding:50px 0;
+}
 .user-data-container {
-    width: 400px;
-    padding: 10px 15px;
-    color: black;
+    width: 100%;
+    padding: 30px 20px;
+    color: $app-brand-blue;
     font-weight: 100;
-    background-color: #f7f7f7;
+    // background-color: #f7f7f7;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: hsla(0, 0%, 100%, 0.322);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    border:3px solid $app-brand-blue;
 }
 
 .payment-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
-    background-color: #f7f7f7;
+    padding: 44px 15px;
+    // background-color: #f7f7f7;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     height: 100%;
-}
+    background-color: hsla(0, 0%, 100%, 0.322);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    // box-shadow: 0 0 1.75rem rgba(201, 121, 2, 0.945);
 
-.dropin-container {
-    width: 100%;
-    max-width: 400px;
-    margin-bottom: 20px;
+}
+.credit-data-container{
+    width:100%;
+  
+    position: relative;
+    #img-card-box{
+        // position: absolute;
+        
+        top: 94px;
+        right:15px;
+        z-index:2;
+        #credit-card-img{
+            width: 100%;  
+            border: radius 15px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);     
+        }
+    }
+
+    .dropin-container {
+        width: 100%;
+        margin-bottom: 20px;
+    }
 }
 
 .payment-button {
@@ -291,14 +331,46 @@ export default {
 }
 
 .fake-cart {
-    max-width: 500px;
-    padding: 30px 20px;
-    margin: 100px 0;
-    margin-top: 50px;
-    color: black;
+    
+    width: 100%;
+    align-self:flex-start;
+    color: $app-brand-blue;
+    border:3px solid $app-brand-blue;
     font-weight: 100;
-    background-color: #f7f7f7;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: hsla(0, 0%, 100%, 0.322);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    .recap-order-title{
+        color:white;
+        background-color: $app-brand-blue;
+        padding: 15px;
+        
+    }
+    .recap-box{
+        display:flex;
+        justify-content:space-around;
+    }
 }
+@media (min-width: 768px) {
+    #img-card-box{ 
+        display:absolute;
+        top: 94px;
+        right:15px;
+        z-index:2;
+        #credit-card-img{
+            width:150px;
+        }
+    }
+}
+@media (min-width: 992px) {
+    .user-data-container{
+        width: 65%;
+    }
+    .fake-cart{
+        width: 30%;
+    }
+}
+
 </style>

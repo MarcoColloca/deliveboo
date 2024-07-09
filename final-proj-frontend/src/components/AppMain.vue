@@ -29,5 +29,6 @@ export default {
 main{
     background-image: url(/imgs/sfondo-down.png);
     background-size: cover;
+    
 }
 </style>
