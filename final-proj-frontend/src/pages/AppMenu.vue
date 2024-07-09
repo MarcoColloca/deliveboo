@@ -54,6 +54,8 @@ export default {
         },
 
         addDishToCart(item) {
+            this.store.newItemIntoCart = item;
+
             // Se il carrello è vuoto aggiunto l'item al carrello ed aggiorno la compagnia
             if (this.store.cartCompany === null) {
                 this.store.cartCompany = this.store.currentCompany
@@ -82,6 +84,7 @@ export default {
             this.store.cartCompany = null;
             this.store.cartDishes = [];
             this.store.showClearCart = false;
+            this.addDishToCart(this.store.newItemIntoCart);
         },
 
         isVisible(id) {
