@@ -54,7 +54,7 @@
                     </table>
 
                     <div class="card-body d-flex justify-content-around position-relative">
-                        <a href="{{ route('admin.companies.edit', $company)}}" class="link link-primary">Modifica</a>
+                        <a href="{{ route('admin.companies.edit', $company)}}" class="link link-primary"><i class="fa-solid fa-pen-to-square"></i></a>
                         <form class="item-delete-form" action="{{ route('admin.companies.destroy', $company) }}" method="POST">
                             @csrf
                             @method('DELETE')

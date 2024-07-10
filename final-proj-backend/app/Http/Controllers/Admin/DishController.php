@@ -52,13 +52,7 @@ class DishController extends Controller
 
         $selected_company = $company_id;
 
-        $visibility = [
-            'Seleziona Disponibilità' => '',
-            'Sì' => 1,
-            'No'  => 0,
-        ];
-
-        return view('admin.dishes.create', compact('companies', 'visibility', 'selected_company'));
+        return view('admin.dishes.create', compact('companies', 'selected_company'));
     }
 
     /**
@@ -69,6 +63,8 @@ class DishController extends Controller
         $form_data = $request->validated();
 
         $form_data['slug'] = Dish::getUniqueSlug($form_data['name']);
+
+        $form_data['visible'] = $request->has('visible') ? true : false;
 
         number_format(floatval($form_data['price']), 2, '.'); 
 
@@ -102,12 +98,6 @@ class DishController extends Controller
      */
     public function edit(Dish $dish)
     {
-        $visibility = [
-            'Seleziona Disponibilità' => '',
-            'Sì' => 1,
-            'No'  => 0,
-        ];
-
         $user_id = Auth::id();
 
         $companies = Company::where('user_id', $user_id)->get();
@@ -118,7 +108,7 @@ class DishController extends Controller
         }
 
 
-        return view('admin.dishes.edit', compact('dish', 'companies', 'visibility'));
+        return view('admin.dishes.edit', compact('dish', 'companies'));
     }
 
     /**
@@ -128,7 +118,7 @@ class DishController extends Controller
     {
         $form_data = $request->validated();
 
-
+        $form_data['visible'] = $request->has('visible') ? true : false;
 
         if($dish->name !== $request->name)
         {

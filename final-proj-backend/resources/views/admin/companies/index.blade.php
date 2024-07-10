@@ -50,10 +50,10 @@
 
                         @unless($company->trashed())
                             <td class="text-center">
-                                <a href="{{ route('admin.companies.show', $company)}}" class="link link-success">Dettagli</a>
+                                <a href="{{ route('admin.companies.show', $company)}}" class="link link-success"><i class="fa-regular fa-eye"></i></a>
                             </td>
                             <td class="text-center"><a href="{{ route('admin.companies.edit', $company)}}"
-                                    class="link link-primary">Modifica</a></td>
+                                    class="link link-primary"><i class="fa-solid fa-pen-to-square"></i></a></td>
                         @elseif ($company->trashed())
                             <td class="text-center">
                                 <form action="{{ route('admin.companies.restore', $company->id) }}" method="POST">
