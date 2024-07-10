@@ -337,9 +337,9 @@ export default {
 
                 p.selected {
                     font-weight: bold;
-                    color: $app-brand-red;
+                    color: $app-brand-blue;
                     border-radius: 15px 32px 15px;
-                    border:8px solid $app-brand-red;
+                    border:8px solid $app-brand-blue;
                    
                 }
 

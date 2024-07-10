@@ -65,6 +65,10 @@
                             @endforeach
                         </ul>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-blue" href="{{ route('admin.statistics.index') }}"> Statistiche </a>
+                        
+                    </li>
                 @endauth
             </ul>
             <!-- Right Side Of Navbar -->
