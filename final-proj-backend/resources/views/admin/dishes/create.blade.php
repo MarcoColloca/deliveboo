@@ -3,7 +3,7 @@
 @section('content')
 <div class="container bg-light mt-5 mb-5 rounded-4 p-5 text-blue shadow">
     <h1>Crea il tuo Piatto </h1>
-    <form action="{{ route('admin.dishes.store')}}" method="POST" class="my-dish-form"  enctype="multipart/form-data">
+    <form action="{{ route('admin.dishes.store')}}" method="POST" class="my-dish-form" enctype="multipart/form-data">
         @csrf
 
 
@@ -17,44 +17,44 @@
 
         <!-- Prezzo Piatto -->
         <div class="mb-3">
-            <label for="price" class="form-label fb-bold">Prezzo *</label>
+            <label for="price" class="form-label fb-bold">Prezzo(€) *</label>
             <input type="number" class="form-control" name="price" id="price" min="0" max="9999" step=".01"
-                placeholder="Inserisci il Prezzo (Es 10.00)" value="{{ old('price') }}" >
+                placeholder="Inserisci il Prezzo (Es 10.00)" value="{{ old('price') }}">
         </div>
 
 
         <!-- Visibilità Piatto -->
         <div class="mb-3">
-            <label for="visible" class="form-label fb-bold">Visibilità nel Menù *</label>
-            <select class="form-control" name="visible" id="visible">
-                @foreach ($visibility as $visible => $boolean)                        
-                    <option @selected($boolean == old('visible', '')) value="{{$boolean}}">{{$visible}}</option>
-                @endforeach
-            </select>
+            <label for="flexSwitchCheckDefault" class="form-label fb-bold">Visibilità nel Menù *</label>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"
+                    name="visible" @if(old('visible', $dish->visible ?? false)) checked @endif value="1">
+                <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+            </div>
         </div>
 
 
         <!-- Ingredienti Piatto -->
         <div class="mb-3">
             <label for="ingredients" class="form-label">Ingredienti *</label>
-            <textarea class="form-control" name="ingredients" id="ingredients"
-                placeholder="Inserisci gli ingredienti"  data-required="true" maxlength="2000">{{ old('ingredients') }}</textarea>
+            <textarea class="form-control" name="ingredients" id="ingredients" placeholder="Inserisci gli ingredienti"
+                data-required="true" maxlength="2000">{{ old('ingredients') }}</textarea>
         </div>
 
 
         <!-- Descrizione Piatto -->
         <div class="mb-3">
             <label for="description" class="form-label">Descrizione</label>
-            <textarea class="form-control" name="description" id="description"
-                placeholder="Inserisci la descrizione" maxlength="2000">{{ old('description') }}</textarea>
+            <textarea class="form-control" name="description" id="description" placeholder="Inserisci la descrizione"
+                maxlength="2000">{{ old('description') }}</textarea>
         </div>
 
 
         <!-- Selezione Ristorante -->
         <div class="form-group mb-3 d-none" hidden>
             <label class="form-label fw-bold" for="company_id">Ristorante *</label>
-            <input type="hidden" class="form-control d-none" name="company_id" id="company_id" value="{{$selected_company}}"
-                >
+            <input type="hidden" class="form-control d-none" name="company_id" id="company_id"
+                value="{{$selected_company}}">
             <input />
         </div>
 
@@ -62,7 +62,8 @@
         <!-- Immagine Piatto -->
         <div class="mb-3">
             <label for="image" class="form-label fb-bold">Carica un'immagine</label>
-            <input class="form-control" type="file" name="image" id="image" accept=".jpg, .jpeg, .png, .bmp, .svg, .webp">
+            <input class="form-control" type="file" name="image" id="image"
+                accept=".jpg, .jpeg, .png, .bmp, .svg, .webp">
         </div>
 
         {{-- messaggio d'errore --}}
