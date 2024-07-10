@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\StatisticsController;
 use App\Http\Controllers\EmailPreviewController;
 use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -59,8 +60,7 @@ Route::middleware(['auth', 'verified'])
     Route::patch('/companies/{company}/restore', [CompanyController::class, 'restore'])->name('companies.restore');
     Route::delete('/dishes/{dish}/forceDelete', [DishController::class,'forceDestroy'])->name('dishes.forceDestroy');
     Route::patch('/dishes/{dish}/restore', [DishController::class, 'restore'])->name('dishes.restore');
-    
-
+    Route::resource('statistics', StatisticsController::class);
 });
 
 
