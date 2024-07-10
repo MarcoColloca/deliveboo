@@ -59,7 +59,7 @@
         </div>
     </section>
 
-    <!-- Script JavaScript per gestire il caricamento aggiuntivo -->
+    <!-- Script per gestire il caricamento aggiuntivo -->
     <script>
 
         function formatItalianDate(dateString) {
