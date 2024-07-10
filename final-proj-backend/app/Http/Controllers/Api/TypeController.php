@@ -12,7 +12,7 @@ class TypeController extends Controller
     public function index(Request $request) {
         $per_page = $request->perPage ?? 10;
 
-        $results = Type::orderBy("created_at","desc")->paginate($per_page);
+        $results = Type::orderBy("name","asc")->paginate($per_page);
 
         return response()->json([
             'success' => true,
