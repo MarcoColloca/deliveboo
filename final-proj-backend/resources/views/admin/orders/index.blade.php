@@ -6,6 +6,7 @@
 @php
     $companies_dict = $companies->keyBy('name');
 @endphp
+
 <section class="my-3 py-1">
     <div class="container">
         <div class="row">
@@ -35,6 +36,7 @@
                                 <th class="text-start" scope="col">Email</th>
                                 <th class="text-start" scope="col">Telefono</th>
                                 <th class="text-center" scope="col">Totale Ordine</th>
+                                <th class="text-center" scope="col">Data Ordine</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -51,6 +53,7 @@
                                         <td class="text-start fw-lighter">{{ $order->customer_mail ?? 'nessuna mail'}}</td>
                                         <td class="text-start fw-lighter">{{ $order->customer_phone}}</td>
                                         <td class="text-center fw-lighter">{{ $order->total}} €</td>
+                                        <td class="text-center fw-lighter">{{ formatItalianDate($order->created_at) }}</td>
                                         <td class="text-center">
                                             <a href="{{ route('admin.orders.show', $order) }}" class="link link-success">Dettagli</a>
                                         </td>

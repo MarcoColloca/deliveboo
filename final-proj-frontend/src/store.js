@@ -9,5 +9,6 @@ export const store = reactive({
     cartCompany: null,
     currentCompany: null,
     showClearCart: false,
+    newItemIntoCart: null
 })
 

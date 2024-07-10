@@ -7,6 +7,7 @@ export default {
         return {
             store,
 
+
         }
     },
 
@@ -36,6 +37,7 @@ export default {
             </span>
             <span v-if="this.cartDishes.length > 0" class="red-point">
                 <font-awesome-icon :icon="['fas', 'circle']" />
+                <font-awesome-icon :icon="['fas', 'circle']" />
             </span>
         </div>
     </div>
@@ -62,6 +64,7 @@ export default {
     font-size: 15px;
     border: 1px solid $app-brand-blue;
     border-radius: 50%;
+    border-radius: 50%;
     cursor: pointer;
 
     &:hover {
@@ -72,6 +75,7 @@ export default {
 
     .red-point {
         position: fixed;
+        top: 33px;
         top: 33px;
         transform: translate(0, -50%);
         right: -2px;

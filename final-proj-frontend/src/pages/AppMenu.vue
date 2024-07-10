@@ -56,6 +56,8 @@ export default {
         addDishToCart(item) {
             this.store.newItemIntoCart = item;
 
+            this.store.newItemIntoCart = item;
+
             // Se il carrello è vuoto aggiunto l'item al carrello ed aggiorno la compagnia
             if (this.store.cartCompany === null) {
                 this.store.cartCompany = this.store.currentCompany
@@ -84,6 +86,7 @@ export default {
             this.store.cartCompany = null;
             this.store.cartDishes = [];
             this.store.showClearCart = false;
+            this.addDishToCart(this.store.newItemIntoCart);
             this.addDishToCart(this.store.newItemIntoCart);
         },
 
@@ -145,6 +148,17 @@ export default {
                 <div class="container my-5">
                     <div class="row row-container row-gap-3">
                         <div class="col-12 px-2" v-for="dish in dishes" :key="dish.id">
+                            <div class="dish-card">
+                                <div class="row g-0" v-if="dish.visible === 1">
+                                    <div class="col-12 col-lg-6 col-img">
+                                        <div class="dish-img">
+                                            <img v-if="dish.image_fullpath" :src="dish.image_fullpath"
+                                                class="my-dish-img" alt="">
+                                            <img v-else src="http://127.0.0.1:8000/storage/image/default-image.jpg"
+                                                class="my-dish-img default-img" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-lg-6">
                             <div class="dish-card">
                                 <div class="row g-0" v-if="dish.visible === 1">
                                     <div class="col-12 col-lg-6 col-img">
@@ -281,6 +295,7 @@ export default {
 
             .dish-img {
                 height: 100%;
+                height: 100%;
 
                 .my-dish-img {
                     height: 100%;
@@ -290,6 +305,7 @@ export default {
                     border-radius: 10px;
 
                 }
+
 
             }
 
@@ -306,6 +322,7 @@ export default {
                 flex-direction: column;
                 justify-content: space-between;
                 color: $app-brand-blue;
+                height: 100%;
                 height: 100%;
 
                 .dish-name,
@@ -379,6 +396,10 @@ export default {
         .card-cart-float {
             right: 100px;
         }
+    }
+
+    .col-img {
+        max-height: 370px;
     }
 
 }
