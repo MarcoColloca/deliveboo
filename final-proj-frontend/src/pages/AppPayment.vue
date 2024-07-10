@@ -175,10 +175,10 @@ export default {
                 </div>
         
                 <div v-if="successMessage" class="success-message">
+                    <img src="/imgs/payment-ok.png" class="payment-ok" alt="">
                     <h1>
                         {{ successMessage }}
                     </h1>
-                    <img src="/imgs/payment-ok.png" class="payment-ok" alt="">
                     <h3 class="back-home">
                         <RouterLink :to="{ name: 'home' }">Ordina qualcos'altro!</RouterLink>
                     </h3>
@@ -295,6 +295,7 @@ export default {
 }
 
 .success-message {
+    padding-top:10px;
     color: $app-brand-blue;
     font-size: 18px;
     font-weight: bold;
@@ -305,19 +306,29 @@ export default {
     align-items: center;
     justify-content:space-around;
     .back-home {
-        
+        margin-top:50px;
+        color: $app-brand-blue;
+        background-color: $app-brand-yellow;
+        padding: 5px 15px;
+        border-radius: 10px;
+        border: 3px solid $app-brand-blue;
+        box-shadow:1px 1px 4px $app-brand-blue;
         &:hover {
             cursor: pointer;
             color: $app-brand-yellow;
             background-color: $app-brand-blue;
-            padding: 5px;
-            border-radius: 6px;
+            padding: 5px 15px;
+            border-radius: 10px;
+            // border: 3px solid $app-brand-yellow;
+        }
+        &:active{
+            background-color: #123647;
         }
     }
 }
 
 .processing-message {
-    color: #555;
+    color: $app-brand-blue;
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 20px;
