@@ -124,7 +124,7 @@ export default {
 <template>
     <div class="search-container d-flex flex-column">
        
-        <div class="my-container my-4">
+        <div class="my-container">
 
             <div
                 class="scrollmenu">
@@ -300,7 +300,7 @@ export default {
         box-shadow: 0 0 0.5rem grey;
         //    border-radius: 15px 22px 22px;
         border-radius: 15px 32px 15px;
-        margin-bottom: 6px;
+        margin-bottom: 20px;
         
 
         .type-img {
@@ -368,7 +368,7 @@ export default {
 }
 .my-container{
     width:90%;
-    margin: auto;
+    margin: 50px auto;
 }
 .scrollmenu{
     overflow: auto;
