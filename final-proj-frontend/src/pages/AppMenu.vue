@@ -159,68 +159,73 @@ export default {
                                         </div>
                                     </div>
                                     <div class="col-12 col-lg-6">
-                            <div class="dish-card">
-                                <div class="row g-0" v-if="dish.visible === 1">
-                                    <div class="col-12 col-lg-6 col-img">
-                                        <div class="dish-img">
-                                            <img v-if="dish.image_fullpath" :src="dish.image_fullpath"
-                                                class="my-dish-img" alt="">
-                                            <img v-else src="http://127.0.0.1:8000/storage/image/default-image.jpg"
-                                                class="my-dish-img default-img" alt="">
+                                        <div class="dish-card">
+                                            <div class="row g-0" v-if="dish.visible === 1">
+                                                <div class="col-12 col-lg-6 col-img">
+                                                    <div class="dish-img">
+                                                        <img v-if="dish.image_fullpath" :src="dish.image_fullpath"
+                                                            class="my-dish-img" alt="">
+                                                        <img v-else
+                                                            src="http://127.0.0.1:8000/storage/image/default-image.jpg"
+                                                            class="my-dish-img default-img" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-lg-6">
+
+                                                    <div class="card-dish-body">
+                                                        <h3 class="dish-name">{{ dish.name }}</h3>
+                                                        <p class="dish-specs m-0" v-if="dish.ingredients != ''">
+                                                            Ingredienti: {{
+                                                                dish.ingredients }}</p>
+                                                        <p class="dish-specs m-0 pb-2" v-if="dish.description != ''">
+                                                            Descrizione: {{
+                                                                dish.description }}</p>
+                                                        <h4 class="dish-price m-0">{{ dish.price }} €</h4>
+                                                        <h5 class="btn dish-btn btn-outline-yellow"
+                                                            v-if="isVisible(dish.id)" @click="increaseQty(dish.id)">
+                                                            Aggiungine un altro</h5>
+                                                        <h5 class="btn dish-btn btn-outline-blue cart-link" v-else
+                                                            @click="addDishToCart(dish)">Aggiungi al
+                                                            carrello
+                                                        </h5>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-12 col-lg-6">
 
-                                        <div class="card-dish-body">
-                                            <h3 class="dish-name">{{ dish.name }}</h3>
-                                            <p class="dish-specs m-0" v-if="dish.ingredients != ''">Ingredienti: {{
-                                                dish.ingredients }}</p>
-                                            <p class="dish-specs m-0 pb-2" v-if="dish.description != ''">Descrizione: {{
-                                                dish.description }}</p>
-                                            <h4 class="dish-price m-0">{{ dish.price }} €</h4>
-                                            <h5 class="btn dish-btn btn-outline-yellow" v-if="isVisible(dish.id)"
-                                                @click="increaseQty(dish.id)">
-                                                Aggiungine un altro</h5>
-                                            <h5 class="btn dish-btn btn-outline-blue cart-link" v-else
-                                                @click="addDishToCart(dish)">Aggiungi al
-                                                carrello
-                                            </h5>
-                                        </div>
+                                </div>
+                                <div class="sidebar d-none d-lg-block">
+                                    <Cart class="card-cart" :company="this.store.cartCompany"
+                                        :cartDishes="this.store.cartDishes" @remove="removeDishFromCart"
+                                        @increase="increaseQty" @decrease="decreaseQty" @newPurchase="newPurchase">
+                                    </Cart>
+                                </div>
+                                <div class="cart-end d-lg-none">
+                                    <Cart class="card-cart" :company="this.store.cartCompany"
+                                        :cartDishes="this.store.cartDishes" @remove="removeDishFromCart"
+                                        @increase="increaseQty" @decrease="decreaseQty" @newPurchase="newPurchase">
+                                    </Cart>
+                                </div>
+                                <div class="container cart-container">
+
+                                    <!-- Bottone per il carrello -->
+                                    <div class="toggle-cart-float">
+                                        <ToggleCart :cartDishes="this.store.cartDishes"></ToggleCart>
                                     </div>
-
+                                    <div v-show="store.showCart">
+                                        <Cart :company="this.store.cartCompany" :cartDishes="this.store.cartDishes"
+                                            @remove="removeDishFromCart" @increase="increaseQty" @decrease="decreaseQty"
+                                            class="card-cart-float">
+                                        </Cart>
+                                    </div>
 
                                 </div>
                             </div>
                         </div>
-
                     </div>
-                    <div class="sidebar d-none d-lg-block">
-                        <Cart class="card-cart" :company="this.store.cartCompany" :cartDishes="this.store.cartDishes"
-                            @remove="removeDishFromCart" @increase="increaseQty" @decrease="decreaseQty"
-                            @newPurchase="newPurchase">
-                        </Cart>
-                    </div>
-                    <div class="cart-end d-lg-none">
-                        <Cart class="card-cart" :company="this.store.cartCompany" :cartDishes="this.store.cartDishes"
-                            @remove="removeDishFromCart" @increase="increaseQty" @decrease="decreaseQty"
-                            @newPurchase="newPurchase">
-                        </Cart>
-                    </div>
-                    <div class="container cart-container">
-
-                        <!-- Bottone per il carrello -->
-                        <div class="toggle-cart-float">
-                            <ToggleCart :cartDishes="this.store.cartDishes"></ToggleCart>
-                        </div>
-                        <div v-show="store.showCart">
-                            <Cart :company="this.store.cartCompany" :cartDishes="this.store.cartDishes"
-                                @remove="removeDishFromCart" @increase="increaseQty" @decrease="decreaseQty"
-                                class="card-cart-float">
-                            </Cart>
-                        </div>
-
-                    </div>
-
                 </div>
             </div>
         </div>
