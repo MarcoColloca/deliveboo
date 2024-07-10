@@ -218,6 +218,11 @@ export default {
 <style lang="scss" scoped>
 @use '../assets/style/partials/variables' as*; 
 
+section{
+    background-image: url(/imgs/sfondo-down.png);
+    background-size: cover;
+    
+}
 .payment{
     height: 100%;
     padding:50px 0;

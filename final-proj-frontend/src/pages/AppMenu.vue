@@ -227,6 +227,11 @@ export default {
 <style lang="scss" scoped>
 @use '../assets/style/partials/variables' as*;
 
+.menu-box{
+    background-image: url(/imgs/sfondo-down.png);
+    background-size: cover;
+    
+}
 .company-name-container {
     position: relative;
     display: flex;
