@@ -63,10 +63,10 @@
                                 <td class="text-center">{{ $dish->visible === 1 ? 'Sì' : 'No'}}</td>
                                 @unless($dish->trashed())
                                     <td class="text-center">
-                                        <a href="{{ route('admin.dishes.show', $dish) }}" class="link link-success">Dettagli</a>
+                                        <a href="{{ route('admin.dishes.show', $dish) }}" class="link link-success"><i class="fa-regular fa-eye"></i></a>
                                     </td>
                                     <td class="text-center">
-                                        <a href="{{ route('admin.dishes.edit', $dish) }}" class="link link-primary">Modifica</a>
+                                        <a href="{{ route('admin.dishes.edit', $dish) }}" class="link link-primary"><i class="fa-solid fa-pen-to-square"></i></a>
                                     </td>
                                 @elseif ($dish->trashed())
                                     <td class="text-center">

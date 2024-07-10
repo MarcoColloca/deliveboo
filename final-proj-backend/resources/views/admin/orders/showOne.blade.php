@@ -38,7 +38,7 @@
                                 <td class="text-center fw-lighter">{{ formatItalianDate($order->created_at) }}</td>
                                 <td class="text-center">
                                     <a href="{{ route('admin.orders.show', $order) }}"
-                                        class="link link-success">Dettagli</a>
+                                        class="link link-success"><i class="fa-regular fa-eye"></i></a>
                                 </td>
                             </tr>
                             @empty
