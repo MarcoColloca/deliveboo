@@ -158,7 +158,7 @@ export default {
         
                         <!-- Descrizione -->
                         <div class="mb-3">
-                            <label for="details" class="form-label">Dettagli</label>
+                            <label for="details" class="form-label">Dettagli dell'ordine:</label>
                             <textarea class="form-control" name="details" id="details" placeholder="Inserisci eventuali dettagli" ref="details" maxlength="2000"></textarea>
                             <span v-if="errors.details" class="text-danger">{{ errors.details[0] }}</span>
                         </div>

@@ -106,6 +106,13 @@ header {
     box-shadow: none;
 }
 
+.navbar-collapse {
+    
+    .btn {
+        border: transparent;
+    }
+}
+
 .down-menu {
     display: flex;
     flex-direction: column;

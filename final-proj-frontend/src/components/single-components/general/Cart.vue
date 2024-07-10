@@ -53,8 +53,9 @@ export default {
         <div class="card">
             <div class="card-header">
                 
-                <p  v-if="store.cartCompany !== null" >
-                    Stai acquistando presso: {{ store.cartCompany.name }}
+                <p  v-if="store.cartCompany !== null" class="d-flex flex-column">
+                    <span>Stai acquistando presso:</span>
+                    <span class="company-name">{{ store.cartCompany.name }}</span>
                 </p>
                 <p v-else>
                     Nessuna compagnia selezionata.
@@ -81,18 +82,19 @@ export default {
                     
                 </div>
                 <div class="row mb-2 text-center">
-                    <h4>Totale Ordine: {{ getTotal() }} €</h4>
+                    <p class="cart-order">Totale Ordine:</p>
+                    <p class="cart-total">{{ getTotal() }} €</p>
                 </div>
 
                 
                 <div class="card-fooder d-flex justify-content-center pe-2 pb-2 gap-3" v-if="store.cartDishes.length > 0">
-                    <RouterLink class="btn btn-outline-coral" :to="{ name: 'payment' }">
+                    <RouterLink class="btn btn-outline-blue" :to="{ name: 'payment' }">
                         Procedi al Pagamento
                     </RouterLink>
                 </div>
                 <div class="card-fooder d-flex justify-content-center pe-2 pb-2 gap-3" v-else>
-                    <p class="btn btn-outline-dark fake-pay">
-                        Procedi al Pagamento
+                    <p class="btn btn-outline-yellow fake-pay">
+                        Aggiungi qualcosa al carrello
                     </p>
                 </div>
 
@@ -155,6 +157,19 @@ export default {
             }
         }
 
+        .company-name {
+            font-size: 24px;
+        }
+        
+        .cart-order {
+            font-size: 20px;
+        }
+
+        .cart-total {
+            font-size: 36px;
+            color: $app-brand-red;
+        }
+
         .cart-trash{
             padding: 0 5px;
     
@@ -167,5 +182,7 @@ export default {
     .fake-pay{
         pointer-events: none;
         cursor: not-allowed;
+        background-color: $app-brand-yellow;
+        color: $app-brand-blue;
     }
 </style>
