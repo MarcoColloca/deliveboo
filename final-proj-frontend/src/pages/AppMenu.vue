@@ -54,6 +54,8 @@ export default {
         },
 
         addDishToCart(item) {
+            this.store.newItemIntoCart = item;
+
             // Se il carrello è vuoto aggiunto l'item al carrello ed aggiorno la compagnia
             if (this.store.cartCompany === null) {
                 this.store.cartCompany = this.store.currentCompany
@@ -82,6 +84,7 @@ export default {
             this.store.cartCompany = null;
             this.store.cartDishes = [];
             this.store.showClearCart = false;
+            this.addDishToCart(this.store.newItemIntoCart);
         },
 
         isVisible(id) {
@@ -140,56 +143,50 @@ export default {
             </div>
             <div class="d-flex">
                 <div class="container my-5">
-                    <div class="row row-gap-3 ms-1 me-5">
+                    <div class="row row-container row-gap-3">
                         <div class="col-12 px-2" v-for="dish in dishes" :key="dish.id">
-                            <div class="dish-card row g-0 row-cols-1 row-cols-sm-2" v-if="dish.visible === 1">
+                            <div class="dish-card">
+                                <div class="row g-0" v-if="dish.visible === 1">
+                                    <div class="col-12 col-lg-6 col-img">
+                                        <div class="dish-img">
+                                            <img v-if="dish.image_fullpath" :src="dish.image_fullpath"
+                                                class="my-dish-img" alt="">
+                                            <img v-else src="http://127.0.0.1:8000/storage/image/default-image.jpg"
+                                                class="my-dish-img default-img" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-lg-6">
 
-                                <div class="dish-img col">
-                                    <img v-if="dish.image_fullpath" :src="dish.image_fullpath" class="my-dish-img"
-                                        alt="">
-                                    <img v-else src="http://127.0.0.1:8000/storage/image/default-image.jpg"
-                                        class="my-dish-img" alt="">
-                                </div>
+                                        <div class="card-dish-body">
+                                            <h3 class="dish-name">{{ dish.name }}</h3>
+                                            <p class="dish-specs m-0" v-if="dish.ingredients != ''">Ingredienti: {{
+                                                dish.ingredients }}</p>
+                                            <p class="dish-specs m-0 pb-2" v-if="dish.description != ''">Descrizione: {{
+                                                dish.description }}</p>
+                                            <h4 class="dish-price m-0">{{ dish.price }} €</h4>
+                                            <h5 class="btn dish-btn btn-outline-yellow" v-if="isVisible(dish.id)"
+                                                @click="increaseQty(dish.id)">
+                                                Aggiungine un altro</h5>
+                                            <h5 class="btn dish-btn btn-outline-blue cart-link" v-else
+                                                @click="addDishToCart(dish)">Aggiungi al
+                                                carrello
+                                            </h5>
+                                        </div>
+                                    </div>
 
-                                <div class="card-dish-body">
-                                    <h3 class="text-center">{{ dish.name }}</h3>
-                                    <p class="m-0 text-start">Ingredienti:<br>{{ dish.ingredients }}</p>
-                                    <p class="m-0 text-start">Descrizione:<br>{{ dish.description ? dish.description :
-                                        '' }}</p>
-                                    <h4 class="m-0 text-danger">Prezzo:{{ dish.price }} €</h4>
-                                    <h5 class="btn dish-btn btn-outline-coral" v-if="isVisible(dish.id)"
-                                        @click="increaseQty(dish.id)">
-                                        aumenta quantità</h5>
-                                    <h5 class="btn dish-btn btn-outline-blue cart-link" v-else
-                                        @click="addDishToCart(dish)">Aggiungi al
-                                        carrello
-                                    </h5>
-                                </div>
 
-                            </div>
-                            <div class="dish-card row g-0 row-cols-1 row-cols-sm-2" v-else>
-
-                                <div class="dish-img col">
-                                    <img v-if="dish.image_fullpath" :src="dish.image_fullpath" class="my-dish-img"
-                                        alt="">
-                                    <img v-else src="http://127.0.0.1:8000/storage/image/default-image.jpg"
-                                        class="my-dish-img" alt="">
-
-                                </div>
-                                <div class="card-dish-body">
-                                    <h3 class="text-center">{{ dish.name }}</h3>
-                                    <p class="m-0 text-start">Ingredienti:{{ dish.ingredients }}</p>
-                                    <p class="m-0 text-start">Descrizione:{{ dish.description ? dish.description :
-                                        '' }}</p>
-                                    <h4 class="m-0 text-danger">Prezzo:{{ dish.price }} €</h4>
-                                    <h5 class="btn dish-btn btn-outline-danger not-available">Piatto non disponibile
-                                    </h5>
                                 </div>
                             </div>
                         </div>
 
                     </div>
-                    <div class="sidebar">
+                    <div class="sidebar d-none d-lg-block">
+                        <Cart class="card-cart" :company="this.store.cartCompany" :cartDishes="this.store.cartDishes"
+                            @remove="removeDishFromCart" @increase="increaseQty" @decrease="decreaseQty"
+                            @newPurchase="newPurchase">
+                        </Cart>
+                    </div>
+                    <div class="cart-end d-lg-none">
                         <Cart class="card-cart" :company="this.store.cartCompany" :cartDishes="this.store.cartDishes"
                             @remove="removeDishFromCart" @increase="increaseQty" @decrease="decreaseQty"
                             @newPurchase="newPurchase">
@@ -268,30 +265,22 @@ export default {
     .container {
         margin-top: 15px;
 
+        .row-container {
+            margin-right: 50px;
+            margin-left: 5px;
+        }
+
         .dish-card {
             background-color: white;
             width: 100%;
-            // height: 550px;
             box-shadow: 0 0 1.75rem grey;
             border-radius: 20px;
-            // margin-bottom: 6px;
-            // display: flex;
-            // flex-direction: column;
             justify-content: space-between;
             margin-bottom: 30px;
             border: 12px solid $app-brand-yellow;
 
-            // &:hover {
-            //     width: 320px;
-            //     height: 560px;
-            //     margin-bottom: 0;
-            // }
-
             .dish-img {
-                // width: 100%;
-                // height: 40%;
-                // flex-shrink: 0;
-                // border-radius: 15px 32px 0 2px;
+                height: 100%;
 
                 .my-dish-img {
                     height: 100%;
@@ -301,6 +290,7 @@ export default {
                     border-radius: 10px;
 
                 }
+
             }
 
             .cart-link {
@@ -311,89 +301,133 @@ export default {
 
             .card-dish-body {
                 height: 60%;
-                padding: 10px;
+                padding: 10px 30px;
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
                 color: $app-brand-blue;
+                height: 100%;
 
-                h3,
-                p {
+                .dish-name,
+                .dish-specs {
                     pointer-events: none;
                 }
 
-                h4 {
+                .dish-name {
+                    font-size: 40px;
+                }
+
+                .dish-specs {
+                    font-size: 16px;
+
+                }
+
+                .dish-price {
                     pointer-events: none;
                     cursor: default;
+                    font-size: 30px;
+                    color: $app-brand-red;
                 }
 
             }
 
             .dish-btn {
-                width: 150px;
+                width: 200px;
                 align-self: center;
-                padding: 0 10px;
+                padding: 10px;
                 margin: 10px;
             }
 
         }
 
-        .card-cart-float {
-            position: fixed;
-            top: 50%;
-            transform: translate(0, -50%);
-            right: 80px;
-        }
 
     }
+
+    .card-cart-float {
+        position: fixed;
+        top: 50%;
+        transform: translate(0, -50%);
+        right: 60px;
+        margin-left: 10px;
+        border: 12px solid $app-brand-blue;
+        border-radius: 20px;
+    }
+
+    .card-cart {
+        display: block;
+        background-color: white;
+        width: 100%;
+        box-shadow: 0 0 1.75rem grey;
+        border-radius: 20px;
+        justify-content: space-between;
+        margin-bottom: 30px;
+        border: 12px solid $app-brand-blue;
+    }
+
 }
 
 // MEDIA QUERY
 
 @media (min-width: 576px) {
 
-    .menu-page {
-        .container {
-            display: block;
+    .col-img {
+        max-height: 370px;
+    }
 
+    .cart-container {
+
+        .card-cart-float {
+            right: 100px;
         }
+    }
+
+}
+
+@media (min-width: 768px) {
+    .menu-page {
+
+        .container {
+
+            .row-container {
+                margin-right: 100px;
+                // margin-left: 5px;
+            }
+        }
+    }
+}
+
+
+@media (min-width: 992px) {
+
+    .menu-page {
+
+        .container {
+
+            display: flex;
+
+            .row-container {
+                margin-right: 20px;
+
+            }
+        }
+    }
+
+    .dish-card {
+
+        .row {
+            height: 350px;
+        }
+
+        [class^="col"] {
+            height: 100%;
+        }
+
     }
 
     .row {
         width: 100%;
         display: flex;
         margin: auto;
-    }
-
-    .row-cols-sm-2 .col {
-        width: 45%;
-    }
-
-    .card-cart {
-        
-        position: sticky;
-        top: 30%;
-        transform: translate(0, 0);
-
-    }
-
-}
-
-@media (min-width: 768px) {
-
-    .menu-page {
-        .container {
-            display: flex;
-
-        }
-    }
-
-    .row {
-        width: 70%;
-    }
-
-    .sidebar {
-        width: 50%;
     }
 
     .card-cart-float {
@@ -404,23 +438,18 @@ export default {
         display: none;
     }
 
+    .menu-page {
 
-}
+        .sidebar {
+            display: block;
+            width: 50%;
 
-@media (min-width: 992px) {
-    .row {
-        width: 70%;
+            .card-cart {
+                position: sticky;
+                top: 30%;
+                transform: translate(0, 0);
 
-    }
-
-    .sidebar {
-        width: 30%;
-
-        .card-cart {
-
-            position: sticky;
-            top: 30%;
-
+            }
         }
     }
 
