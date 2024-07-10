@@ -10,6 +10,7 @@
 
 <template>
     <a class="back-top-button" href="#top">
+    
         <font-awesome-icon :icon="['fas', 'arrow-up-long']" />
     </a>
 </template>
@@ -21,17 +22,17 @@
     @use '../../../assets/style/partials/variables.scss' as *;
 
     .back-top-button{
-        position: absolute;
-        right: 20px;
-        bottom: 20px;
-        background-color: $app-orange;
-        color: $app-white;
+        // position: absolute;
+        // right: 20px;
+        // bottom: 20px;
+        background-color: $app-brand-yellow;
+        color: white;
         width: 50px;
         aspect-ratio: 1/1;
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 32px;
+        font-size: 30px;
         border-radius: 50%;
     }
 </style>

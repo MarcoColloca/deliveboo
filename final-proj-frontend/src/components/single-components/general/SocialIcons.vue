@@ -47,7 +47,8 @@
         gap: 15px;
         font-size: 18px;    
         justify-content: flex-end;
-        color: rgb(78, 78, 78);
+        // color: rgb(78, 78, 78);
+        color:white;
         a{
             padding: 5px;
             &:hover{

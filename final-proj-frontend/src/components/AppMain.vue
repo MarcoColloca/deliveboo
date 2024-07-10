@@ -27,7 +27,7 @@ export default {
 
 <style lang="scss" scoped>
 main{
-    background-image: url(/imgs/sfondo-down.png);
+    // background-image: url(/imgs/sfondo-down.png);
     background-size: cover;
     
 }

@@ -206,8 +206,8 @@ export default {
 .search-container {
     height: 100%;
     display: flex;
-    background-image: url(/imgs/sfondo-down.png);
-    background-size: cover;
+    // background-image: url(/imgs/sfondo-down.png);
+    // background-size: cover;
     margin-top: 30px;
 
     .sidebar {
@@ -264,7 +264,7 @@ export default {
         text-align: center;
         flex-grow: 1;
         background-color: $app-brand-yellow;
-        padding-top:30px;
+        padding:60px 0;
         color: black;
         display: flex;
 

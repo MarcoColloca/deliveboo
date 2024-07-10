@@ -69,8 +69,9 @@ export default {
             </div>
         </div>
         <div class="my-container" v-if="!this.store.advancedSearchVisibility">
-    
-            <div class="scrollmenu">
+            <div class="scroll-container py-4">
+
+            <div class="scrollmenu mx-3">
                 <div v-for="type in types" :key="type.slug" class="col type-col">
                     <div class="type-card">
                         <img :src="`/imgs/${type.slug}.png`" class="type-img" alt="">
@@ -79,74 +80,83 @@ export default {
                     </div>
                 </div>
             </div>
+            </div>
            
+            
+            <div class="customer-ex mt-4">
+                <div class="row row-gap-3 justify-content-center row-cols-1 row-cols-md-2 row-cols-lg-3">
+                    <div class="c">
+                        <div class="ex-card">
+    
+                            <img src="/imgs/choose.png" class="home-card-imgs" alt="">
+                            <p class="customer-text">Scegli cosa vuoi mangiare</p>
+                        </div>
+                
+                    </div>
+                    <div class="col">
+                        <div class="ex-card">
+    
+                            <img src="/imgs/pay.png" class="home-card-imgs" alt="">
+                            <p class="customer-text">Completa il pagamento</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col">
+                        <div class="ex-card">
+    
+                            <img src="/imgs/rider.png" class="home-card-imgs" alt="">
+                            <p class="customer-text">Ricevi dove vuoi<br>il tuo cibo preferito!</p>
+                        </div>
+                     </div>
+    
+                </div>
+            </div>
+            <div class="rider-map mt-4">
+                <div class="row row-gap-2 justify-content-center row-cols-1 row-cols-md-2">
+                    <div class="col rider-col">
+                        <div class="rider-box h-100 d-flex flex-column justify-content-around">
+    
+                            <p class="customer-text">Segui i tuoi ordini</p>
+                            <p class="customer-sub-text" >Con la nostra App puoi vedere il tuo ordine dal momento del ritiro per essere aggiornato sulla consegna</p>
+                        </div>
+                    </div>
+                    <div class="col rider-col">
+                        <div class="rider-box h-100 d-flex flex-column justify-content-around">
+                             <img src="/imgs/rider.gif" class="" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="became-partner">
+                <div class="container">
+    
+                    <div class="row">
+                        <div class="col">
+                             <img src="/imgs/partner.png" class="home-card-imgs" alt="">
+                            
+                        </div>
+                        <div class="col">
+                            <div class="text-box h-100 d-flex flex-column align-center justify-content-around">
+                                <h3 class="customer-text">Diventa partner <br>di Fooder</h3>
+                                <p class="customer-sub-text">Diventa nostro partner e cresci con Fooder! <br> Grazie alla nostra applicazione raggiungi più clienti e gestiamo noi la consegna, così puoi dedicarti solo alla cura dei tuoi piatti. </p>
+                               <p class="text-center">
+        
+                                   <a class="btn-partner" href="http://127.0.0.1:8000/register">Diventa Partner</a>
+                               </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         
         <div v-else>
             <AppAdvancedSearch :slug="slug"></AppAdvancedSearch>
         </div>
-        <div class="customer-ex mt-4">
-            <div class="row row-gap-3 justify-content-center row-cols-1 row-cols-md-2 row-cols-lg-3">
-                <div class="c">
-                    <div class="ex-card">
+       
 
-                        <img src="/imgs/choose.png" class="home-card-imgs" alt="">
-                        <p class="customer-text">Scegli cosa vuoi mangiare</p>
-                    </div>
-            
-                </div>
-                <div class="col">
-                    <div class="ex-card">
-
-                        <img src="/imgs/pay.png" class="home-card-imgs" alt="">
-                        <p class="customer-text">Completa il pagamento</p>
-                    </div>
-                </div>
-                
-                <div class="col">
-                    <div class="ex-card">
-
-                        <img src="/imgs/rider.png" class="home-card-imgs" alt="">
-                        <p class="customer-text">Ricevi dove vuoi<br>il tuo cibo preferito!</p>
-                    </div>
-                 </div>
-
-            </div>
-        </div>
-        <div class="rider-map mt-4 mb-4">
-            <div class="row row-gap-2 justify-content-center row-cols-1 row-cols-md-2">
-                <div class="col rider-col">
-                    <div class="text-box h-100 d-flex flex-column justify-content-around">
-
-                        <p class="customer-text">Segui i tuoi ordini</p>
-                        <p class="customer-sub-text" >Con la nostra App puoi vedere il tuo ordine dal momento del ritiro per essere aggiornato sulla consegna</p>
-                    </div>
-                </div>
-                <div class="col rider-col">
-                 
-                    <img src="/imgs/rider.gif" class="" alt="">
-                </div>
-            </div>
-        </div>
-
-        <div class="became-partner container">
-            <div class="row">
-                <div class="col">
-                     <img src="/imgs/partner.png" class="home-card-imgs" alt="">
-                    
-                </div>
-                <div class="col">
-                    <div class="text-box h-100 d-flex flex-column align-center justify-content-around">
-                        <h3 class="customer-text">Diventa partner <br>di Fooder</h3>
-                        <p class="customer-sub-text">Diventa nostro partner e cresci con Fooder! <br> Grazie alla nostra applicazione raggiungi più clienti e gestiamo noi la consegna, così puoi dedicarti solo alla cura dei tuoi piatti. </p>
-                       <p class="text-center">
-
-                           <a class="btn-partner" href="http://127.0.0.1:8000/register">Diventa Partner</a>
-                       </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+       
 
     </section>
 </template>
@@ -155,10 +165,19 @@ export default {
 <style lang="scss" scoped>
 @use '../assets/style/partials/variables' as*;
 
+
+.scroll-container{
+    width: 95%;
+    margin: 50px auto;
+}
 .hero {
     background-image: url(/imgs/sfondo.png);
     background-size: cover;
 
+}
+.became-partner{
+    padding: 50px;
+    background-color: $app-brand-yellow;
 }
 .customer-sub-text{
     font-size:22px;
@@ -173,14 +192,16 @@ export default {
         font-size:32px;
     }
     .rider-map{
-    // width:90%;
-    // margin:auto;
+     width:100%;
+    background-color: $app-brand-blue;
     padding: 30px 15px;
    
-    background-color: white;
+  
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     .rider-col{
         width: 40%;
+        display: flex;
+        justify-content: center;
        
     }
     }
@@ -235,8 +256,9 @@ ul {
     align-items: center;
 }
 .my-container{
-    width:90%;
-    margin: 50px auto;
+    width:100%;
+    margin-top:50px;
+   
 }
 .scrollmenu{
     overflow: auto;
@@ -307,6 +329,13 @@ ul {
     .btn {
         margin: 0;
     }
+}
+.rider-box{
+ background-color: white;
+ width: 90%;
+ padding: 20px;
+ border-radius: 24px;
+ box-shadow: 0 0 1.5rem black;
 }
 
 ::-webkit-scrollbar {
