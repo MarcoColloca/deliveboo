@@ -408,6 +408,9 @@ export default {
 
         .container {
 
+            margin: 0;
+            max-width: 100%;
+
             .row-container {
                 margin-right: 100px;
 
