@@ -61,6 +61,7 @@ Route::middleware(['auth', 'verified'])
     Route::delete('/dishes/{dish}/forceDelete', [DishController::class,'forceDestroy'])->name('dishes.forceDestroy');
     Route::patch('/dishes/{dish}/restore', [DishController::class, 'restore'])->name('dishes.restore');
     Route::resource('statistics', StatisticsController::class);
+    Route::get('bar-chart', [StatisticsController::class, 'getTotalOrderCost']);
 });
 
 

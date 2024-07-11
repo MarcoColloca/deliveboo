@@ -15,9 +15,9 @@ class DashboardController extends Controller
 
         $user_name = Auth::user()->name;
 
-        $companies = Company::where('user_id', $user_id)->get();
+        $companies = Company::with('dishes')->where('user_id', $user_id)->get();
 
-
+        
         return view('admin.dashboard', compact('companies', 'user_name'));
     }
 }
