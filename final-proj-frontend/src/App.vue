@@ -3,6 +3,8 @@
   import AppFooter from './components/AppFooter.vue';
   import AppMain from './components/AppMain.vue';
   import { RouterView } from 'vue-router';
+  import {watch} from 'vue';
+  import {store, initializeStore} from './store.js'
 
   export default{
     components:{
@@ -14,6 +16,12 @@
     data(){
       return{
         test: 'Hello!',
+      }
+    },
+    created(){
+      initializeStore(watch);
+      return {
+        store
       }
     }
   }
