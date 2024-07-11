@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Company;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class StatisticsController extends Controller
 {
@@ -16,7 +17,7 @@ class StatisticsController extends Controller
         return view('admin.statistics.index', compact('companies'));
     }
 
-    public function getTotalOrderCost(Request $request)
+    public function barChartRevenueAndOrderNumber(Request $request)
     {
         //Recupero dei parametri che servono
         $companyId = $request->input('company');
@@ -117,4 +118,34 @@ class StatisticsController extends Controller
 
 
     }
+
+    public function totalRevenueTotalOrders(Request $request)
+    {
+        $userId = Auth::id();
+        $userCompanies = Company::where('user_id', $userId)->pluck('id');
+
+        $companyData = [];
+
+        foreach ($userCompanies as $companyId) {
+            $company = Company::find($companyId);
+
+            $orders = Order::whereHas('dishes', function ($query) use ($companyId) {
+                $query->where('company_id', $companyId);
+            })->get();
+
+            $totalRevenue = $orders->sum('total');
+            $totalOrders = $orders->count();
+
+            $companyData[] = [
+                'company_id' => $company->id,
+                'company_name' => $company->name,
+                'total_revenue' => $totalRevenue,
+                'total_orders' => $totalOrders,
+            ];
+        }
+
+        return response()->json(['companyData' => $companyData]);
+    }
+
+
 }
