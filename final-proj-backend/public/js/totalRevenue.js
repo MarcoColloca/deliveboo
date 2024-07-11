@@ -28,6 +28,7 @@ function totalRevenue() {
                 data: {
                     labels: labels,
                     datasets: [{
+                        label: 'Guadagni (€)',
                         data: dataValues,
                         backgroundColor: backgroundColors
                     }]

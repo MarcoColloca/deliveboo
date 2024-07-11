@@ -27,7 +27,7 @@ function barChart() {
                     labels: labels,
                     datasets: [
                         {
-                            label: 'Guadagni',
+                            label: 'Guadagni (€)',
                             data: totalOrders,
                             backgroundColor: 'rgb(252, 183, 33, 0.6)',
                             yAxisID: 'y',
