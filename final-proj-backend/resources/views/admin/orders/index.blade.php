@@ -16,7 +16,8 @@
             <div class="col-12">
                 @foreach ($companies as $company)
                     @php
-                        $orders = $companyOrders[$company->name] ?? collect();
+                        $ordersGroups = $companyOrders[$company->name] ?? collect();
+                        $currentOrders = $ordersGroups[$currentChunkIndex] ?? collect();
                     @endphp
                     <div class="d-flex justify-content-between align-items-end mt-5 mb-1">
                         <h3 class="text-blue">
@@ -41,12 +42,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if ($orders->isEmpty())
+                            @if ($currentOrders->isEmpty())
                                 <tr>
                                     <td colspan="7" class="text-center">Nessun ordine per questa compagnia.</td>
                                 </tr>
                             @else
-                                @foreach ($orders as $order)
+                                @foreach ($currentOrders as $order)
                                     <tr class="position-relative">
                                         <td class="text-start fw-lighter">{{ $order->customer_name }}</td>
                                         <td class="text-start fw-lighter">{{ $order->customer_address }}</td>
@@ -62,6 +63,19 @@
                             @endif
                         </tbody>
                     </table>
+                    @if($ordersGroups->count() > 0)
+                        <div class="d-flex justify-content-between">
+                            @if ($currentChunkIndex > 0)
+                                <a href="{{ request()->fullUrlWithQuery(['chunk' => $currentChunkIndex - 1]) }}" class="btn btn-link text-white">Indietro</a>
+                            @else
+                                <span></span>
+                            @endif
+
+                            @if ($currentChunkIndex < $ordersGroups->count() - 1)
+                                <a href="{{ request()->fullUrlWithQuery(['chunk' => $currentChunkIndex + 1]) }}" class="btn btn-link text-white">Avanti</a>
+                            @endif
+                        </div>
+                    @endif
                 @endforeach
             </div>
         </div>
