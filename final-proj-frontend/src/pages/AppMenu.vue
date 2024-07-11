@@ -79,6 +79,7 @@ export default {
             // Se il carrello contiene piatti di un'altra compagnia, faccio altro.
             else {
                 this.store.showClearCart = true;
+                this.store.clearCartMessage = `Stai acquistando dalla compagnia "${this.store.cartCompany.name}". Non puoi aggiungere piatti da questa compagnia. Vuoi svuotare il carrello e comprare da un\'altra compagnia?`;
             }
         },
 
@@ -86,8 +87,10 @@ export default {
             this.store.cartCompany = null;
             this.store.cartDishes = [];
             this.store.showClearCart = false;
-            this.addDishToCart(this.store.newItemIntoCart);
-            this.addDishToCart(this.store.newItemIntoCart);
+            if(this.store.newItemIntoCart){
+                this.addDishToCart(this.store.newItemIntoCart);
+            }
+            this.store.newItemIntoCart = null;
         },
 
         isVisible(id) {
@@ -207,6 +210,7 @@ export default {
                         <div v-show="store.showCart">
                             <Cart :company="this.store.cartCompany" :cartDishes="this.store.cartDishes"
                                 @remove="removeDishFromCart" @increase="increaseQty" @decrease="decreaseQty"
+                                @newPurchase="newPurchase"
                                 class="card-cart-float">
                             </Cart>
                         </div>

@@ -41,6 +41,12 @@ export default {
             return sum
         },
 
+        ereaseAllDishFromCart(){
+            this.store.showClearCart = true;
+            this.store.clearCartMessage = 'Vuoi davvero svuotare il carrello?';
+
+        },
+
         hideClearCart() {
             this.store.showClearCart = false;
         },
@@ -93,6 +99,7 @@ export default {
                     <RouterLink class="btn btn-outline-blue" :to="{ name: 'payment' }">
                         Procedi al Pagamento
                     </RouterLink>
+                    <span class="btn btn-outline-danger" @click="ereaseAllDishFromCart">Svuota</span>
                 </div>
                 <div class="card-fooder d-flex justify-content-center pe-2 pb-2 gap-3" v-else>
                     <p class="btn btn-outline-yellow fake-pay">
@@ -103,12 +110,12 @@ export default {
 
                 <div class="my-cart-alert" v-show="store.showClearCart === true">
                     <p>
-                        Non puoi aggiungere piatti da un altro ristorante.
-                        Vuoi svuotare il carrello e comprare da un altro ristorante?
+                        {{ store.clearCartMessage }}
                     </p>
                     <h5>
                         <span class="my-cart-alert__yes" @click="$emit('newPurchase')">Sì</span> <span
-                            class="my-cart-alert__no" @click="hideClearCart">No</span>
+                            class="my-cart-alert__no" @click="hideClearCart">No
+                        </span>
                     </h5>
                 </div>
             </div>
@@ -125,8 +132,10 @@ export default {
     top: 0;
     left: 0;
     height: 100%;
-    background-color: $app-brand-blue;
-    color: white;
+    width: 101%;
+    margin-left: -1px;
+    background-color: white;
+    color: $app-brand-blue;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
