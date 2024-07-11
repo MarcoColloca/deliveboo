@@ -28,6 +28,7 @@ function totalOrders() {
                 data: {
                     labels: labels,
                     datasets: [{
+                        label: 'Numero ordini',
                         data: dataValues,
                         backgroundColor: backgroundColors
                     }]
