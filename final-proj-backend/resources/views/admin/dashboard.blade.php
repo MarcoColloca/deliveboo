@@ -29,7 +29,7 @@
                                         <img src="{{  asset('storage/image/default-company.jpg') }} " class="card-img-top h-100 object-fit-cover" alt="...">      
                                         @endif
                                     </div>
-                                    <div class="card-body text-blue">
+                                    <div class="card-body text-blue position-relative">
                                         <h5 class="card-title">
                                             <a href="{{route('admin.dishes.showOne', $company->id)}}">
                                                 {{$company->name}}
@@ -39,6 +39,7 @@
                                             {{$company->address}}
                                         </p>
                                     </div>
+                                    <p class="text-end me-3"> <i class="fa-solid fa-utensils me-1"></i><span> {{count($company->dishes)}} </span></p>
                                 </div>
                             </div>
                         @endforeach
