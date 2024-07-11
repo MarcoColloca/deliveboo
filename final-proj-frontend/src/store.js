@@ -10,7 +10,8 @@ export const store = reactive({
     currentCompany: null,
     showClearCart: false,
     clearCartMessage: '',
-    newItemIntoCart: null
+    newItemIntoCart: null,
+    clearAllCart: false,
 })
 
 // Recupero i dati dal localStorage al caricamento della pagina
