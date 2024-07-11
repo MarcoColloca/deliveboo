@@ -8,7 +8,7 @@
 @endphp
 
 <section class="my-3 py-1">
-    <div class="container">
+    <div class="container container-transparent p-4 rounded-4">
        
             <h2 class="text-center text-white mt-3">
                 Tutti i Tuoi Ordini
