@@ -8,12 +8,12 @@
 @endphp
 
 <section class="my-3 py-1">
-    <div class="container">
-        <div class="row">
+    <div class="container container-transparent p-4 rounded-4">
+       
             <h2 class="text-center text-white mt-3">
                 Tutti i Tuoi Ordini
             </h2>
-            <div class="col-12">
+            <div class="container">
                 @foreach ($companies as $company)
                     @php
                         $ordersGroups = $companyOrders[$company->name] ?? collect();
@@ -29,7 +29,7 @@
                         </h3>
                     </div>
                     
-                    <table class="table">
+                    <table class="table w-100 d-block d-md-table scroll-table">
                         <thead>
                             <tr>
                                 <th scope="col">Nome Cliente</th>
@@ -78,7 +78,7 @@
                     @endif
                 @endforeach
             </div>
-        </div>
+        
     </div>
 </section>
 @endsection
