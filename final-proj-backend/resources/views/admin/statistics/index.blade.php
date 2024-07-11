@@ -4,9 +4,30 @@
 
 @section('content')
 <section>
-
-
     <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <h1 class="text-blue">Ordini</h1>
+                <p class="text-blue">Ordini totali nell'ultimo anno dei tuoi ristoranti</p>
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <canvas id="pieChartOrder" height="400"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <h1 class="text-blue">Fatturato</h1>
+                <p class="text-blue">Fatturato totale nell'ultimo anno dei tuoi ristoranti</p>
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <canvas id="pieChartRevenue" height="400"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5 mb-5">
         <x-filters :companies="$companies" />
         <div class="card mt-3">
             <div class="card-body">
@@ -15,85 +36,12 @@
         </div>
     </div>
 
-    <script>
-        let chart;
 
-        function getData() {
-            $.ajax({
-                url: '/admin/bar-chart',
-                method: 'GET',
-                dataType: 'json',
-                data: {
-                    'company': $("#company").val(),
-                    'from': $("#from").val(),
-                    'to': $("#to").val(),
-                },
-                success: function (data) {
-                    const companyData = data.companyData;
-                    const labels = companyData.map(item => item.period);
-                    const totalOrders = companyData.map(item => item.total_orders);
-                    const orderCounts = companyData.map(item => item.order_count);
-
-                    const ctx = document.getElementById('barChart').getContext('2d');
-
-                    if (chart) {
-                        chart.destroy();
-                    }
-
-                    chart = new Chart(ctx, {
-                        type: 'bar',
-                        data: {
-                            labels: labels,
-                            datasets: [
-                                {
-                                    label: 'Guadagni',
-                                    data: totalOrders,
-                                    backgroundColor: 'rgb(252, 183, 33)',
-                                    yAxisID: 'y',
-                                },
-                                {
-                                    label: 'Numero ordini',
-                                    data: orderCounts,
-                                    backgroundColor: 'rgb(24, 71, 93)',
-                                    yAxisID: 'y1'
-                                }
-                            ]
-                        },
-                        options: {
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            scales: {
-                                y: {
-                                    beginAtZero: true,
-                                    position: 'left',
-                                    title: {
-                                        display: true,
-                                        text: 'Euro €'
-                                    }
-                                },
-                                y1: {
-                                    beginAtZero: true,
-                                    position: 'right',
-                                    title: {
-                                        display: true,
-                                        text: 'Numero ordini'
-                                    },
-                                    grid: {
-                                        drawOnChartArea: false,
-                                    },
-                                }
-
-                            }
-                        }
-                    });
-                },
-
-            });
-        }
-        $(document).ready(function () {
-            getData();
-        });
-    </script>
+    <script src="{{ asset('js/barChart.js') }}"></script>
+    <script src="{{ asset('js/functionReady.js') }}"></script>
+    <script src="{{ asset('js/randomColor.js') }}"></script>
+    <script src="{{ asset('js/totalOrders.js') }}"></script>
+    <script src="{{ asset('js/totalRevenue.js') }}"></script>
 
 </section>
 
