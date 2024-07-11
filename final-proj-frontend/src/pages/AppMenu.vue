@@ -56,8 +56,6 @@ export default {
         addDishToCart(item) {
             this.store.newItemIntoCart = item;
 
-            this.store.newItemIntoCart = item;
-
             // Se il carrello è vuoto aggiunto l'item al carrello ed aggiorno la compagnia
             if (this.store.cartCompany === null) {
                 this.store.cartCompany = this.store.currentCompany
@@ -84,13 +82,17 @@ export default {
         },
 
         newPurchase() {
-            this.store.cartCompany = null;
-            this.store.cartDishes = [];
-            this.store.showClearCart = false;
-            if(this.store.newItemIntoCart){
+            if(this.store.clearAllCart === true){
+                this.store.cartCompany = null;
+                this.store.cartDishes = [];
+                this.store.showClearCart = false;
+                this.store.clearAllCart = false;
+            }else{
+                this.store.cartCompany = null;
+                this.store.cartDishes = [];
+                this.store.showClearCart = false;
                 this.addDishToCart(this.store.newItemIntoCart);
             }
-            this.store.newItemIntoCart = null;
         },
 
         isVisible(id) {

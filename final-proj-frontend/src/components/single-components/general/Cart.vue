@@ -43,12 +43,14 @@ export default {
 
         ereaseAllDishFromCart(){
             this.store.showClearCart = true;
+            this.store.clearAllCart = true;
             this.store.clearCartMessage = 'Vuoi davvero svuotare il carrello?';
 
         },
 
         hideClearCart() {
             this.store.showClearCart = false;
+            this.store.clearAllCart = false;
         },
     }
 }
