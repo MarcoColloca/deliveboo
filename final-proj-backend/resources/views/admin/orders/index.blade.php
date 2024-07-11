@@ -43,7 +43,7 @@
                         <tbody>
                             @if ($orders->isEmpty())
                                 <tr>
-                                    <td colspan="6" class="text-center">Nessun ordine per questa compagnia.</td>
+                                    <td colspan="7" class="text-center">Nessun ordine per questa compagnia.</td>
                                 </tr>
                             @else
                                 @foreach ($orders as $order)

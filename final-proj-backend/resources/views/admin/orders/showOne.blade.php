@@ -127,7 +127,9 @@
                             <td class="text-center fw-lighter">${order.total} €</td>
                             <td class="text-center fw-lighter">${formattedDate}</td>
                             <td class="text-center">
-                                <a href="{{ route('admin.orders.show', $order) }}" class="link link-success">Dettagli</a>
+                                @if(isSet($order))                                
+                                    <a href="{{ route('admin.orders.show', $order) }}" class="link link-success"><i class="fa-regular fa-eye"></i></a>
+                                @endif
                             </td>
                         </tr>
                     `;
