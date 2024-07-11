@@ -1,4 +1,5 @@
 <script>
+
     export default {
         data(){
             return{
@@ -30,7 +31,7 @@
 
 
 <template>
-    <ul class="social-icons-box">
+    <ul class="ps-0 social-icons-box">
         <li v-for="icon in socialIcons">
            <a :href="icon.href" target="_blank">
                 <font-awesome-icon :icon="['fab', `${icon.name}`]" />
@@ -42,6 +43,8 @@
 
 
 <style lang="scss" scoped>
+@use '../../../assets/style/partials/variables'as *;
+
     .social-icons-box{
         display: flex;
         gap: 15px;
@@ -52,7 +55,7 @@
         a{
             padding: 5px;
             &:hover{
-                color: black;
+                color: $app-brand-yellow;
             }
         }
     }

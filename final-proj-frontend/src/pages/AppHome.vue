@@ -85,7 +85,7 @@ export default {
             
             <div class="customer-ex mt-4">
                 <div class="row row-gap-3 justify-content-center row-cols-1 row-cols-md-2 row-cols-lg-3">
-                    <div class="c">
+                    <div class="col d-flex justify-content-center">
                         <div class="ex-card">
     
                             <img src="/imgs/choose.png" class="home-card-imgs" alt="">
@@ -93,7 +93,7 @@ export default {
                         </div>
                 
                     </div>
-                    <div class="col">
+                    <div class="col d-flex justify-content-center">
                         <div class="ex-card">
     
                             <img src="/imgs/pay.png" class="home-card-imgs" alt="">
@@ -101,7 +101,7 @@ export default {
                         </div>
                     </div>
                     
-                    <div class="col">
+                    <div class="col d-flex justify-content-center">
                         <div class="ex-card">
     
                             <img src="/imgs/rider.png" class="home-card-imgs" alt="">
@@ -112,17 +112,20 @@ export default {
                 </div>
             </div>
             <div class="rider-map mt-4">
-                <div class="row row-gap-2 justify-content-center row-cols-1 row-cols-md-2">
-                    <div class="col rider-col">
-                        <div class="rider-box h-100 d-flex flex-column justify-content-around">
-    
-                            <p class="customer-text">Segui i tuoi ordini</p>
-                            <p class="customer-sub-text" >Con la nostra App puoi vedere il tuo ordine dal momento del ritiro per essere aggiornato sulla consegna</p>
+                <div class="container">
+
+                    <div class="row row-gap-3 justify-content-center row-cols-1 row-cols-md-2">
+                        <div class="col d-flex justify-content-center">
+                            <div class="text-box h-100 d-flex flex-column justify-content-center">
+        
+                                <p class="text-white text-center fs-1 ">Segui i tuoi ordini</p>
+                                <p class="text-white text-center fs-4 " >Con la nostra App puoi vedere il tuo ordine dal momento del ritiro per essere aggiornato sulla consegna</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col rider-col">
-                        <div class="rider-box h-100 d-flex flex-column justify-content-around">
-                             <img src="/imgs/rider.gif" class="" alt="">
+                        <div class="col d-flex justify-content-center">
+                            <div class="rider-card">
+                                 <img src="/imgs/rider.gif" class="" alt="">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -131,18 +134,20 @@ export default {
             <div class="became-partner">
                 <div class="container">
     
-                    <div class="row">
+                    <div class="row row-gap-3 justify-content-between row-cols-1 row-cols-md-2">
                         <div class="col">
-                             <img src="/imgs/partner.png" class="home-card-imgs" alt="">
+                            <div class="partner-card px-3">
+                                <img src="/imgs/partner.png" class="home-card-imgs" alt="">
+                            </div>
                             
                         </div>
                         <div class="col">
-                            <div class="text-box h-100 d-flex flex-column align-center justify-content-around">
+                            <div class="text-box px-3 h-100 d-flex flex-column align-items-between justify-content-around">
                                 <h3 class="customer-text">Diventa partner <br>di Fooder</h3>
                                 <p class="customer-sub-text">Diventa nostro partner e cresci con Fooder! <br> Grazie alla nostra applicazione raggiungi più clienti e gestiamo noi la consegna, così puoi dedicarti solo alla cura dei tuoi piatti. </p>
-                               <p class="text-center">
+                               <p class="text-center mt-3">
         
-                                   <a class="btn-partner" href="http://127.0.0.1:8000/register">Diventa Partner</a>
+                                   <a class="btn-partner mt-2" href="http://127.0.0.1:8000/register">Diventa Partner</a>
                                </p>
                             </div>
                         </div>
@@ -199,14 +204,14 @@ export default {
   
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     .rider-col{
-        width: 40%;
+        width: 100%;
         display: flex;
         justify-content: center;
        
     }
     }
     .home-card-imgs{
-        width:80%;
+        width:100%;
         border-radius:15px;
         box-shadow: 0 1px 10px rgb(94, 53, 0)
     }
@@ -222,7 +227,7 @@ export default {
     backdrop-filter: blur(5px);
 
     .ex-card{
-        // width: calc(100%/3);
+        width:90%;
         display:flex;
         flex-direction:column;
         align-items: center;
@@ -330,13 +335,30 @@ ul {
         margin: 0;
     }
 }
-.rider-box{
- background-color: white;
- width: 90%;
- padding: 20px;
- border-radius: 24px;
- box-shadow: 0 0 1.5rem black;
+// .rider-box{
+//  background-color: white;
+//  width: 90%;
+// //  padding: 20px;
+//  border-radius: 24px;
+//  box-shadow: 0 0 1.5rem black;
+// }
+.partner-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 }
+.rider-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    border-radius: 22px;
+    box-shadow: 0 0 1.5rem black;
+    width: 90%;
+}
+
 
 ::-webkit-scrollbar {
     height: 10px;
