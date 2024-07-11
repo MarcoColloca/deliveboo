@@ -386,6 +386,14 @@ export default {
 
 @media (min-width: 576px) {
 
+    .menu-page {
+
+        .container {
+            margin: 0;
+            max-width: 100%;
+        }
+    }
+
     .col-img {
         max-height: 370px;
     }
@@ -407,9 +415,6 @@ export default {
     .menu-page {
 
         .container {
-
-            margin: 0;
-            max-width: 100%;
 
             .row-container {
                 margin-right: 100px;
@@ -445,6 +450,8 @@ export default {
         .container {
 
             display: flex;
+            margin: auto;
+            max-width: 960px;
 
             .row-container {
                 margin-right: 20px;
@@ -514,5 +521,14 @@ export default {
         }
     }
 
+}
+
+@media (min-width: 1200px) {
+    .menu-page {
+
+        .container {
+            max-width: 1140px;
+        }
+    }
 }
 </style>
