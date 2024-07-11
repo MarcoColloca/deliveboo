@@ -37,7 +37,6 @@ export default {
             </span>
             <span v-if="this.cartDishes.length > 0" class="red-point">
                 <font-awesome-icon :icon="['fas', 'circle']" />
-                <font-awesome-icon :icon="['fas', 'circle']" />
             </span>
         </div>
     </div>
