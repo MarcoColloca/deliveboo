@@ -16,7 +16,7 @@ export const store = reactive({
 const savedCartDishes = localStorage.getItem('cartDishes')
 const savedCartCompany = localStorage.getItem('cartCompany')
 
-if (savedCartDishes) {
+    if (savedCartDishes) {
     store.cartDishes = JSON.parse(savedCartDishes)
   }
   
@@ -25,20 +25,20 @@ if (savedCartDishes) {
   }
   
   // Funzione per inizializzare i watcher
-  export function initializeStore(watch) {
+export function initializeStore(watch) {
     // Watch per salvare i dati quando cambiano
     watch(
-      () => store.cartDishes,
-      (newCartDishes) => {
+    () => store.cartDishes,
+    (newCartDishes) => {
         localStorage.setItem('cartDishes', JSON.stringify(newCartDishes))
-      },
-      { deep: true }
+    },
+    { deep: true }
     )
-  
+
     watch(
-      () => store.cartCompany,
-      (newCartCompany) => {
+    () => store.cartCompany,
+    (newCartCompany) => {
         localStorage.setItem('cartCompany', JSON.stringify(newCartCompany))
-      }
+    }
     )
 }
