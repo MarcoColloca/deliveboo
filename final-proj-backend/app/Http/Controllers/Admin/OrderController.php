@@ -14,17 +14,17 @@ class OrderController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         // Recupero l'utente autenticato
         $user = auth()->user();
-        
+    
         // Recupero tutte le compagnie associate all'utente autenticato
         $companies = Company::where('user_id', $user->id)->get();
     
         // Recupero gli ID delle compagnie
         $companyIds = $companies->pluck('id');
-        
+    
         // Recupero gli ID dei piatti appartenenti alle compagnie dell'utente
         $dishIds = Dish::whereIn('company_id', $companyIds)->pluck('id');
     
@@ -55,9 +55,23 @@ class OrderController extends Controller
             return $order->dishes->first()->company->name;
         });
     
+        // Suddivido ogni gruppo di ordini in sottogruppi di massimo 10 ordini ciascuno
+        $groupedCompanyOrders = $companyOrders->map(function ($orders) {
+            return $orders->chunk(10);
+        });
+    
+        // Ottengo l'indice del chunk corrente dalle query string
+        $currentChunkIndex = $request->input('chunk', 0);
+    
         // Ritorno le compagnie e gli ordini alla vista
-        return view('admin.orders.index', compact('companies', 'companyOrders'));
+        return view('admin.orders.index', [
+            'companies' => $companies,
+            'companyOrders' => $groupedCompanyOrders,
+            'currentChunkIndex' => $currentChunkIndex,
+        ]);
     }
+    
+    
     
     
 
