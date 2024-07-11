@@ -16,15 +16,15 @@ export const store = reactive({
 const savedCartDishes = localStorage.getItem('cartDishes')
 const savedCartCompany = localStorage.getItem('cartCompany')
 
-    if (savedCartDishes) {
-    store.cartDishes = JSON.parse(savedCartDishes)
-  }
+if (savedCartDishes) {
+store.cartDishes = JSON.parse(savedCartDishes)
+}
+
+if (savedCartCompany) {
+store.cartCompany = JSON.parse(savedCartCompany)
+}
   
-  if (savedCartCompany) {
-    store.cartCompany = JSON.parse(savedCartCompany)
-  }
-  
-  // Funzione per inizializzare i watcher
+// Funzione per inizializzare i watcher
 export function initializeStore(watch) {
     // Watch per salvare i dati quando cambiano
     watch(
