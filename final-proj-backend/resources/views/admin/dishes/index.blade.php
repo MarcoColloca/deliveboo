@@ -9,18 +9,29 @@
 @endphp
 
 <section class="my-3 py-1">
-    <div class="container">
+    <div class="container container-transparent p-4 rounded-4">
         <div class="row">
             @unless (request('trash')) 
-                <h2 class="text-center text-white mt-3">I tuoi Menu</h2> 
-                <p class="text-center text-danger">Vai al tuo Cestino: 
-                    <a href="{{ route('admin.dishes.index', ['trash' => 1])}}"
-                        class="btn btn-link p-0 m-0 no-style text-danger align-content-center"><i class="fas fa-trash-alt "></i>
-                    </a>
-                </p>    
+            <div  class="d-flex flex-column align-items-center justify-content-center">
+
+                <h2 class="text-center text-blue fs-2 my-3">I tuoi Menu</h2> 
+              <button class="btn btn-danger">
+
+                  <a href="{{ route('admin.dishes.index', ['trash' => 1])}}" class="-link-color-white">
+                    Vai al tuo cestino <i class="fas fa-trash-alt "></i>
+                  </a>
+              
+              </button>
+            </div>
             @elseif (request('trash'))
-                <h3 class="text-center text-white mt-3">Il tuo Cestino</h3>
-                <a href="{{ route('admin.dishes.index')}}" class="btn link-primary p-0 m-0 no-style align-content-center">Indietro</a>
+            <div  class="d-flex flex-column align-items-center justify-content-center">
+            <h3 class="text-center text-white mt-3">Il tuo Cestino</h3>
+            <button class="btn btn-danger">
+
+                <a href="{{ route('admin.dishes.index')}}" class="-link-color-white">Indietro</a>
+                              
+            </button>
+            </div> 
             @endif
             <div class="col-12">
                 @foreach ($company_dishes as $company_name => $dishes)
@@ -36,10 +47,10 @@
                         </h3>
                         @unless (request('trash'))
                             @if(isset($companies_dict[$company_name]))
-                                <a class="btn btn-outline-light text-decoration-none d-flex align-items-center h-75 px-2"
-                                    href="{{ route('admin.dishes.create', ['company_id' => $companies_dict[$company_name]->id]) }}">
-                                    <i class="fas fa-plus"></i>
-                                </a>
+                            <a class="btn btn-outline-light text-decoration-none d-flex align-items-center h-75 px-2"
+                            href="{{ route('admin.dishes.create', ['company_id' => $companies_dict[$company_name]->id]) }}">
+                            <i class="fas fa-plus"></i>
+                        </a>
                             @endif
                         @endunless
                     </div>

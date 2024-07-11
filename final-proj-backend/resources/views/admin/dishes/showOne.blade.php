@@ -12,10 +12,10 @@
 @section('content')
 
 
-<section class="container bg-light mt-5 mb-5 rounded-4 p-5 text-blue shadow">
+<section class="container mt-5 mb-5 container-transparent rounded-4 p-4">
     <h2 class="mb-3 text-center ">
         <a class="text-decoration-none btn btn-outline-blue" href="<?php  echo htmlspecialchars($url); ?>">
-            Il tuo Menu su Fooder
+            Vai al tuo Menu su Fooder
         </a>
     </h2>
     <div class="container my-5">
@@ -24,17 +24,17 @@
                 {{$company->name}}
             </h1>
             @unless (request('trash'))
-                <a class="btn btn-outline-warning text-decoration-none d-flex align-items-center h-75 px-2"
+                <a class="btn btn-blue text-decoration-none d-flex align-items-center h-75 px-2"
                     href="{{ route('admin.dishes.create', ['company_id' => $company->id])}}"><i class="fas fa-plus"></i>
                 </a>
 
                 <a href="{{ route('admin.dishes.showOne', ['dish' => $company->id, 'trash' => 1])}}"
-                    class="btn btn-link p-0 m-0 no-style text-danger align-content-center">
+                    class="btn btn-link p-0 m-0 no-style fs-3 text-danger align-content-center">
                     <i class="fas fa-trash-alt "></i>
                 </a>
             @elseif (request('trash'))
             <a href="{{ route('admin.dishes.showOne', ['dish' => $company->id])}}"
-                class="btn link-primary p-0 m-0 no-style align-content-center">Indietro</a>
+                class="btn btn-blue align-content-center">Indietro</a>
             @endif
         </div>
     </div>

@@ -4,15 +4,15 @@
 
 @section('content')
 <div class="container">
-    <h2 class="fs-4 text-blue my-4">    
+    <h2 class="fs-2 fw-bold text-blue my-4">    
         Benvenuto {{$user_name}}
     </h2>
 
     <div class="row justify-content-center">
         <div class="col">
-            <div class="card">
-                <div class="card-header"> 
-                    <h4 class="text-blue">
+            <div class="container-transparent rounded-4 p-4">
+                <div class="card-header "> 
+                    <h4 class="text-white fs-2">
                         Lista Ristoranti 
                     </h4>
                 </div>
@@ -21,21 +21,21 @@
                     <div class="row py-5 gap-4 row-cols-1 row-cols-md-2 row-cols-lg-3 justify-content-center">
                         @foreach ($companies as $company)
                             <div class="col d-flex card-group justify-content-center">
-                                <div class="card w-75">
+                                <div class="container-transparent p-3 rounded-3 w-100">
                                     <div class="card-header" style="height:200px">
                                         @if($company->image)
-                                        <img src="{{ asset('storage/' . $company->image) }}" alt="nessuna immagine" class="card-img-top h-100 object-fit-cover">
+                                        <img src="{{ asset('storage/' . $company->image) }}" alt="nessuna immagine" class="card-img-top h-100 object-fit-cover rounded-3">
                                         @else
-                                        <img src="{{  asset('storage/image/default-company.jpg') }} " class="card-img-top h-100 object-fit-cover" alt="...">      
+                                        <img src="{{  asset('storage/image/default-company.jpg') }} " class="card-img-top h-100 object-fit-cover rounded-3" alt="...">      
                                         @endif
                                     </div>
                                     <div class="card-body text-blue position-relative">
-                                        <h5 class="card-title">
+                                        <p class="card-title fs-3 fw-bold">
                                             <a href="{{route('admin.dishes.showOne', $company->id)}}">
                                                 {{$company->name}}
                                             </a>
-                                        </h5>
-                                        <p>
+                                        </p>
+                                        <p class="card-title fs-5 fw-bold">
                                             {{$company->address}}
                                         </p>
                                     </div>
