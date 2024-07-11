@@ -5,7 +5,7 @@
 
 @section('content')
 
-<section class="container bg-light mt-5 py-2 mb-5 rounded-4 text-blue shadow">
+<section class="container container-transparent p-4 rounded-4">
     <div class="container mt-3 mb-3 p-3 d-flex justify-content-between">
         @unless (request('trash'))
 
