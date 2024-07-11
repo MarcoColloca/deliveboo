@@ -32,6 +32,7 @@ document.querySelectorAll('.item-delete-form').forEach(form => {
     })
 })
 //logica per validazione form piatto-create/edit
+
 document.querySelectorAll('.my-dish-form').forEach(form=> {
     form.addEventListener('submit', (ev) => {
         ev.preventDefault();
