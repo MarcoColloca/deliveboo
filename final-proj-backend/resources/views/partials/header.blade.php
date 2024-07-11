@@ -28,7 +28,7 @@
                             aria-expanded="false">
                             Menu
                         </a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu px-2">
                             <li>
                             <a class="nav-link text-blue" href="{{ route('admin.dishes.index') }}"> Tutti i tuoi Menu </a>
                             </li>
@@ -49,7 +49,7 @@
                             aria-expanded="false">
                             Ordini
                         </a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu px-2">
                             <li>
                                 <a class="nav-link text-blue" href="{{ route('admin.orders.index') }}"> Tutti i tuoi Ordini </a>
                             </li>
@@ -92,7 +92,7 @@
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item text-blue" href="{{ route('admin.dashboard') }}">{{__('Dashboard')}}</a>
-                            <a class="dropdown-item text-blue" href="{{ url('profile') }}">{{__('Profile')}}</a>
+                            <a class="dropdown-item text-blue" href="{{ url('profile') }}">{{__('Profilo')}}</a>
                             <a class="dropdown-item text-blue" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                              document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
