@@ -216,7 +216,7 @@ export default {
                 </div>
             </div>
         </div>
-        
+
     </section>
 
 </template>
@@ -227,11 +227,12 @@ export default {
 <style lang="scss" scoped>
 @use '../assets/style/partials/variables' as*;
 
-.menu-box{
+.menu-box {
     background-image: url(/imgs/sfondo-down.png);
     background-size: cover;
-    
+
 }
+
 .company-name-container {
     position: relative;
     display: flex;
@@ -409,7 +410,25 @@ export default {
 
             .row-container {
                 margin-right: 100px;
-                // margin-left: 5px;
+
+                .card-dish-body {
+
+                    .dish-name {
+
+                        font-size: 36px;
+                    }
+
+                    .dish-specs {
+
+                        font-size: 14px;
+                    }
+
+                    .dish-price {
+
+                        font-size: 26px;
+
+                    }
+                }
             }
         }
     }
@@ -434,7 +453,7 @@ export default {
     .dish-card {
 
         .row {
-            height: 350px;
+            height: 370px;
         }
 
         [class^="col"] {
@@ -442,6 +461,26 @@ export default {
         }
 
     }
+
+    .card-dish-body {
+
+        .dish-name {
+
+            font-size: 60px;
+        }
+
+        .dish-specs {
+
+            font-size: 14px;
+        }
+
+        .dish-price {
+
+            font-size: 26px;
+
+        }
+    }
+
 
     .row {
         width: 100%;
