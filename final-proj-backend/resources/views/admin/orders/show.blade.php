@@ -5,10 +5,9 @@
 @section('content')
 <section class="my-3 py-1">
     <div class="container">
-        <div class="row">
-            <div class="col-12">
+       
                 <h3 class="text-light">Dettagli Ordine</h3>
-                <table class="table">
+                <table class="table w-100 d-block d-md-table scroll-table">
                     <thead>
                         <tr>
                             <th scope="col">Nome Cliente</th>
@@ -31,7 +30,7 @@
                     </tbody>
                 </table>
                 <h4 class="text-light mt-4">Piatti Ordinati</h4>
-                <table class="table">
+                <table class="table w-100 d-block d-md-table scroll-table">
                     <thead>
                         <tr>
                             <th scope="col">Nome Piatto</th>
@@ -49,8 +48,7 @@
                         @endforeach
                     </tbody>
                 </table>
-            </div>
-        </div>
+        
     </div>
 </section>
 @endsection
