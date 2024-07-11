@@ -26,7 +26,7 @@
 
         <!-- Prezzo Piatto -->
         <div class="mb-3">
-            <label for="price" class="form-label fb-bold">Prezzo *</label>
+            <label for="price" class="form-label fb-bold">Prezzo( € ) *</label>
             <input type="number" class="form-control" name="price" id="price" step=".01"
                 placeholder="Inserisci il Prezzo (Es 10.00)" value="{{ old('price', $dish->price) }}">
         </div>
@@ -34,12 +34,12 @@
         <!-- Visibilità Piatto -->
         <div class="mb-3">
             <div class="mb-3">
-                <label for="flexSwitchCheckDefault" class="form-label fb-bold">Visibilità nel Menù *</label>
+                <label for="visible" class="form-label fb-bold">Visibilità nel Menù *</label>
                 <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"
+                    <input class="form-check-input" type="checkbox" role="switch" id="dish-visibility"
                         name="visible" @if(old('visible', $dish->visible ?? false)) checked @endif value="1">
-                    <label class="form-check-label" for="flexSwitchCheckDefault"></label>
                 </div>
+                <p id="ciao"></p>
             </div>
 
 
@@ -90,5 +90,24 @@
         </div>
     @endif
 </div>
+
+<script>
+    let switchDOMElement = document.getElementById('dish-visibility');
+    
+    let switchValue = false;
+    
+    switchDOMElement.addEventListener('click',function() {
+        // console.log('click')
+        switchValue = !switchValue;
+        console.log('switch',switchValue);
+        if(switchValue){
+            document.getElementById('ciao').textContent = 'Piatto visibile';
+          
+        } else {
+    
+            document.getElementById('ciao').textContent = 'Piatto non visibile';
+        }
+    }); 
+    </script>
 
 @endsection

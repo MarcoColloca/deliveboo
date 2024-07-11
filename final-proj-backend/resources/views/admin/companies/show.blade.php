@@ -6,18 +6,18 @@
 
 @section('content')
 <section class="my-3 py-1">
-    <div class="container">
+    <div class="container p-4 rounded-4">
         <div class="row justify-content-center">
-            <div class="col-6">
-                <div class="card">
+            <div class="col col-md-6">
+                <div class="card shadow p-3 rounded-3">
                     @if($company->image)
-                        <img src="{{ asset('storage/' . $company->image) }}" alt="nessuna immagine" class="card-img-top">
+                        <img src="{{ asset('storage/' . $company->image) }}" alt="nessuna immagine" class="card-img-top rounded-3 mb-3">
                     @else
                     <img src="{{  asset('storage/image/default-company.jpg') }} " class="card-img-top" alt="...">      
                     @endif
-                    <div class="card-body">
-                        <h5>{{$company->name}}</h5>
-                        <p>{{$company->description}}</p>
+                    <div class="px-3">
+                        <p class="fs-3 text-blue">{{$company->name}}</p>
+                        <p class="fs-5 text-blue">{{$company->description}}</p>
                     </div>
                     
                     <table class="table">
@@ -54,11 +54,11 @@
                     </table>
 
                     <div class="card-body d-flex justify-content-around position-relative">
-                        <a href="{{ route('admin.companies.edit', $company)}}" class="link link-primary"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a href="{{ route('admin.companies.edit', $company)}}" class="link link-primary fs-4"><i class="fa-solid fa-pen-to-square"></i></a>
                         <form class="item-delete-form" action="{{ route('admin.companies.destroy', $company) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button class="btn btn-link p-0 m-0 no-style text-danger"><i class="fas fa-trash-alt "></i></button>
+                            <button class="btn btn-link p-0 m-0 no-style fs-4 text-danger"><i class="fas fa-trash-alt "></i></button>
                             <div class="my-modal">
                                 <div class="my-modal__box">
                                     <h4 class="text-center px-2 me-3">Vuoi eliminare questo Ristorante?</h4>

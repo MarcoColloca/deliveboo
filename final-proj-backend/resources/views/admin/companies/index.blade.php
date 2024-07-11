@@ -5,18 +5,18 @@
 
 @section('content')
 
-<section class="container bg-light mt-5 mb-5 rounded-4 p-5 text-blue shadow">
+<section class="container bg-light mt-5 py-2 mb-5 rounded-4 text-blue shadow">
     <div class="container mt-3 mb-3 p-3 d-flex justify-content-between">
         @unless (request('trash'))
 
-            <a class="btn btn-primary" href="{{ route('admin.companies.create')}}">Crea il tuo ristorante</a>
+            <a class="btn btn-blue" href="{{ route('admin.companies.create')}}">Crea il tuo ristorante</a>
         @endunless
         @if (request('trash'))
             <a href="{{ route('admin.companies.index')}}"
                 class="btn link-primary p-0 m-0 no-style align-content-center">Indietro</a>
         @else
             <a href="{{ route('admin.companies.index', ['trash' => 1])}}"
-                class="btn btn-link p-0 m-0 no-style text-danger align-content-center"><i class="fas fa-trash-alt "></i></a>
+                class="btn btn-link p-0 m-0 no-style fs-3 text-danger align-content-center"><i class="fas fa-trash-alt "></i></a>
         @endif
     </div>
     <div class="container">
@@ -25,8 +25,8 @@
                 <tr>
                     <th scope="col">Nome</th>
                     <th class="text-center" scope="col">Indirizzo</th>
-                    <th class="text-center" scope="col">Numero di telefono </th>
-                    <th class="text-center" scope="col">Email</th>
+                    {{-- <th class="text-center" scope="col">Numero di telefono </th> --}}
+                    {{-- <th class="text-center" scope="col">Email</th> --}}
                     @if (request('trash'))
                     @else
                         <th class="text-center"></th>
@@ -43,8 +43,8 @@
                             <a href="{{ route('admin.dishes.showOne', $company->id) }}">{{ $company->name }}</a>
                         </td>
                         <td class="text-center">{{ $company->address}}, {{ $company->city }}</td>
-                        <td class="text-center">{{ $company->phone_number}}</td>
-                        <td class="text-center">{{ $company->email}}</td>
+                        {{-- <td class="text-center">{{ $company->phone_number}}</td> --}}
+                        {{-- <td class="text-center">{{ $company->email}}</td> --}}
 
 
 
