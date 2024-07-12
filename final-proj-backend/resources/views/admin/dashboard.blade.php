@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container">
-    <h2 class="fs-2 fw-bold text-blue my-4">    
+    <h2 class="fs-2 fw-bold text-white my-4">    
         Benvenuto {{$user_name}}
     </h2>
 
@@ -12,7 +12,7 @@
         <div class="col">
             <div class="container-transparent d-flex flex-column justify-content-between rounded-4 p-4">
                 <div class="card-header "> 
-                    <h4 class="text-white fs-2">
+                    <h4 class="text-blue fs-2 bg-light rounded-3 p-2 shadow">
                         Lista Ristoranti 
                     </h4>
                 </div>
@@ -21,7 +21,7 @@
                     <div class="row py-5 gap-4 row-cols-1 row-cols-md-2 row-cols-lg-3 justify-content-center">
                         @foreach ($companies as $company)
                             <div class="col d-flex card-group justify-content-center">
-                                <div class="container-transparent d-flex flex-column justify-content-between p-3 rounded-3 w-100">
+                                <div class="bg-light shadow d-flex flex-column justify-content-between p-3 rounded-3 w-100">
                                     <div class="card-header" style="height:200px">
                                         @if($company->image)
                                         <img src="{{ asset('storage/' . $company->image) }}" alt="nessuna immagine" class="card-img-top h-100 object-fit-cover rounded-3">

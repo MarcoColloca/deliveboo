@@ -37,7 +37,7 @@
                 @foreach ($company_dishes as $company_name => $dishes)
                     <div class="d-flex justify-content-between align-items-end mt-5 mb-1">
                         <h3 class="text-light">
-                            <p class="text-blue">
+                            <p class="text-blue bg-light rounded-3 p-2 shadow">
                                 <a
                                     href="{{route('admin.dishes.showOne', ['dish' => $companies_dict[$company_name]->id])}}">{{ $company_name }}
                                 </a>

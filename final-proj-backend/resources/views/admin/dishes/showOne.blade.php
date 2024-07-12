@@ -14,22 +14,22 @@
 
 <section class="container mt-5 mb-5 container-transparent rounded-4 p-4">
     <h2 class="mb-3 text-center ">
-        <a class="text-decoration-none btn btn-outline-blue" href="<?php  echo htmlspecialchars($url); ?>">
+        <a class="text-decoration-none btn btn-blue" href="<?php  echo htmlspecialchars($url); ?>">
             Vai al tuo Menu su Fooder
         </a>
     </h2>
     <div class="container my-5">
         <div class="d-flex justify-content-between align-items-center mt-5">
-            <h1 class="text-blue text-center">
+            <h1 class="text-blue bg-light rounded-3 p-2 shadow">
                 {{$company->name}}
             </h1>
             @unless (request('trash'))
-                <a class="btn btn-blue text-decoration-none d-flex align-items-center h-75 px-2"
+                <a class="btn btn-blue text-decoration-none d-flex align-items-center  h-75 px-2"
                     href="{{ route('admin.dishes.create', ['company_id' => $company->id])}}"><i class="fas fa-plus"></i>
                 </a>
 
                 <a href="{{ route('admin.dishes.showOne', ['dish' => $company->id, 'trash' => 1])}}"
-                    class="btn btn-link p-0 m-0 no-style fs-3 text-danger align-content-center">
+                    class="btn btn-link p-0 m-0 no-style fs-3 text-danger bg-light p-2 rounded-3 shadow align-content-center">
                     <i class="fas fa-trash-alt "></i>
                 </a>
             @elseif (request('trash'))

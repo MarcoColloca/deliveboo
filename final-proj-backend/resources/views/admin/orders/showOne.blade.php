@@ -4,12 +4,12 @@
 
 @section('content')
     <section class="my-3 py-1">
-        <div class="container">
+        <div class="container container-transparent p-4 rounded-3 shadow">
             <div class="row">
                 <div class="col-12">
                     <div class="d-flex justify-content-between align-items-end mt-5 mb-1">
                         <h3 class="text-light">
-                            <p class="text-blue">
+                            <p class="text-blue fs-2 bg-light rounded-3 p-2 shadow">
                                 {{ $company->name }}
                                 <span class="fs-6 ms-3">{{ $company->address }}</span>
                             </p>
@@ -51,7 +51,7 @@
                     <!-- Pulsante per caricare ulteriori 10 risultati -->
                     @if ($orders->count() > 0)
                         <div class="d-flex justify-content-center">
-                            <button id="loadMore" class="btn btn-link text-decoration-none text-white">Carica Altri</button>
+                            <button id="loadMore" class="btn btn-link text-decoration-none text-blue">Carica Altri</button>
                         </div>
                     @endif
                 </div>
