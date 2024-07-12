@@ -102,7 +102,7 @@ export default {
                     <RouterLink class="btn btn-outline-blue" :to="{ name: 'payment' }">
                         Procedi al Pagamento
                     </RouterLink>
-                    <span class="btn btn-outline-danger" @click="ereaseAllDishFromCart">Svuota</span>
+                    <span class="btn btn-outline-danger d-flex align-items-center" @click="ereaseAllDishFromCart">Svuota</span>
                 </div>
                 <div class="card-fooder d-flex justify-content-center pe-2 pb-2 gap-3" v-else>
                     <p class="btn btn-outline-coral fake-pay">
