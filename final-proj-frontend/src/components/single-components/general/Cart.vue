@@ -104,8 +104,8 @@ export default {
                     <span class="btn btn-outline-danger" @click="ereaseAllDishFromCart">Svuota</span>
                 </div>
                 <div class="card-fooder d-flex justify-content-center pe-2 pb-2 gap-3" v-else>
-                    <p class="btn btn-outline-yellow fake-pay">
-                        Aggiungi qualcosa al carrello
+                    <p class="btn btn-outline-coral fake-pay">
+                        Carrello Vuoto
                     </p>
                 </div>
 
@@ -213,7 +213,7 @@ export default {
 .fake-pay {
     pointer-events: none;
     cursor: not-allowed;
-    background-color: $app-brand-yellow;
-    color: $app-brand-blue;
+    // background-color: $app-brand-yellow;
+    // color: $app-brand-blue;
 }
 </style>
