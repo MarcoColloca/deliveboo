@@ -17,6 +17,7 @@
                 @foreach ($companies as $company)
                     @php
                         $ordersGroups = $companyOrders[$company->name] ?? collect();
+                        $currentChunkIndex = request()->input('chunk' . $company->id, 0);
                         $currentOrders = $ordersGroups[$currentChunkIndex] ?? collect();
                     @endphp
                 <div class="title text-blue bg-light rounded-3 p-2 shadow my-3">
@@ -65,13 +66,13 @@
                     @if($ordersGroups->count() > 0)
                         <div class="d-flex justify-content-between">
                             @if ($currentChunkIndex > 0)
-                                <a href="{{ request()->fullUrlWithQuery(['chunk' => $currentChunkIndex - 1]) }}" class="btn btn-link bg-light text-decoration-none shadow p-2 rounded-3 text-blue">Indietro</a>
+                                <a href="{{ request()->fullUrlWithQuery(['chunk' . $company->id => $currentChunkIndex - 1]) }}" class="btn btn-link bg-light text-decoration-none shadow p-2 rounded-3 text-blue">Indietro</a>
                             @else
                                 <span></span>
                             @endif
 
                             @if ($currentChunkIndex < $ordersGroups->count() - 1)
-                                <a href="{{ request()->fullUrlWithQuery(['chunk' => $currentChunkIndex + 1]) }}" class="btn btn-link bg-light text-decoration-none p-2 shadow rounded-3 text-blue">Avanti</a>
+                                <a href="{{ request()->fullUrlWithQuery(['chunk' . $company->id => $currentChunkIndex + 1]) }}" class="btn btn-link bg-light text-decoration-none p-2 shadow rounded-3 text-blue">Avanti</a>
                             @endif
                         </div>
                     @endif
