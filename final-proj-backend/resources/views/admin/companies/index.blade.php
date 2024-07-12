@@ -9,14 +9,14 @@
     <div class="container mt-3 mb-3 p-3 d-flex justify-content-between">
         @unless (request('trash'))
 
-            <a class="btn btn-blue" href="{{ route('admin.companies.create')}}">Crea il tuo ristorante</a>
+            <a class="btn btn-blue d-flex justify-content-center align-items-center" href="{{ route('admin.companies.create')}}">Crea il tuo ristorante</a>
         @endunless
         @if (request('trash'))
             <a href="{{ route('admin.companies.index')}}"
                 class="btn link-primary p-0 m-0 no-style align-content-center">Indietro</a>
         @else
             <a href="{{ route('admin.companies.index', ['trash' => 1])}}"
-                class="btn btn-link p-0 m-0 no-style fs-3 text-danger align-content-center"><i class="fas fa-trash-alt "></i></a>
+                class="btn btn-link p-0 m-0 no-style fs-3 text-danger bg-light p-2 rounded-3 shadow  align-content-center"><i class="fas fa-trash-alt "></i></a>
         @endif
     </div>
     <div class="container">

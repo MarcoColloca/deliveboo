@@ -10,7 +10,7 @@
 <section class="my-3 py-1">
     <div class="container container-transparent p-4 rounded-4">
        
-            <h2 class="text-center text-white mt-3">
+            <h2 class="text-blue text-center fs-2 bg-light rounded-3 p-2 shadow mt-3">
                 Tutti i Tuoi Ordini
             </h2>
             <div class="container">
@@ -20,11 +20,12 @@
                         $currentOrders = $ordersGroups[$currentChunkIndex] ?? collect();
                     @endphp
                     <div class="d-flex justify-content-between align-items-end mt-5 mb-1">
-                        <h3 class="text-blue">
-                            <p class="text-blue">
-                                <p>
-                                    {{ $company->name }}
-                                </p>
+                        <h3 class="text-blue fs-2 bg-light rounded-3 p-2 shadow mt-3">
+                            <p>
+                                {{ $company->address }}
+                            </p>
+                            <p>
+                                {{ $company->name }}
                             </p>
                         </h3>
                     </div>

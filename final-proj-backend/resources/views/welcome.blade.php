@@ -6,7 +6,7 @@
 
 @section('content')
 
-    <div class="jumbotron p-5 m-5 bg-light rounded-3 shadow">
+    <div class="container container-transparent p-5 rounded-3 shadow">
         <div class="container py-5">
             <div class="row row-gap-3 justify-content-around gap-2">
                 <div class="col-10 col-md-6">
