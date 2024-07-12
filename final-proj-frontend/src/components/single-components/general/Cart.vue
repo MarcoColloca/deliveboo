@@ -71,7 +71,7 @@ export default {
             </div>
             <div class="card-body">
 
-                <div class="row mb-2" v-for="(dish, i) in cartDishes">
+                <div class="row mb-2 pe-2" v-for="(dish, i) in cartDishes">
                     <div class="col-2 d-flex gap-2">
                         <span class="my-cart-btn" @click="$emit('decrease', dish.id)">-</span>
                         <input type="hidden" class="w-25" :value="dish.qty">
@@ -81,9 +81,10 @@ export default {
                     <div class="col-5 text-start">
                         <p>{{ dish.name }}</p>
                     </div>
-                    <div class="col-3">
+                    <div class="col-4">
                         <p>{{ getPrice(dish.qty, dish.price) }} €</p>
                     </div>
+                    
                     <div class="col-1">
                         <span @click="$emit('remove', i)"><font-awesome-icon class="cart-trash"
                                 :icon="['far', 'trash-can']" /></span>

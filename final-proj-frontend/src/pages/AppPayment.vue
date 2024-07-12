@@ -193,11 +193,12 @@ export default {
         
                 <div class="fake-cart" v-show="!paymentLoad && !successMessage">
                     <h4 class="text-center recap-order-title mb-4">Riepilogo Ordine</h4>
-                    <div class="recap-box mb-2" v-for="(dish, i) in store.cartDishes" :key="i">
-                        <div class="col-2 d-flex align-items-center justify-content-center">
-                            <p class="">{{ dish.qty }}</p>
+                    <div class="recap-box mb-2 d-flex" v-for="(dish, i) in store.cartDishes" :key="i">
+                        <div class="col-3 d-flex align-items-center justify-content-center gap-3">
+                            <p class="">x {{ dish.qty }}</p>
+                            <p class="">{{ dish.price }}</p>
                         </div>
-                        <div class="col-5  d-flex align-items-center justify-content-start">
+                        <div class="col-6  d-flex align-items-center justify-content-start">
                             <p>{{ dish.name }}</p>
                         </div>
                         <div class="col-3  d-flex align-items-center justify-content-center">
