@@ -3,13 +3,15 @@ import { reactive } from 'vue'
 export const store = reactive({
     test: 'test',
     advancedSearchVisibility: false,
-    storedSlug: '',
+    storedSlug: '',    
     cartDishes: [],
     showCart: false,
     cartCompany: null,
     currentCompany: null,
     showClearCart: false,
-    newItemIntoCart: null
+    clearCartMessage: '',
+    newItemIntoCart: null,
+    clearAllCart: false,
 })
 
 // Recupero i dati dal localStorage al caricamento della pagina

@@ -119,7 +119,7 @@ export default {
                             <div class="text-box h-100 d-flex flex-column justify-content-center">
         
                                 <p class="text-white text-center fs-1 ">Segui i tuoi ordini</p>
-                                <p class="text-white text-center fs-4 " >Con la nostra App puoi vedere il tuo ordine dal momento del ritiro per essere aggiornato sulla consegna</p>
+                                <p class="text-white text-center fs-4 " >Con la nostra App puoi vedere il tuo ordine dal momento del ritiro per essere aggiornato sulla consegna.</p>
                             </div>
                         </div>
                         <div class="col d-flex justify-content-center">
