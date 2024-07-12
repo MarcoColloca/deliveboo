@@ -389,6 +389,56 @@
             "price": 2.00,
             "visible": true,
             "company_id": "2"
+        },
+        {
+            "name": "Cannelloni",
+            "slug": "cannelloni",
+            "image": "",
+            "description": "",
+            "ingredients": "Pasta all'uovo, carne, sugo",
+            "price": 10.00,
+            "visible": true,
+            "company_id": "10"
+        },
+        {
+            "name": "Prosciutto e Bufala",
+            "slug": "prosciutto-e-bufala",
+            "image": "",
+            "description": "",
+            "ingredients": "Crudo e Bufala",
+            "price": 8.00,
+            "visible": true,
+            "company_id": "10"
+        },
+        {
+            "name": "Polpette al sugo",
+            "slug": "polpette-al-sugo",
+            "image": "",
+            "description": "",
+            "ingredients": "",
+            "price": 12.00,
+            "visible": true,
+            "company_id": "10"
+        },
+        {
+            "name": "Zuppa di ceci",
+            "slug": "zuppa-di-ceci",
+            "image": "",
+            "description": "",
+            "ingredients": "",
+            "price": 7.00,
+            "visible": true,
+            "company_id": "10"
+        },
+        {
+            "name": "Broccoletti ripassati",
+            "slug": "broccoletti-ripassati",
+            "image": "",
+            "description": "",
+            "ingredients": "Broccoletti, aglio, peperoncino",
+            "price": 4.00,
+            "visible": true,
+            "company_id": "10"
         }
     ]
 }
