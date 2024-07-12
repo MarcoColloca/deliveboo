@@ -33,7 +33,7 @@ class DebugOrderSeeder extends Seeder
         $dishes_8 = Dish::where('company_id', 8)->pluck('id');
         $dishes_9 = Dish::where('company_id', 9)->pluck('id');
         $dishes_10 = Dish::where('company_id', 10)->pluck('id');
-        dump($dishes_9);
+        // dump($dishes_9);
         
         $name_customers = ['Paolo', 'Marco', 'Francesca', 'Moustafa' ,'Gianni', 'Samuel', 'Donato', 'Gianluca', 'Massimo', 'Diego'];
         $surname_customers = ['Calcagni', 'Colloca', 'Ibrahim' , 'Barletta', 'Saladino', 'Riccio', 'Panicucci', 'Piazza', 'Giraudo', 'Lomarco'];
