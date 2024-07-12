@@ -4,6 +4,7 @@
 
 @section('content')
 <section class="my-5 py-1">
+    <div class="container-transparent col-6 p-4 m-auto rounded-3 shadow">
     <h1 class="text-center text-light my-4 pb-4">{{$dish->company->name}}</h1>
     <div class="container">
         <div class="row justify-content-center">
@@ -63,5 +64,6 @@
             </div>
         </div>
     </div>
+</div>
 </section>
 @endsection
