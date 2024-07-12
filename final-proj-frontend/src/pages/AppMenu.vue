@@ -527,7 +527,7 @@ export default {
 
             .card-cart {
                 position: sticky;
-                top: 30%;
+                top: 12px;
                 transform: translate(0, 0);
 
             }

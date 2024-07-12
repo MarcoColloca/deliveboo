@@ -16,6 +16,8 @@ class Order extends Model
         'customer_email',
         'details',
         'total',
+        'created_at',
+
     ];
 
     public function dishes()
