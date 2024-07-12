@@ -4,10 +4,10 @@
 
 @section('content')
 <section>
-    <div class="container-transparent w-75 m-auto py-4 shadow rounded-3">
+    <div class="container-transparent w-75 m-auto p-2 shadow rounded-3">
     <div class="container text-blue text-center fs-2 bg-light rounded-3 p-2 shadow mt-3">
-        <div class="row">
-            <div class="col-6">
+        <div class="row row-cols-1 row-cols-md-2 ">
+            <div class="col">
                 <h1 class="text-blue">Fatturato</h1>
                 <p class="text-blue">Fatturato totale nell'ultimo anno dei tuoi ristoranti</p>
                 <div class="card mt-3">
@@ -16,7 +16,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col">
                 <h1 class="text-blue">Ordini</h1>
                 <p class="text-blue">Ordini totali nell'ultimo anno dei tuoi ristoranti</p>
                 <div class="card mt-3">

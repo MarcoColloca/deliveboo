@@ -20,14 +20,11 @@
                         $currentOrders = $ordersGroups[$currentChunkIndex] ?? collect();
                     @endphp
                     <div class="d-flex justify-content-between align-items-end mt-5 mb-1">
-                        <h3 class="text-blue fs-2 bg-light rounded-3 p-2 shadow mt-3">
-                            <p>
-                                {{ $company->address }}
-                            </p>
-                            <p>
-                                {{ $company->name }}
-                            </p>
-                        </h3>
+                        <div class="title text-blue bg-light rounded-3 p-2 shadow my-3">
+
+                            <h3> {{ $company->name }}</h3>
+                            <p>  {{ $company->address }}  </p>
+                        </div>
                     </div>
                     
                     <table class="table w-100 d-block d-md-table scroll-table">

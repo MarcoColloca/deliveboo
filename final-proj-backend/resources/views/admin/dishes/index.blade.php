@@ -54,7 +54,7 @@
                             @endif
                         @endunless
                     </div>
-                    <table class="table overflow-auto">
+                    <table class="table w-100 d-block d-md-table scroll-table">
                         <thead>
                             <tr>
                                 <th scope="col">Nome piatto</th>
