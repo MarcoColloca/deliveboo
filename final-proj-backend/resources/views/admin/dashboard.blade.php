@@ -10,7 +10,7 @@
 
     <div class="row justify-content-center">
         <div class="col">
-            <div class="container-transparent rounded-4 p-4">
+            <div class="container-transparent d-flex flex-column justify-content-between rounded-4 p-4">
                 <div class="card-header "> 
                     <h4 class="text-white fs-2">
                         Lista Ristoranti 
@@ -21,7 +21,7 @@
                     <div class="row py-5 gap-4 row-cols-1 row-cols-md-2 row-cols-lg-3 justify-content-center">
                         @foreach ($companies as $company)
                             <div class="col d-flex card-group justify-content-center">
-                                <div class="container-transparent p-3 rounded-3 w-100">
+                                <div class="container-transparent d-flex flex-column justify-content-between p-3 rounded-3 w-100">
                                     <div class="card-header" style="height:200px">
                                         @if($company->image)
                                         <img src="{{ asset('storage/' . $company->image) }}" alt="nessuna immagine" class="card-img-top h-100 object-fit-cover rounded-3">
