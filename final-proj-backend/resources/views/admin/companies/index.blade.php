@@ -9,7 +9,7 @@
     <div class="container mt-3 mb-3 p-3 d-flex justify-content-between">
         @unless (request('trash'))
 
-            <a class="btn btn-blue d-flex justify-content-center align-items-center" href="{{ route('admin.companies.create')}}">Crea il tuo ristorante</a>
+            <a class="btn btn-blue d-flex text-decoration-none justify-content-center align-items-center" href="{{ route('admin.companies.create')}}">Crea il tuo ristorante</a>
         @endunless
         @if (request('trash'))
             <a href="{{ route('admin.companies.index')}}"
