@@ -55,7 +55,6 @@ export default {
 
         addDishToCart(item) {
             this.store.newItemIntoCart = item;
-
             // Se il carrello è vuoto aggiunto l'item al carrello ed aggiorno la compagnia
             if (this.store.cartCompany === null) {
                 this.store.cartCompany = this.store.currentCompany
@@ -77,6 +76,7 @@ export default {
             // Se il carrello contiene piatti di un'altra compagnia, faccio altro.
             else {
                 this.store.showClearCart = true;
+                this.store.showCart = true;
                 this.store.clearCartMessage = `Stai acquistando dalla compagnia "${this.store.cartCompany.name}". Non puoi aggiungere piatti da questa compagnia. Vuoi svuotare il carrello e comprare da un\'altra compagnia?`;
             }
         },
