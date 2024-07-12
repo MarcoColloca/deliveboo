@@ -115,6 +115,19 @@ export default {
 
         },
 
+
+        clearTypeSearch(){
+            this.selectedTypeSlugs = [];
+        },
+
+        removeFromTypeSearch(slug){
+            if (this.selectedTypeSlugs.includes(slug)) {
+                this.selectedTypeSlugs = this.selectedTypeSlugs.filter(typeSlug => typeSlug !== slug);
+            } else {
+                this.selectedTypeSlugs.push(slug);
+            }
+            this.fetchCompanies();
+        }
     }
 }
 </script>
@@ -125,20 +138,35 @@ export default {
     <div class="search-container d-flex flex-column">
        
         <div class="my-container">
-
-            <div
-                class="scrollmenu">
+            <div class="scrollmenu">
                 <div v-for="type in types" :key="type.slug" class="col type-col">
                     <div class="type-card">
                         <img :src="`/imgs/${type.slug}.png`" class="type-img" alt="">
                         <p @click="toggleTypeSelection(type.slug)"
-                        :class="{ selected: selectedTypeSlugs.includes(type.slug) }">
-                        {{ type.name }}
-                    </p>
+                            :class="{ selected: selectedTypeSlugs.includes(type.slug) }">
+                            {{ type.name }}
+                        </p>
                     </div>
                 </div>
             </div>
-
+            <div class="">
+                <ul class="d-lg-none row justify-content-center align-items-center p-0 g-2 mt-3">
+                    <li v-show="selectedTypeSlugs.length > 0" class="btn btn-outline-blue-white" @click="clearTypeSearch">
+                        Azzera Ricerca
+                    </li>
+                    <li class="btn btn-outline-blue-white" v-for="(slug, i) in selectedTypeSlugs" @click="removeFromTypeSearch(slug)">
+                        {{ slug }}
+                    </li>
+                </ul>
+                <ul class="d-lg-block d-none mt-3 gap-2 w-lg-100">
+                    <li v-show="selectedTypeSlugs.length > 0" class="btn btn-outline-blue-white me-3 mb-3" @click="clearTypeSearch">
+                        Azzera Ricerca
+                    </li>
+                    <li class="btn btn-outline-blue-white me-3 mb-3" v-for="(slug, i) in selectedTypeSlugs" @click="removeFromTypeSearch(slug)">
+                        {{ slug }}
+                    </li>
+                </ul>
+            </div>
         </div>
 
 
