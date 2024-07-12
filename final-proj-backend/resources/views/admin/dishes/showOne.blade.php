@@ -42,7 +42,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <table class="table">
+                <table class="table w-100 d-block d-md-table scroll-table">
                     <thead>
                         <tr>
                             <th scope="col">Nome piatto</th>
