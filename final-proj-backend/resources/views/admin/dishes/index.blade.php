@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'I tuoi Menu')
+@section('title', 'Dishes')
 
 @section('content')
 
@@ -14,7 +14,7 @@
             @unless (request('trash')) 
             <div  class="d-flex flex-column align-items-center justify-content-center">
 
-                <h2 class="text-center text-blue fs-2 my-3">I tuoi Menu</h2> 
+                <h2 class="text-center text-blue fw-bold fs-2 my-3">I tuoi Menu</h2> 
               <button class="btn btn-danger">
 
                   <a href="{{ route('admin.dishes.index', ['trash' => 1])}}" class="-link-color-white">
@@ -33,21 +33,21 @@
             </button>
             </div> 
             @endif
-            <div class="col-12">
+            <div class="col-12 ">
                 @foreach ($company_dishes as $company_name => $dishes)
+                <div class="bg-light rounded-3 p-2 shadow my-3">
                     <div class="d-flex justify-content-between align-items-end mt-5 mb-1">
-                        <h3 class="text-light">
-                            <p class="text-blue bg-light rounded-3 p-2 shadow">
+                        
+                            <p class="text-blue">
                                 <a
-                                    href="{{route('admin.dishes.showOne', ['dish' => $companies_dict[$company_name]->id])}}">{{ $company_name }}
+                                    href="{{route('admin.dishes.showOne', ['dish' => $companies_dict[$company_name]->id])}}"  class="fw-bold fs-3">{{ $company_name }}
                                 </a>
-                                <span class="fs-6 ms-3">{{$companies_dict[$company_name]->address}}</span>
+                                <span class="fs-5 ms-3">{{$companies_dict[$company_name]->address}}</span>
                             </p>
 
-                        </h3>
                         @unless (request('trash'))
                             @if(isset($companies_dict[$company_name]))
-                            <a class="btn btn-outline-light text-decoration-none d-flex align-items-center h-75 px-2"
+                            <a class="btn btn-outline-blue text-decoration-none d-flex align-items-center h-75 m-2 px-2"
                             href="{{ route('admin.dishes.create', ['company_id' => $companies_dict[$company_name]->id]) }}">
                             <i class="fas fa-plus"></i>
                         </a>
@@ -119,6 +119,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                </div>
                 @endforeach
             </div>
         </div>
