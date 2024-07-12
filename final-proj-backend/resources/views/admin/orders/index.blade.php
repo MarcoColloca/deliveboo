@@ -27,7 +27,7 @@
                         
                     </div>
                     
-                    <table class="table w-100 d-block d-md-table scroll-table">
+                    <table class="table my-table-query scroll-table">
                         <thead>
                             <tr>
                                 <th scope="col">Nome Cliente</th>

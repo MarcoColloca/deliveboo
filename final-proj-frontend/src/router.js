@@ -6,6 +6,7 @@ import AppAdvancedSearch from './pages/AppAdvancedSearch.vue';
 import AppMenu from './pages/AppMenu.vue';
 import NotFound from './pages/NotFound.vue';
 import AppPayment from './pages/AppPayment.vue';
+import AppAboutUs from './pages/AppAboutUs.vue';
 
 
 const routes = [
@@ -29,6 +30,9 @@ const routes = [
     },
     {
         path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound
+    },
+    {
+        path: '/about-us', name:'about-us', component: AppAboutUs,
     },
 ]
 

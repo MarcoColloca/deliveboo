@@ -20,7 +20,7 @@
         @endif
     </div>
     <div class="container">
-        <table class="table">
+        <table class="table my-table-sm-query scroll-table">
             <thead>
                 <tr>
                     <th scope="col">Nome</th>

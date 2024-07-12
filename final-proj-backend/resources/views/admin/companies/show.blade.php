@@ -8,7 +8,7 @@
 <section class="my-3 py-1">
     <div class="container p-4 rounded-4">
         <div class="row justify-content-center">
-            <div class="col col-md-6">
+            <div class="col col-md-10 col-lg-8">
                 <div class="card shadow p-3 rounded-3">
                     @if($company->image)
                         <img src="{{ asset('storage/' . $company->image) }}" alt="nessuna immagine" class="card-img-top rounded-3 mb-3">
@@ -20,7 +20,7 @@
                         <p class="fs-5 text-blue">{{$company->description}}</p>
                     </div>
                     
-                    <table class="table">
+                    <table class="table my-table-query scroll-table">
                         <tbody>
                             <tr class="border-top">
                                 <td class="border-end"><strong>Città:</strong></td>

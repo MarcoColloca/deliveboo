@@ -1,0 +1,18 @@
+
+.my-table-query{
+    display:block;
+}
+@media (min-width: 1400px) {
+    .my-table-query{
+        display: table;
+    }
+}
+
+.my-table-sm-query{
+    display:block;
+}
+@media (min-width: 768px) {
+    .my-table-sm-query{
+        display: table;
+    }
+}

@@ -4,10 +4,10 @@
 
 @section('content')
 <section class="my-3 py-1">
-    <div class="container">
+    <div class="container container-transparent p-4 rounded-3 shadow">
        
                 <h3 class="text-light">Dettagli Ordine</h3>
-                <table class="table w-100 d-block d-md-table scroll-table">
+                <table class="table  my-table-sm-query scroll-table">
                     <thead>
                         <tr>
                             <th scope="col">Nome Cliente</th>
@@ -30,7 +30,7 @@
                     </tbody>
                 </table>
                 <h4 class="text-light mt-4">Piatti Ordinati</h4>
-                <table class="table w-100 d-block d-md-table scroll-table">
+                <table class="table">
                     <thead>
                         <tr>
                             <th scope="col">Nome Piatto</th>
