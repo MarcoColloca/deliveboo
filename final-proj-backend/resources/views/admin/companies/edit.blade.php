@@ -8,7 +8,7 @@
     @if($company->image)
     <img src="{{ asset('storage/'. $company->image) }}" alt="image{{$company->name}}">
     @else
-    <img src="{{  asset('storage/image/default-company.jpg') }} " class="card-img-top w-50" alt="...">      
+    <img src="{{  asset('storage/image/default-company.png') }} " class="card-img-top w-50" alt="...">      
     @endif
  
     <form action="{{ route('admin.companies.update', $company)}}" method="POST" class="my-company-form" enctype="multipart/form-data">

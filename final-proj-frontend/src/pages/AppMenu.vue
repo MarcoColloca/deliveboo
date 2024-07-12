@@ -140,8 +140,13 @@ export default {
     <section class="menu-box">
 
         <div class="menu-page">
-            <div class="company-name-container">
-                <img class="company-hero" :src="company.image_fullpath" alt="">
+            <div class="company-name-container bg-warning">
+               
+                    <img class="company-hero" v-if="company.image_fullpath" :src="company.image_fullpath" alt="">
+               
+                
+                    <img v-else src="http://127.0.0.1:8000/storage/image/default-company.png" class="h-100" alt="">
+               
                 <h1 class="menu-title">{{ company.name }}</h1>
                 <ul class="d-flex flex-wrap type-list">
                     <li class="sub-title" v-for="type in company.types">
@@ -159,8 +164,8 @@ export default {
                                         <div class="dish-img">
                                             <img v-if="dish.image_fullpath" :src="dish.image_fullpath"
                                                 class="my-dish-img" alt="">
-                                            <img v-else src="http://127.0.0.1:8000/storage/image/default-image.jpg"
-                                                class="my-dish-img default-img" alt="">
+                                            <img v-else src="http://127.0.0.1:8000/storage/image/default-image.png"
+                                                class="default-img" alt="">
                                         </div>
                                     </div>
                                     <div class="col-12 col-lg-6">
@@ -310,7 +315,9 @@ export default {
                     border-radius: 10px;
 
                 }
-
+                .default-img{
+                    width: 100%;
+                }
 
             }
 

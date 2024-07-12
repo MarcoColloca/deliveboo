@@ -186,9 +186,9 @@ export default {
                                 </RouterLink>
                             </div>
                             <div class="img-company">
-                                <img v-if="company.image_fullpath" :src="company.image_fullpath" alt="">
+                                <img v-if="company.image_fullpath" :src="company.image_fullpath" class="bg-light" alt="">
 
-                                <img v-else src="http://127.0.0.1:8000/storage/image/default-company.jpg" alt="">
+                                <img v-else src="http://127.0.0.1:8000/storage/image/default-company.png" class="bg-light" alt="">
                                 <div class="company-text d-flex h-100 flex-column py-4 justify-content-between">
                                     <ul class="d-flex flex-wrap px-1 mb-0 justify-content-start">
                                         <li class="company-type bg-warning rounded-2 px-1 mb-2 mx-1"

@@ -12,7 +12,7 @@
                     @if($dish->image)
                     <img src="{{  asset('storage/'. $dish->image) }} " class="card-img-top" alt="...">
                     @else
-                    <img src="{{  asset('storage/image/default-image.jpg') }} " class="card-img-top" alt="...">      
+                    <img src="{{  asset('storage/image/default-image.png') }} " class="card-img-top" alt="...">      
                     @endif
                     <div class="card-body">
                         <h4 class="card-title">{{ $dish->name }}</h4>

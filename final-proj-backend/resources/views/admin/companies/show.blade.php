@@ -13,7 +13,7 @@
                     @if($company->image)
                         <img src="{{ asset('storage/' . $company->image) }}" alt="nessuna immagine" class="card-img-top rounded-3 mb-3">
                     @else
-                    <img src="{{  asset('storage/image/default-company.jpg') }} " class="card-img-top" alt="...">      
+                    <img src="{{  asset('storage/image/default-company.png') }} " class="card-img-top" alt="...">      
                     @endif
                     <div class="px-3">
                         <p class="fs-3 text-blue">{{$company->name}}</p>
