@@ -1,4 +1,6 @@
 @extends('layouts.app')
+@section('title', 'Profilo')
+
 @section('content')
 
 <div class="container container-transparent p-4 rounded-3 shadow">
