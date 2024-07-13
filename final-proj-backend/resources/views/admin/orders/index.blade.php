@@ -21,11 +21,9 @@
                         $currentOrders = $ordersGroups[$currentChunkIndex] ?? collect();
                     @endphp
                 <div id="company-{{ $company->id }}" class="title text-blue bg-light rounded-3 p-2 shadow my-3">
-                    <div class=" d-flex flex-column mt-5 mb-1">
-
-                            <h3> {{ $company->name }}</h3>
-                            <p>  {{ $company->address }}  </p>
-                        
+                    <div class=" d-flex flex-column mt-5 mb-1 text-break">
+                        <h3> {{ $company->name }}</h3>
+                        <p>  {{ $company->address }}  </p>
                     </div>
                     
                     <table class="table my-table-query scroll-table">
