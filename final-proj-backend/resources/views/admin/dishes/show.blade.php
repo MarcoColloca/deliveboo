@@ -5,7 +5,7 @@
 @section('content')
 <section class="my-5 py-1">
     <div class="container-transparent container py-4 px-2 m-auto rounded-3 shadow">
-    <h1 class="text-center text-light my-4 pb-4">{{$dish->company->name}}</h1>
+    <h1 class="text-center text-light my-4 pb-4 text-break">{{$dish->company->name}}</h1>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-auto">
