@@ -9,7 +9,7 @@
     @if($dish->image)
         <img src="{{ asset('storage/' . $dish->image) }}" alt="image{{$dish->name}}" class="card-img-top w-50">
     @else
-        <img src="{{  asset('storage/image/default-image.jpg') }} " class="card-img-top w-50" alt="...">
+        <img src="{{  asset('storage/image/default-image.png') }} " class="card-img-top w-50" alt="...">
     @endif
 
     <form action="{{ route('admin.dishes.update', $dish)}}" method="POST" class="my-dish-form"

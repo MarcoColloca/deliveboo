@@ -7,7 +7,7 @@
     <div class="container container-transparent p-4 rounded-3 shadow">
        
                 <h3 class="text-light">Dettagli Ordine</h3>
-                <table class="table  my-table-sm-query scroll-table">
+                <table class="table  my-table-md-query scroll-table">
                     <thead>
                         <tr>
                             <th scope="col">Nome Cliente</th>

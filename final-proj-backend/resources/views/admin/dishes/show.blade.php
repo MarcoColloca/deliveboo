@@ -9,7 +9,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-auto">
-                <div class="card">
+                <div class="card shadow p-3">
                     @if($dish->image)
                     <img src="{{  asset('storage/'. $dish->image) }} " class="card-img-top" alt="...">
                     @else
@@ -20,7 +20,7 @@
                         <p class="card-text">{{ $dish->description ? $dish->description : 'Nessuna Descrizione.'  }}</p>
                     </div>
 
-                    <table class="table my-table-query scroll-table">
+                    <table class="table my-table-xs-query scroll-table">
                         <thead>
                             <th scope="col" class="col-3"></th>
                             <th scope="col"></th>

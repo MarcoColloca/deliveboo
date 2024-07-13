@@ -172,8 +172,10 @@ export default {
 
 
 .scroll-container{
-    width: 95%;
-    margin: 50px auto;
+    // width: 95%;
+    // margin: 50px auto;
+    overflow-x: auto;
+    white-space: nowrap;
 }
 .hero {
     background-image: url(/imgs/sfondo.png);
@@ -318,10 +320,6 @@ ul {
     min-height: 450px;
     text-align: center;
     color: $app-brand-blue;
-
-    // .title{
-    //     font-size: 10vw;
-    // }
 
 }
 
