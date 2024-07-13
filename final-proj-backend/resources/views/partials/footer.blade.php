@@ -4,7 +4,7 @@
         
         <div class="col gap-2 d-flex flex-column justify-content-center align-items-center">
             <p class="fw-bold"><a href="http://localhost:5173/">Fooder</a></p>
-            <p class="fw-bold"><a href="#">Chi siamo</a></p>
+            <p class="fw-bold"><a href="http://localhost:5173/about-us">Chi siamo</a></p>
             <p class="fw-bold"><a href="#">Contattaci</a></p>
         </div>
 
