@@ -29,10 +29,9 @@
             <div class="form-check form-switch">
                 <input class="form-check-input" type="checkbox" role="switch" id="dish-visibility"
                     name="visible" @if(old('visible', $dish->visible ?? false)) checked @endif value="1">
-               
-                    
+
                 </div>
-                <p id="ciao"></p>
+                <p id="ciao">Piatto non visibile</p>
         </div>
 
 
