@@ -43,17 +43,17 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <table class="table w-100 d-block d-md-table scroll-table">
+                <table class="table my-table-sm-query scroll-table">
                     <thead>
                         <tr>
                             <th scope="col">Nome piatto</th>
                             <th class="text-center" scope="col">Prezzo</th>
                             <th class="text-center" scope="col">Disponibile</th>
                             @unless(request('trash'))
-                                <th class="text-center" scope="col"></th>
+                                <th class="text-center" scope="col">Visualizza</th>
                             @endunless
-                            <th class="text-center" scope="col"></th>
-                            <th class="text-center" scope="col"></th>
+                            <th class="text-center" scope="col">Modifica</th>
+                            <th class="text-center" scope="col">Elimina</th>
                         </tr>
                     </thead>
                     <tbody>
