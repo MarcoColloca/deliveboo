@@ -13,14 +13,10 @@
     padding: 0;
     .my-modal__box{
         display: flex;
-        flex-direction: column;
         height: 100%;
         // padding: 10px 20px;
         align-items: center;
         justify-content: center;
-        h4{
-            margin-right: -30px;
-        }
         span{
             &:hover{
                 cursor: pointer;

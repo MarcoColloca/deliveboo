@@ -60,7 +60,7 @@
                             @method('DELETE')
                             <button class="btn btn-link p-0 m-0 no-style fs-4 text-danger"><i class="fas fa-trash-alt "></i></button>
                             <div class="my-modal">
-                                <div class="my-modal__box">
+                                <div class="my-modal__box flex-column">
                                     <h4 class="text-center">Vuoi eliminare questo Ristorante?</h4>
                                     <p>
                                         <span class="link link-danger my-modal-yes ms-2">Si</span>

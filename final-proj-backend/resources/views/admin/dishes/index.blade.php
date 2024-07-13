@@ -100,14 +100,14 @@
                                                 <div class="my-modal">
                                                     <div class="my-modal__box">
                                                         @unless($dish->trashed())
-                                                            <h4 class="text-center">Vuoi eliminare questo piatto?</h4>
+                                                            <h4 class="text-center me-3">Vuoi eliminare questo piatto?</h4>
                                                         @else
-                                                            <h4 class="text-center">Questa eliminazione è definitiva, sei sicuro?</h4>
+                                                            <h4 class="text-center me-3">Questa eliminazione è definitiva, sei sicuro?</h4>
                                                         @endunless
-                                                        <p>
-                                                            <span class="link link-danger my-modal-yes ms-2">Si</span>
-                                                            <span class="link link-success my-modal-no ms-2">No</span>
-                                                        </p>
+                                                        
+                                                            <span class="link link-danger my-modal-yes mx-2">Si</span>
+                                                            <span class="link link-success my-modal-no mx-2">No</span>
+                                                        
                                                     </div>
                                                 </div>
 

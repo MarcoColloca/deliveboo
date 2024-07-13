@@ -88,11 +88,9 @@
                                             <button class="btn btn-link p-0 m-0 no-style text-danger"><i class="fas fa-trash-alt "></i></button>
                                             <div class="my-modal">
                                                 <div class="my-modal__box">
-                                                    <h4 class="text-center">Vuoi eliminare questo Piatto?</h4>
-                                                    <p>
-                                                        <span class="link link-danger my-modal-yes ms-2">Si</span>
-                                                        <span class="link link-success my-modal-no ms-2">No</span>
-                                                    </p> 
+                                                    <h4 class="text-center me-3">Vuoi eliminare questo Piatto?</h4>
+                                                    <span class="link link-danger my-modal-yes mx-2">Si</span>
+                                                    <span class="link link-success my-modal-no mx-2">No</span>
                                                 </div>
                                             </div>
                                         </form>
