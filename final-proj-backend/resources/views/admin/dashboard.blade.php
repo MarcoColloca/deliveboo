@@ -18,8 +18,8 @@
                 </div>
 
                 <div class="card-body container px-3">
-                    <div class="row py-5 gap-4 row-cols-1 row-cols-md-2 row-cols-lg-3 justify-content-center">
-                        @foreach ($companies as $company)
+                    <div class="row py-5 gap-4 row-cols-1 row-cols-md-2 row-cols-lg-3 justify-content-center">                    
+                        @forelse ($companies as $company)
                             <div class="col d-flex card-group justify-content-center">
                                 <div class="bg-light shadow d-flex flex-column justify-content-between p-3 rounded-3 w-100">
                                     <div class="card-header" style="height:200px">
@@ -42,7 +42,9 @@
                                     <p class="text-end me-3"> <i class="fa-solid fa-utensils me-1"></i><span> {{count($company->dishes)}} </span></p>
                                 </div>
                             </div>
-                        @endforeach
+                        @empty
+                            <h4 class="py-2 bg-light rounded-3 text-danger text-center">Non hai ancora alcun ristorante. <a class="text-warning" href="{{route('admin.companies.create')}}">Creane uno!</a> </>
+                        @endforelse
                     </div>
                 </div>
             </div>
