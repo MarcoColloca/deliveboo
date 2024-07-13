@@ -20,14 +20,16 @@
     </h2>
     <div class="container my-5">
         <div class="row g-0 justify-content-between align-items-center mt-5">
-            <h1 class=" col-auto col-md-6 text-blue bg-light rounded-3 p-2 shadow">
-                {{$company->name}}
-            </h1>
+            <div class="col-auto col-md-12 text-blue bg-light rounded-3 p-2 shadow mb-3">
+                <h1 class="text-break">
+                    {{$company->name}}
+                </h1>
+            </div>
             @unless (request('trash'))
                 <a class=" col-2 col-md-2 col-lg-1 btn btn-blue fs-2 text-decoration-none d-flex justify-content-center align-items-center my-1 p-3"
                     href="{{ route('admin.dishes.create', ['company_id' => $company->id])}}"><i class="fas fa-plus"></i>
                 </a>
-                <button class="btn btn-danger col-2 col-md-2 col-lg-2">
+                <button class="btn btn-danger col-5 col-md-4 col-lg-3">
                     <a href="{{ route('admin.dishes.showOne', ['dish' => $company->id, 'trash' => 1])}}" class="-link-color-white text-decoration-none"> Vai al tuo cestino  <i class="fas fa-trash-alt "></i></a>
                     </a>
                 </button>
