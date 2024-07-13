@@ -8,6 +8,25 @@
     }
 }
 
+.my-table-xs-query{
+    display:block;
+}
+@media (min-width: 520px) {
+    .my-table-xs-query{
+        display:table;
+    }
+}
+
+.my-table-md-query{
+   display:block;
+}
+   @media (min-width: 992px) {
+        .my-table-md-query{
+        display: table;
+        }
+   }
+
+
 .my-table-sm-query{
     display:block;
 }
