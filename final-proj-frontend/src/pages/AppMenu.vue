@@ -159,7 +159,7 @@ export default {
                     <div class="row row-container row-gap-3">
                         <div class="col-12 px-2" v-for="dish in dishes" :key="dish.id">
                             <div class="dish-card">
-                                <div class="row g-0" v-if="dish.visible === 1">
+                                <div class="row g-0">
                                     <div class="col-12 col-lg-6 col-img">
                                         <div class="dish-img">
                                             <img v-if="dish.image_fullpath" :src="dish.image_fullpath"
@@ -179,13 +179,20 @@ export default {
                                                 Descrizione: {{
                                                     dish.description }}</p>
                                             <h4 class="dish-price m-0">{{ dish.price }} €</h4>
-                                            <h5 class="btn dish-btn btn-outline-yellow" v-if="isVisible(dish.id)"
-                                                @click="increaseQty(dish.id)">
-                                                Aggiungine un altro</h5>
-                                            <h5 class="btn dish-btn btn-outline-blue cart-link" v-else
-                                                @click="addDishToCart(dish)">Aggiungi al
-                                                carrello
-                                            </h5>
+
+                                            <span v-if="dish.visible === 1">                                         
+                                                <h5  class="btn dish-btn btn-outline-yellow" v-if="isVisible(dish.id)" @click="increaseQty(dish.id)">
+                                                    Aggiungine un altro
+                                                </h5>
+                                                <h5  class="btn dish-btn btn-outline-blue cart-link" v-else @click="addDishToCart(dish)">
+                                                    Aggiungi al carrello
+                                                </h5>
+                                            </span>
+                                            <span v-else>
+                                                <h5  class="btn dish-btn not-available btn-outline-danger">
+                                                    Piatto non Disponibile
+                                                </h5>
+                                            </span>
                                         </div>
                                     </div>
 
@@ -366,6 +373,9 @@ export default {
                 align-self: center;
                 padding: 10px;
                 margin: 10px;
+                &.not-available{
+                    pointer-events: none;
+                }
             }
 
         }

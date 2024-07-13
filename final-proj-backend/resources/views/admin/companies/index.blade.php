@@ -76,10 +76,11 @@
                                             class="fas fa-trash-alt "></i></button>
                                     <div class="my-modal">
                                         <div class="my-modal__box">
-                                            <h4 class="text-center me-5">Vuoi eliminare questo ristorante?</h4>
-                                            <span class="link link-danger my-modal-yes mx-5">Si</span>
-                                            <span class="link link-success my-modal-no mx-5">No</span>
-
+                                            <h4 class="text-center me-3">Vuoi eliminare questo Ristorante?</h4>
+                                            
+                                                <span class="link link-danger my-modal-yes mx-2">Si</span>
+                                                <span class="link link-success my-modal-no mx-2">No</span>
+                                                    
                                         </div>
                                     </div>
                                 </form>
