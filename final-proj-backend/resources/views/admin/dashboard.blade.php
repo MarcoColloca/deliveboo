@@ -30,12 +30,12 @@
                                         @endif
                                     </div>
                                     <div class="card-body text-blue position-relative">
-                                        <p class="card-title fs-3 fw-bold">
+                                        <p class="card-title fs-3 fw-bold text-break">
                                             <a href="{{route('admin.dishes.showOne', $company->id)}}">
                                                 {{$company->name}}
                                             </a>
                                         </p>
-                                        <p class="card-title fs-5 fw-bold">
+                                        <p class="card-title fs-5 fw-bold text-break">
                                             {{$company->address}}
                                         </p>
                                     </div>
