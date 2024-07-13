@@ -40,6 +40,9 @@
                                         </p>
                                     </div>
                                     <p class="text-end me-3"> <i class="fa-solid fa-utensils me-1"></i><span> {{count($company->dishes)}} </span></p>
+                                    @if(count($company->dishes) === 0)
+                                        <small class="text-end me-3"><a class="text-blue" href="{{route('admin.dishes.create')}}">Aggiungi almeno un piatto.</a></small>
+                                    @endif
                                 </div>
                             </div>
                         @empty
