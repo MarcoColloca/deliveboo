@@ -20,7 +20,7 @@
                         <p class="fs-5 text-blue">{{$company->description}}</p>
                     </div>
                     
-                    <table class="table my-tabel-xs-query scroll-table">
+                    <table class="table my-table-xs-query scroll-table">
                         <tbody>
                             <tr class="border-top">
                                 <td class="border-end"><strong>Città:</strong></td>
