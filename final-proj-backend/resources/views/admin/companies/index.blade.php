@@ -12,11 +12,12 @@
             <a class="btn btn-blue d-flex text-decoration-none justify-content-center align-items-center" href="{{ route('admin.companies.create')}}">Crea il tuo ristorante</a>
         @endunless
         @if (request('trash'))
-            <a href="{{ route('admin.companies.index')}}"
-                class="btn link-primary p-0 m-0 no-style align-content-center">Indietro</a>
+            <a href="{{ route('admin.companies.index')}}" class="btn link-primary p-0 m-0 no-style align-content-center">Indietro</a>
         @else
-            <a href="{{ route('admin.companies.index', ['trash' => 1])}}"
-                class="btn btn-link p-0 m-0 no-style fs-3 text-danger bg-light p-2 rounded-3 shadow  align-content-center"><i class="fas fa-trash-alt "></i></a>
+            <button class="btn btn-danger">
+                <a href="{{ route('admin.companies.index', ['trash' => 1])}}" class="-link-color-white text-decoration-none">
+                Vai al tuo cestino <i class="fas fa-trash-alt "></i></a>
+            </button>
         @endif
     </div>
     <div class="container">

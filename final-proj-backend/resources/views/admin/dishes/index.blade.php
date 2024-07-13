@@ -15,13 +15,11 @@
             <div  class="d-flex flex-column align-items-center justify-content-center">
 
                 <h2 class="text-center text-blue fw-bold fs-2 my-3">I tuoi Menu</h2> 
-              <button class="btn btn-danger">
-
-                  <a href="{{ route('admin.dishes.index', ['trash' => 1])}}" class="-link-color-white text-decoration-none">
+                <button class="btn btn-danger">
+                    <a href="{{ route('admin.dishes.index', ['trash' => 1])}}" class="-link-color-white text-decoration-none">
                     Vai al tuo cestino <i class="fas fa-trash-alt "></i>
-                  </a>
-              
-              </button>
+                     </a>
+                </button>
             </div>
             @elseif (request('trash'))
             <div  class="d-flex flex-column align-items-center justify-content-center">

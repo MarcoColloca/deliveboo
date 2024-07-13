@@ -27,11 +27,10 @@
                 <a class=" col-2 col-md-2 col-lg-1 btn btn-blue fs-2 text-decoration-none d-flex justify-content-center align-items-center my-1 p-3"
                     href="{{ route('admin.dishes.create', ['company_id' => $company->id])}}"><i class="fas fa-plus"></i>
                 </a>
-
-                <a href="{{ route('admin.dishes.showOne', ['dish' => $company->id, 'trash' => 1])}}"
-                    class="col-2 col-md-2 col-lg-1 btn btn-link m-0 no-style fs-3 text-danger bg-light p-2 rounded-3 shadow align-content-center">
-                    <i class="fas fa-trash-alt "></i>
-                </a>
+                <button class="btn btn-danger col-2 col-md-2 col-lg-2">
+                    <a href="{{ route('admin.dishes.showOne', ['dish' => $company->id, 'trash' => 1])}}" class="-link-color-white text-decoration-none"> Vai al tuo cestino  <i class="fas fa-trash-alt "></i></a>
+                    </a>
+                </button>
             @elseif (request('trash'))
             <a href="{{ route('admin.dishes.showOne', ['dish' => $company->id])}}"
                 class="btn btn-blue align-content-center">Indietro</a>
