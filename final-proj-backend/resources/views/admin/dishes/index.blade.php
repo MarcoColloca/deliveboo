@@ -23,12 +23,12 @@
             </div>
             @elseif (request('trash'))
             <div  class="d-flex flex-column align-items-center justify-content-center">
-            <h3 class="text-center text-white mt-3">Il tuo Cestino</h3>
-            <button class="btn btn-danger">
+                <h3 class="text-center text-white mt-3">Il tuo Cestino</h3>
+                <button class="btn btn-danger">
 
-                <a href="{{ route('admin.dishes.index')}}" class="-link-color-white">Indietro</a>
-                              
-            </button>
+                    <a href="{{ route('admin.dishes.index')}}" class="-link-color-white">Indietro</a>
+                                
+                </button>
             </div> 
             @endif
             <div class="col-12 ">

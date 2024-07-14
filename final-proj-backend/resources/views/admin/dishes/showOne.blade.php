@@ -34,8 +34,14 @@
                     </a>
                 </button>
             @elseif (request('trash'))
-            <a href="{{ route('admin.dishes.showOne', ['dish' => $company->id])}}"
-                class="btn btn-blue align-content-center">Indietro</a>
+                <div  class="d-flex flex-column align-items-center justify-content-center">
+                <h3 class="text-center text-white mt-3">Il tuo Cestino</h3>
+                <button class="btn btn-danger">
+
+                    <a href="{{route('admin.dishes.showOne', ['dish' => $company->id])}}" class="-link-color-white">Indietro</a>
+                                
+                </button>
+                </div>
             @endif
         </div>
     </div>
