@@ -9,7 +9,7 @@
     <div class="container container-transparent p-5 rounded-3 shadow">
         <div class="container py-5">
             <div class="row row-gap-3 justify-content-around gap-2">
-                <div class="col-10 col-md-6">
+                <div class="col-10 col-md-6 align-self-end">
                     <img src="{{Vite::asset('resources/img/logo.png')}}" alt="">
                 </div>
                 <div class="col-10 col-md-4">
