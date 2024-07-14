@@ -34,12 +34,12 @@
         <!-- Visibilità Piatto -->
         <div class="mb-3">
             <div class="mb-3">
-                <label for="visible" class="form-label fb-bold">Visibilità nel Menù *</label>
+                <label for="visible" class="form-label fb-bold">Disponibilità nel Menù *</label>
                 <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" role="switch" id="dish-visibility"
                         name="visible" @if(old('visible', $dish->visible ?? false)) checked @endif value="1">
                 </div>
-                <p id="ciao"></p>
+                <p id="ciao">{{$dish->visible ? 'Piatto Disponibile' : 'Piatto non Disponibile'}}</p>
             </div>
 
 
@@ -101,11 +101,11 @@
         switchValue = !switchValue;
         console.log('switch',switchValue);
         if(switchValue){
-            document.getElementById('ciao').textContent = 'Piatto visibile';
+            document.getElementById('ciao').textContent = 'Piatto Disponibile';
           
         } else {
     
-            document.getElementById('ciao').textContent = 'Piatto non visibile';
+            document.getElementById('ciao').textContent = 'Piatto non Disponibile';
         }
     }); 
     </script>
