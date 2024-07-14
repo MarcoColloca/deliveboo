@@ -25,10 +25,10 @@
     <footer>
         <div class="container py-4 footer-container">
            <div class="row g-0 row-cols-1 row-cols-md-3 w-100 justify-content-around">
-            <div class="col gap-2 d-flex flex-column justify-content-center align-items-center">
+            <div class="col gap-2 d-flex flex-column justify-content-between align-items-center">
                 <BackTop></BackTop>
                 <p><a href="http://127.0.0.1:8000/register">Fooder Business</a></p>
-                <p><a href="http://127.0.0.1:8000/login">Fooder Partner</a></p>
+              
             </div>
             <div class="col gap-2 d-flex flex-column justify-content-center align-items-center">
              
