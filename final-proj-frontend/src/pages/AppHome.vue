@@ -57,12 +57,17 @@ export default {
         <div class="hero mb-3">
 
             <div class="container-fluid title-container">
-                <div class="row gap-1 justify-content-center align-items-center">
+                <div class="row gap-1 row-gap-3 justify-content-center align-items-center">
                     <div class="col-10 col-lg-5 mt-4 pt-4">
-                        <img src="/imgs/logo.png" class="logo-big" alt="">
+                        <div class="h-100 d-flex flex-column align-items-center justify-content-center my-2 px-3">
+                            <img src="/imgs/logo.png" class="logo-big" alt="">
+                        </div>
                     </div>
-                    <div class="col-10 col-lg-5 px-3">
-                        <h1 class="title">Ordina tutto il cibo che vuoi<br> da casa tua!</h1>
+                    <div class="col-10 h-100 col-lg-5">
+                        <div class="h-100 d-flex flex-column align-items-center justify-content-between mt-4 pt-4 px-3">
+                            <h1>Ordina tutto il cibo che vuoi<br> da casa tua!</h1>
+                            <img src="/imgs/title-img.png" class="title-img d-none d-lg-block"  alt="">
+                        </div>
 
                     </div>
                 </div>
@@ -182,6 +187,7 @@ export default {
     background-size: cover;
 
 }
+
 .became-partner{
     padding: 50px;
     background-color: $app-brand-yellow;
@@ -320,7 +326,6 @@ ul {
     min-height: 450px;
     text-align: center;
     color: $app-brand-blue;
-
 }
 
 .food-types__container {
