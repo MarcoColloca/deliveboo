@@ -18,7 +18,7 @@
                 <input type="date" id="to" name="to" class="form-control" />
             </div>
             <div class="col-md-3 mt-4">
-                <input type="button" class="btn btn-blue" value="Filter" onclick="barChart()" />
+                <input type="button" class="btn btn-blue" value="Filtra" onclick="barChart()" />
             </div>
         </div>
     </div>
