@@ -11,9 +11,9 @@
             <div class="col-auto">
                 <div class="card shadow p-3">
                     @if($dish->image)
-                    <img src="{{  asset('storage/'. $dish->image) }} " class="card-img-top" alt="...">
+                    <img src="{{  asset('storage/'. $dish->image) }} " class="card-img-top my-card-img" alt="...">
                     @else
-                    <img src="{{  asset('storage/image/default-image.png') }} " class="card-img-top" alt="...">      
+                    <img src="{{  asset('storage/image/default-image.png') }} " class="card-img-top my-card-img" alt="...">      
                     @endif
                     <div class="card-body">
                         <h4 class="card-title">{{ $dish->name }}</h4>
