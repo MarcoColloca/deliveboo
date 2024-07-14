@@ -113,6 +113,7 @@ section {
         width: 100%;
         object-fit: cover;
         border-radius: 10px;
+        min-height: 270px;
     }
 
     .our-card-text {
