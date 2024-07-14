@@ -7,7 +7,7 @@
 
     <!-- Immagine Piatto -->
     @if($dish->image)
-        <img src="{{ asset('storage/' . $dish->image) }}" alt="image{{$dish->name}}" class="card-img-top w-50">
+        <img src="{{ asset('storage/' . $dish->image) }}" alt="image{{$dish->name}}" class="card-img-top w-50 my-edit-img">
     @else
         <img src="{{  asset('storage/image/default-image.png') }} " class="card-img-top w-50" alt="...">
     @endif
