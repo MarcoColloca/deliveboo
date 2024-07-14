@@ -114,7 +114,7 @@ export default {
             });
 
         },
-
+        
 
         clearTypeSearch(){
             this.selectedTypeSlugs = [];
@@ -127,7 +127,21 @@ export default {
                 this.selectedTypeSlugs.push(slug);
             }
             this.fetchCompanies();
-        }
+        },
+
+        newPurchase() {
+            if(this.store.clearAllCart === true){
+                this.store.cartCompany = null;
+                this.store.cartDishes = [];
+                this.store.showClearCart = false;
+                this.store.clearAllCart = false;
+            }else{
+                this.store.cartCompany = null;
+                this.store.cartDishes = [];
+                this.store.showClearCart = false;
+                this.addDishToCart(this.store.newItemIntoCart);
+            }
+        },
     }
 }
 </script>
@@ -215,7 +229,7 @@ export default {
                 </div>
                 <div v-show="store.showCart">
                     <Cart :company="this.store.cartCompany" :cartDishes="this.store.cartDishes"
-                        @remove="removeDishFromCart" @increase="increaseQty" @decrease="decreaseQty" class="card-cart">
+                        @remove="removeDishFromCart" @increase="increaseQty" @decrease="decreaseQty" @newPurchase="newPurchase" class="card-cart">
                     </Cart>
                 </div>
 
