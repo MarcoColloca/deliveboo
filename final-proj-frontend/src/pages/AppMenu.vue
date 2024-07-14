@@ -184,7 +184,7 @@ export default {
                                                 <h5  class="btn dish-btn btn-outline-yellow" v-if="isVisible(dish.id)" @click="increaseQty(dish.id)">
                                                     Aggiungine un altro
                                                 </h5>
-                                                <h5  class="btn dish-btn btn-outline-blue cart-link" v-else @click="addDishToCart(dish)">
+                                                <h5  class="btn dish-btn btn-outline-blue" v-else @click="addDishToCart(dish)">
                                                     Aggiungi al carrello
                                                 </h5>
                                             </span>
@@ -337,7 +337,7 @@ export default {
 
             .card-dish-body {
                 height: 60%;
-                padding: 10px 30px;
+                // padding: 10px 30px;
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
@@ -351,7 +351,7 @@ export default {
                 }
 
                 .dish-name {
-                    font-size: 40px;
+                    font-size: 30px;
                 }
 
                 .dish-specs {
@@ -369,10 +369,10 @@ export default {
             }
 
             .dish-btn {
-                width: 200px;
+                // width: 200px;
                 align-self: center;
-                padding: 10px;
-                margin: 10px;
+                padding: 6px;
+                margin: 10px 0;
                 &.not-available{
                     pointer-events: none;
                 }
@@ -551,7 +551,11 @@ export default {
     .menu-page {
 
         .container {
-            max-width: 1140px;
+            max-width: 1140px;  
+        .card-dish-body{
+            padding: 10px 30px;
+        }
+
         }
     }
 }
