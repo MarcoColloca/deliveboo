@@ -9,7 +9,7 @@
         </div>
 
         <div class="col gap-2 d-flex flex-column justify-content-center align-items-center">
-            <p class="fw-bold"><a href="#">FAQ</a></p>
+            <p class="fw-bold"><a href="{{route('faq')}}">FAQ</a></p>
             <p class="fw-bold"><a href="#">Termini e condizioni</a></p>
             <p class="fw-bold"><a href="#">Privacy</a></p>
             

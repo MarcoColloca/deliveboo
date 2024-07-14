@@ -37,7 +37,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+Route::get('/faq', function (){
+    return view('faq');
+})->name('faq');
 
 Route::middleware(['auth', 'verified'])
 ->name('admin.') // il prefisso che viene aggiunto a tutti i NOMI delle rotte nel gruppo
