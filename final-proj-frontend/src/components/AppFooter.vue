@@ -33,7 +33,7 @@
             <div class="col gap-2 d-flex flex-column justify-content-center align-items-center">
              
                 <p> <RouterLink :to="{ name: 'about-us' }">Chi siamo</RouterLink></p>
-                <p><a href="#">Faq</a></p>
+                <p><a href="#">FAQ</a></p>
                 <p><a href="#">Contattaci</a></p>
             </div>
 

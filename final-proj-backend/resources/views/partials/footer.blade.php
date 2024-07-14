@@ -9,7 +9,7 @@
         </div>
 
         <div class="col gap-2 d-flex flex-column justify-content-center align-items-center">
-            <p class="fw-bold"><a href="#">Faq</a></p>
+            <p class="fw-bold"><a href="#">FAQ</a></p>
             <p class="fw-bold"><a href="#">Termini e condizioni</a></p>
             <p class="fw-bold"><a href="#">Privacy</a></p>
             
@@ -23,11 +23,11 @@
 <style lang="scss" scoped>  
     footer{
     
-            background-color:#18475D;
-            color:#FDB721;
-            p{
-                font-size:20px;
-            }
+        background-color:#18475D;
+        color:#FDB721;
+        p{
+            font-size:20px;
+        }
     
     }
 </style>
