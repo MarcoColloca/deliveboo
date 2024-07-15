@@ -38,6 +38,8 @@ export default {
 
             });
 
+            sum = sum.toFixed(2);
+            
             return sum
         },
 

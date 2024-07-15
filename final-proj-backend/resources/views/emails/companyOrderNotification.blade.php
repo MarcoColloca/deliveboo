@@ -5,7 +5,7 @@
 </head>
 <body>
     <h1>Un nuovo ordine è stato ricevuto</h1>
-    <p>Dettagli dell'ordine:</p>
+    <h4>Informazioni dell'ordine:</h4>
     <ul>
         <li>Nome Cliente: {{ $order->customer_name }}</li>
         <li>Indirizzo: {{ $order->customer_address }}</li>
@@ -13,15 +13,19 @@
         <li>Telefono: {{ $order->customer_phone }}</li>
     </ul>
 
-    <h5>Dettagli Ordine:</h5>
-    <p>{{$order->details}}</p>
+    <h4>Dettagli Ordine:</h4>
+    @if($order->details)
+        <p>{{$order->details}}</p>
+    @else
+        <p>Nessun dettaglio.</p>
+    @endif
 
-    <p>Piatti ordinati:</p>
+    <h4>Piatti ordinati:</h4>
     <ul>
         @foreach ($order->dishes as $dish)
-            <li>{{ $dish->name }} x {{ $dish->pivot->qty }}</li>
+            <li>{{ $dish->name }} x{{ $dish->pivot->qty }} - €{{$dish->price}}</li>
         @endforeach
     </ul>
-    <p>Totale: {{ $order->total }} €</p>
+    <h5>Totale: {{ $order->total }} €</h5>
 </body>
 </html>

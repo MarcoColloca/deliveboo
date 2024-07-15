@@ -159,7 +159,8 @@ class DishController extends Controller
         }
 
         $dish->delete();
-        return back();
+
+        return to_route('admin.dishes.index');
     }
 
 

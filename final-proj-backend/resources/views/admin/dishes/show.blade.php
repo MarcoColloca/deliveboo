@@ -47,8 +47,7 @@
                             method="POST">
                             @csrf
                             @method('DELETE')
-                            <button class="btn btn-link p-0 m-0 no-style text-danger"><i
-                                    class="fas fa-trash-alt "></i></button>
+                            <button class="btn btn-link p-0 m-0 no-style text-danger"><i class="fas fa-trash-alt "></i></button>
                             <div class="my-modal">
                                 <div class="my-modal__box flex-column">
                                     <h4 class="text-center">Vuoi eliminare questo Piatto?</h4>
@@ -58,7 +57,6 @@
                                     </p> 
                                 </div>
                             </div>
-
                         </form>
                     </div>
                 </div>

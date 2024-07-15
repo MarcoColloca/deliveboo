@@ -57,9 +57,9 @@
                             <th class="text-center" scope="col">Disponibile</th>
                             @unless(request('trash'))
                                 <th class="text-center" scope="col">Visualizza</th>
+                                <th class="text-center" scope="col">Modifica</th>
+                                <th class="text-center" scope="col">Elimina</th>
                             @endunless
-                            <th class="text-center" scope="col">Modifica</th>
-                            <th class="text-center" scope="col">Elimina</th>
                         </tr>
                     </thead>
                     <tbody>

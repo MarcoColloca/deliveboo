@@ -9,7 +9,7 @@
         <p>Abbiamo ricevuto il tuo ordine con i seguenti dettagli:</p>
         <ul>
             @foreach ($order->dishes as $dish)
-                <li>{{ $dish->name }} x {{ $dish->pivot->qty }}</li>
+                <li>{{ $dish->name }} x{{ $dish->pivot->qty }} - €{{$dish->price}}</li>
             @endforeach
         </ul>
         <p>Totale: {{ $order->total }} €</p>
