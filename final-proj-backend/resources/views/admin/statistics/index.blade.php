@@ -13,6 +13,7 @@
                 <option value="3">Ultimi 3 mesi</option>
                 <option value="6">Ultimi 6 mesi</option>
                 <option value="12" selected>Ultimo anno</option>
+                <option value="9999">Tutti gli anni</option>
             </select>
         </div>
             <div class="col">
