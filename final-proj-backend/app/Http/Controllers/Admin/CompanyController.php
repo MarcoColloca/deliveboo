@@ -164,7 +164,7 @@ class CompanyController extends Controller
         $company = Company::withTrashed()->where('id', $id)->where('user_id', $user_id)->first();
 
         if (!$company) {
-            abort(404, 'Utente non abilitato a fare questa azione');
+            abort(403, 'Utente non autorizzato ad eseguire questa azione');
         }
 
         $company->restore();
@@ -178,7 +178,7 @@ class CompanyController extends Controller
         $company = Company::onlyTrashed()->where('id', $id)->where('user_id', $user_id)->first();
 
         if (!$company) {
-            abort(404, 'Utente non abilitato a fare questa azione');
+            abort(403, 'Utente non autorizzato ad eseguire questa azione');
         }
 
         if ($company->image) {

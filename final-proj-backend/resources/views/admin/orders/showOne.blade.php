@@ -15,7 +15,7 @@
                             </p>
                         </h3>
                     </div>
-                    <table class="table my-table-query scroll-table">
+                    <table class="table my-table-md-query scroll-table">
                         <thead>
                             <tr>
                                 <th scope="col">Nome Cliente</th>
