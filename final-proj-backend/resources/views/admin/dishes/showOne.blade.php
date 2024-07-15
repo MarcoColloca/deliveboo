@@ -35,7 +35,7 @@
                 </button>
             @elseif (request('trash'))
                 <div  class="d-flex flex-column align-items-center justify-content-center">
-                <h3 class="text-center text-white mt-3">Il tuo Cestino</h3>
+                <h3 class="text-center text-blue mt-3">Il tuo Cestino</h3>
                 <button class="btn btn-danger">
 
                     <a href="{{route('admin.dishes.showOne', ['dish' => $company->id])}}" class="-link-color-white">Indietro</a>
@@ -55,6 +55,10 @@
                             <th scope="col">Nome piatto</th>
                             <th class="text-center" scope="col">Prezzo</th>
                             <th class="text-center" scope="col">Disponibile</th>
+                            @if(request('trash'))
+                                <th></th>
+                                <th></th>
+                            @endif
                             @unless(request('trash'))
                                 <th class="text-center" scope="col">Visualizza</th>
                                 <th class="text-center" scope="col">Modifica</th>
