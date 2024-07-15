@@ -20,7 +20,6 @@
                             <tr>
                                 <th scope="col">Nome Cliente</th>
                                 <th class="text-start" scope="col">Indirizzo</th>
-                                <th class="text-start" scope="col">Email</th>
                                 <th class="text-start" scope="col">Telefono</th>
                                 <th class="text-center" scope="col">Totale Ordine</th>
                                 <th class="text-center" scope="col">Data Ordine</th>
@@ -32,7 +31,6 @@
                             <tr class="position-relative">
                                 <td class="text-start fw-lighter">{{ $order->customer_name }}</td>
                                 <td class="text-start fw-lighter">{{ $order->customer_address }}</td>
-                                <td class="text-start fw-lighter">{{ $order->customer_email ?? 'nessuna mail' }}</td>
                                 <td class="text-start fw-lighter">{{ $order->customer_phone }}</td>
                                 <td class="text-center fw-lighter">{{ $order->total }} €</td>
                                 <td class="text-center fw-lighter">{{ formatItalianDate($order->created_at) }}</td>
@@ -122,7 +120,6 @@
                         <tr class="position-relative">
                             <td class="text-start fw-lighter">${order.customer_name}</td>
                             <td class="text-start fw-lighter">${order.customer_address}</td>
-                            <td class="text-start fw-lighter">${order.customer_email ?? 'nessuna mail'}</td>
                             <td class="text-start fw-lighter">${order.customer_phone}</td>
                             <td class="text-center fw-lighter">${order.total} €</td>
                             <td class="text-center fw-lighter">${formattedDate}</td>
