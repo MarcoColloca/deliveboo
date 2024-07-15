@@ -1,7 +1,9 @@
 function totalOrders() {
+    const timePeriod = $('#timePeriod').val();
     $.ajax({
         url: '/admin/pie-chart-revenue-order',
         method: 'GET',
+        data: { timePeriod: timePeriod },
         dataType: 'json',
         success: function (response) {
             let companyData = response.companyData;
@@ -11,11 +13,10 @@ function totalOrders() {
 
             companyData.forEach(item => {
                 if (!companyNames[item.company_name]) {
-                    companyNames[item.company_name] !== 0;
+                    companyNames[item.company_name] = 0;
                 }
                 companyNames[item.company_name]++;
             });
-
 
             const labels = Object.keys(companyNames);
             const dataValues = companyData.map(item => item.total_orders);
@@ -23,7 +24,11 @@ function totalOrders() {
 
             const ctx = document.getElementById('pieChartOrder').getContext('2d');
 
-            totalOrdersPieChart = new Chart(ctx, {
+            if (window.totalOrdersPieChart) {
+                window.totalOrdersPieChart.destroy();
+            }
+
+            window.totalOrdersPieChart = new Chart(ctx, {
                 type: 'pie',
                 data: {
                     labels: labels,
@@ -38,8 +43,6 @@ function totalOrders() {
                     maintainAspectRatio: false,
                 },
             });
-
         },
-
     });
 }

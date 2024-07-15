@@ -3,3 +3,7 @@ $(document).ready(function () {
     barChart();
     totalRevenue();
 });
+$('#timePeriod').change(function() {
+    totalRevenue();
+    totalOrders();
+});

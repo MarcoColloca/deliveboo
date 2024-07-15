@@ -123,19 +123,22 @@ class StatisticsController extends Controller
     {
         $userId = Auth::id();
         $userCompanies = Company::where('user_id', $userId)->pluck('id');
-
+    
+        $timePeriod = $request->input('timePeriod', 12);
+        $startDate = now()->subMonths($timePeriod);
+    
         $companyData = [];
-
+    
         foreach ($userCompanies as $companyId) {
             $company = Company::find($companyId);
-
+    
             $orders = Order::whereHas('dishes', function ($query) use ($companyId) {
                 $query->where('company_id', $companyId);
-            })->get();
-
+            })->where('created_at', '>=', $startDate)->get();
+    
             $totalRevenue = $orders->sum('total');
             $totalOrders = $orders->count();
-
+    
             $companyData[] = [
                 'company_id' => $company->id,
                 'company_name' => $company->name,
@@ -143,7 +146,7 @@ class StatisticsController extends Controller
                 'total_orders' => $totalOrders,
             ];
         }
-
+    
         return response()->json(['companyData' => $companyData]);
     }
 

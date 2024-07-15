@@ -7,6 +7,14 @@
     <div class="container-transparent w-75 m-auto p-2 shadow rounded-3">
     <div class="container text-blue text-center fs-2 bg-light rounded-3 p-2 shadow mt-3">
         <div class="row row-cols-1 row-cols-md-2 ">
+        <div class="col-12 mb-3">
+            <select id="timePeriod" class="form-select">
+                <option value="1">Ultimo mese</option>
+                <option value="3">Ultimi 3 mesi</option>
+                <option value="6">Ultimi 6 mesi</option>
+                <option value="12" selected>Ultimo anno</option>
+            </select>
+        </div>
             <div class="col">
                 <h1 class="text-blue">Fatturato</h1>
                 <p class="text-blue">Fatturato totale nell'ultimo anno dei tuoi ristoranti</p>
