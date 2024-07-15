@@ -101,11 +101,11 @@ switchDOMElement.addEventListener('click',function() {
     switchValue = !switchValue;
     console.log('switch',switchValue);
     if(switchValue){
-        document.getElementById('ciao').textContent = 'Piatto visibile';
+        document.getElementById('ciao').textContent = 'Piatto Disponibile';
       
     } else {
 
-        document.getElementById('ciao').textContent = 'Piatto non visibile';
+        document.getElementById('ciao').textContent = 'Piatto non Disponibile';
     }
 }); 
 </script>
