@@ -9,7 +9,7 @@ trait HasSlug {
         $slug = $base_slug;
         $n = 0;
         do{
-            $find = self::where('slug', $slug)->first();
+            $find = self::withTrashed()->where('slug', $slug)->first();
             if ($find !== null) {
                 $n++;
                 $slug = $base_slug . '-' .$n;
